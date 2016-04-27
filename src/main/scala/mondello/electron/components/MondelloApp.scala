@@ -47,7 +47,7 @@ object MondelloApp extends KoComponent {
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     this.docker = Ko.computed({() =>
-      if (selectedMachine() != null)
+      if (selectedMachine() != null && selectedMachine().state == "Running")
         new Docker(selectedMachine().name, env)
       else
         null

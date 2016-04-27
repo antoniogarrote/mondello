@@ -25,14 +25,11 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
       for {
         inspects <- this.inspect(images.map(_.id).toList)
       } yield {
-        images.zip(inspects).map({ (tuple) =>
-          tuple match {
-            case (image, inspection) => {
-              val date = inspection.asInstanceOf[js.Dynamic].Created.asInstanceOf[String]
-              val size = (""+inspection.asInstanceOf[js.Dynamic].VirtualSize)
-              image.copy(createdAt = date, size = parseSizeText(size), inspect = inspection)
-            }
-          }
+        images.zip(inspects).map({
+          case (image, inspection) =>
+            val date = inspection.asInstanceOf[js.Dynamic].Created.asInstanceOf[String]
+            val size = "" + inspection.asInstanceOf[js.Dynamic].VirtualSize
+            image.copy(createdAt = date, size = parseSizeText(size), inspect = inspection)
         }).toList
       }
     }
@@ -52,11 +49,9 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
   def inspect(imageId:String): Future[js.Object] = {
     val inspected = inspect(List[String](imageId))
     val result = Promise[js.Object]()
-    inspected.onComplete { (inspectResult) =>
-      inspectResult match {
-        case Success(inspectedList) => result.success(inspectedList.head)
-        case Failure(e)             => result.failure(e)
-      }
+    inspected.onComplete {
+      case Success(inspectedList) => result.success(inspectedList.head)
+      case Failure(e) => result.failure(e)
     }
     result.future
   }
@@ -64,10 +59,9 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
   protected def parseImageLine(line: String): Image = {
     line.split("\\s+") match {
       case Array(repository, tag, id, _*) =>
-        Image(repository, tag, id, null, 0L, null)
-      case other => {
+        Image(repository, tag, id.replace("sha256:",""), null, 0L, null)
+      case other =>
         throw new Exception(s"Impossible to parse array: $other")
-      }
     }
   }
 
@@ -75,7 +69,7 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
 
   protected def parseContainerLine(line: String): Container = {
     line.split("\\t") match {
-      case Array(id, image, command, createdAt, runningFor, ports, status, size, names, labels) => {
+      case Array(id, image, command, createdAt, runningFor, ports, status, size, names, labels) =>
         val running = if(status.indexOf("Up") == 0) { true } else { false }
         new Container (
           id,
@@ -89,8 +83,7 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
           names,
           parseMapLine(labels,"=")
         )
-      }
-      case Array(id, image, command, createdAt, runningFor, ports, status, size, names) => {
+      case Array(id, image, command, createdAt, runningFor, ports, status, size, names) =>
         val running = if(status.indexOf("Up") == 0) { true } else { false }
         new Container (
           id,
@@ -104,10 +97,8 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
           names,
           Map[String,String]()
         )
-      }
-      case other => {
+      case other =>
         throw new Exception(s"Impossible to parse array: $other")
-      }
     }
   }
 

@@ -51,17 +51,20 @@ object Toolbar extends KoComponent {
         span(`class`:="icon icon-drive"),
         raw("&nbsp; Machines")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'images'}, click: function(){ selectPage('images') }",
+      button(attrs.data.bind:="css: {active: page() === 'images','btn-disabled':(selectedMachine() && selectedMachine().state !== 'Running')},"+
+        " click: function(){ selectPage('images') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-box"),
         raw("&nbsp; Images")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'containers'}, click: function(){ selectPage('containers') }",
+      button(attrs.data.bind:="css: {active: page() === 'containers','btn-disabled':(selectedMachine() && selectedMachine().state !== 'Running')}," +
+        " click: function(){ selectPage('containers') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-rocket"),
         raw("&nbsp; Containers")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'projects'}, click: function(){ selectPage('projects') }",
+      button(attrs.data.bind:="css: {active: page() === 'projects','btn-disabled':(selectedMachine() && selectedMachine().state !== 'Running')}," +
+        " click: function(){ selectPage('projects') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-pencil"),
         raw("&nbsp; Projects")
