@@ -9,8 +9,8 @@ import scalatags.Text.all._
 import scalatags.Text.{TypedTag, attrs}
 
 @ScalaJSDefined
-class Machine extends KoComponent {
-  override val tagName: String = Machine.tagName
+class SelectedMachine extends KoComponent {
+  override val tagName: String = SelectedMachine.tagName
 
   var selectedMachine:KoObservable[mondello.models.Machine] = null
   var environment:KoComputed[js.Array[js.Dictionary[String]]] = null
@@ -68,13 +68,12 @@ class Machine extends KoComponent {
         val machine:mondello.models.Machine = selectedMachine()
         val data = f(machine)
         if(data != null) data.asInstanceOf[js.Dictionary[js.Dynamic]].foreach({
-          case ((k: String, v: js.Dynamic)) => {
+          case ((k: String, v: js.Dynamic)) =>
             v.constructor.name.asInstanceOf[String] match {
               case "Array" => array.push(js.Dictionary[String]("key" -> k, "value" -> v.join(",").asInstanceOf[String]))
               case "Object" => array.push(js.Dictionary[String]("key" -> k, "value" -> JSON.stringify(v)))
-              case _        => array.push(js.Dictionary[String]("key" -> k, "value" -> v.toString()))
+              case _        => array.push(js.Dictionary[String]("key" -> k, "value" -> v.toString))
             }
-          }
           case ((k:String, null)) => array.push(js.Dictionary[String]("key" -> k, "value" -> ""))
         })
       }
@@ -150,7 +149,7 @@ class Machine extends KoComponent {
   }
 }
 
-object Machine {
+object SelectedMachine {
   val tagName:String = "machine"
   def tag:TypedTag[String] = KoComponent.mkTag(tagName)
 }

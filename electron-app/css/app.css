@@ -280,3 +280,10 @@ machine-footer {
   width: 100%;
   bottom: 0px;
 }
+
+docker-images {
+  display:flex;
+  position:relative;
+  height:100%;
+  width:100%;
+}

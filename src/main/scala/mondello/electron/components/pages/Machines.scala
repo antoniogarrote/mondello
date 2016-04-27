@@ -34,7 +34,7 @@ object Machines extends KoComponent {
 
 
   nestedComponents += (
-    "selected" -> new mondello.electron.components.pages.machines.Machine(),
+    "selected" -> new mondello.electron.components.pages.machines.SelectedMachine(),
     "browser" -> new MachinesBrowser(),
     "footer" -> new MachineFooter()
   )
@@ -52,7 +52,7 @@ object Machines extends KoComponent {
         MachinesBrowser.tag(
           `class`:="pane pane-sm sidebar",
           params:="machines: dockerMachines, loadingMachines: loadingMachines, selectedMachine: selectedMachine"),
-        mondello.electron.components.pages.machines.Machine.tag(
+        mondello.electron.components.pages.machines.SelectedMachine.tag(
           `class`:="pane padded-more",
           params:="selectedMachine: selectedMachine"
         )

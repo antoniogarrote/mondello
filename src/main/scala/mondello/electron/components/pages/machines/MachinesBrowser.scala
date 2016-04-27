@@ -14,13 +14,13 @@ class MachinesBrowser extends KoComponent {
   override val tagName: String = MachinesBrowser.tagName
 
   var loadingMachines:KoObservable[Boolean] = null
-  var machines:KoObservableArray[Machine] = null
-  var selectedMachine:KoObservable[Machine] = null
+  var machines:KoObservableArray[SelectedMachine] = null
+  var selectedMachine:KoObservable[SelectedMachine] = null
 
   override def viewModel(params: js.Dictionary[js.Any]): Unit = {
-    machines = params("machines").asInstanceOf[KoObservableArray[Machine]]
+    machines = params("machines").asInstanceOf[KoObservableArray[SelectedMachine]]
     loadingMachines = params("loadingMachines").asInstanceOf[KoObservable[Boolean]]
-    selectedMachine = params("selectedMachine").asInstanceOf[KoObservable[Machine]]
+    selectedMachine = params("selectedMachine").asInstanceOf[KoObservable[SelectedMachine]]
   }
 
   def template: String = {
@@ -62,8 +62,8 @@ class MachinesBrowser extends KoComponent {
 
   // Callbacks
 
-  def selectMachine():js.Function2[Machine,js.Any,Unit] = {
-    (machine:Machine, event:js.Any) => this.selectedMachine(machine)
+  def selectMachine():js.Function2[SelectedMachine,js.Any,Unit] = {
+    (machine:SelectedMachine, event:js.Any) => this.selectedMachine(machine)
   }
 }
 
