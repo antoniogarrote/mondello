@@ -29,7 +29,7 @@ class MachineFooter extends KoComponent {
           `class`:="btn btn-large btn-default",
           attrs.data.bind:="click: destroyMachine(), css: {'btn-disabled':!selectedMachine()}",
           span(`class`:="icon icon-trash"),
-          "Destroy machine"
+          "Destroy Machine"
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",

@@ -2,7 +2,7 @@ package mondello.electron.components.pages
 
 import knockout._
 import knockout.tags.KoText
-import mondello.electron.components.pages.images.{ImagesBrowser, SelectedImage}
+import mondello.electron.components.pages.images.{ImageFooter, ImagesBrowser, SelectedImage}
 import mondello.models.Image
 import mondello.proxies.Docker
 
@@ -26,7 +26,8 @@ object Images extends KoComponent {
 
   nestedComponents += (
     "imagesBrowser" -> new ImagesBrowser(),
-    "images" -> new SelectedImage()
+    "images" -> new SelectedImage(),
+    "imageFooter" -> new ImageFooter()
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
@@ -41,7 +42,9 @@ object Images extends KoComponent {
           KoText.all.params:="loadingImages: loadingImages, selectedImage: selectedImage, images: images"),
         SelectedImage.tag(`class`:="pane padded-more",
           KoText.all.params:="selectedImage: selectedImage")
-        )
+        ),
+      ImageFooter.tag(`class`:="toolbar-footer",
+        KoText.all.params:="selectedImage: selectedImage")
     ).toString()
   }
 

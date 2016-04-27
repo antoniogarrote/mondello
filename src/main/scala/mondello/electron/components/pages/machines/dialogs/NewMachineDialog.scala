@@ -1,15 +1,15 @@
-package mondello.electron.components.pages.machines
+package mondello.electron.components.pages.machines.dialogs
 
 import knockout.{Ko, KoComponent}
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.Machines
 
 import scala.scalajs.js
+import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.annotation.ScalaJSDefined
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
-import scala.scalajs.js.Dynamic.{global => g}
 
 
 @ScalaJSDefined

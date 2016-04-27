@@ -52,11 +52,6 @@ class ImagesBrowser extends KoComponent {
       // Images
       raw("<!-- ko ifnot: loadingImages -->"),
       raw("<!-- ko foreach: searchResults -->"),
-      /*
-      h5("---"),
-      div(attrs.data.bind:="text:$data"),
-      div(attrs.data.bind:="text:$data.idSmall"),
-      */
       li(`class`:="list-group-item",
         attrs.data.bind:="click: $parent.selectImage(),"++
           "css: {active: ($parent.selectedImage() && $parent.selectedImage().id == id)}",

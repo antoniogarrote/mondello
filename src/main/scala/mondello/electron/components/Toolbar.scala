@@ -1,7 +1,7 @@
 package mondello.electron.components
 
 import knockout.{KoComponent, KoObservable}
-import mondello.electron.components.pages.machines.NewMachineDialog
+import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
 import mondello.models.Machine
 
 import scala.scalajs.js

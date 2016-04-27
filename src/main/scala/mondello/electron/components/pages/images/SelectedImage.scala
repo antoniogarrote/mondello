@@ -105,7 +105,7 @@ class SelectedImage extends KoComponent {
             th("Port")
           )
         ),
-        tbody(attrs.data.bind:="foreach: Object.keys(selectedImage().inspect.Config.ExposedPorts)",
+        tbody(attrs.data.bind:="foreach: Object.keys(selectedImage().inspect.Config.ExposedPorts || {})",
           tr(
             td(attrs.data.bind:="text: $data")
           )
