@@ -1,0 +1,282 @@
+.padded-more {
+  padding-top: 0px;
+}
+
+#hero-outer {
+  width: 90%;
+  height: 100%;
+  position: absolute
+}
+
+#hero-inner {
+  position: relative;
+  margin-top: 150px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 300px;
+  border-color: gray;
+  border-width: 1px;
+  border-style: solid;
+}
+
+#running-indicator {
+  margin-left: 280px;
+}
+
+.header-section {
+  border-bottom-width: 1px;
+  border-bottom-color: gray;
+  border-bottom-style: inset;
+}
+
+.first-section {
+  margin-top: 25px;
+}
+
+.header-section .icon {
+  font-size: 150%;
+  float: left;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
+.btn-disabled {
+  color: lightgray
+}
+
+.btn-disabled .icon {
+  color: lightgray
+}
+
+.reveal-overlay {
+  cursor: wait;
+}
+
+#log-container-selection {
+  margin-bottom: 0px;
+}
+
+#log-search-box {
+  border-left-color: darkgray;
+  border-left-width: 1px;
+  border-left-style: solid;
+  padding-left: 10px;
+}
+
+#log-search-box input {
+  width: 200px;
+}
+
+#console {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 12px;
+  font-family: monaco,Consolas,Lucida Console,monospace;
+}
+
+.upper, .lower {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.upper {
+    top: 0;
+    height: 25%;
+    overflow:scroll;
+}
+
+.lower {
+    bottom: 0;
+    height: 75%;
+    overflow:scroll;
+    border-top-color: lightgray;
+    border-top-width: 5px;
+    border-top-style: solid;
+}
+
+.pressed {
+    background-image: none;
+    background-color: darkgray;
+    color: black;
+}
+
+.pressed .icon {
+  color: black;
+}
+
+/* Spinner */
+
+.spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+#modal {
+  bottom: 50px;
+  right: 1%;
+  text-align: center;
+  width: 400px;
+  cursor: wait;
+  height: 100px;
+}
+
+#modal h4 {
+  margin-top: 28px;
+}
+
+#modal .spinner {
+  margin: 0px;
+  float: left;
+  margin-right: 17px;
+  margin-top: 19px;
+}
+
+#pull-image-dialog[draggable=true] {
+    cursor: move;
+}
+
+/* -- Spinner -- */
+
+.floating-window {
+  border-radius: 7px;
+  position: absolute;
+  width: 600px;
+  top: 20%;
+  background-color: white;
+  z-index: 100;
+  box-shadow: 2px 6px 8px #888888;
+  left:50%;
+  transform:translateX(-50%);
+  -webkit-transform:translateX(-50%);
+  -ms-transform:translateX(-50%);
+}
+
+.floating-window header {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.floating-window form {
+  padding: 25px;
+  width: 100%;
+}
+
+.floating-window .form-actions button[type=submit] {
+  margin-right: 10px;
+}
+
+.floating-window form-actions {
+  margin-top: 20px;
+}
+
+.floating-window form .btn-ok {
+  margin-right: 10px;
+}
+
+
+#login-dialog {
+  width: 80%;
+}
+
+#login-dialog #logged-in {
+  max-width: 50%;
+  min-width: 50%;
+}
+
+#login-dialog form {
+  max-width: 50%;
+  min-width: 50%;
+  border-left-color: darkgray;
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+
+#launch-configuration-dialog {
+  top: 1%;
+  z-index: 150;
+}
+
+#build-image-path {
+  width: 491px;
+}
+
+#build-image-path-btn {
+  height: 31px;
+  float: right;
+}
+
+/*
+ Adjustments
+*/
+
+machines {
+  display:flex;
+  position:relative;
+  height:100%;
+  width:100%;
+}
+
+.page-container {
+  display:flex;
+  height:100%;
+  width:100%;
+}
+
+machine-footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+}
