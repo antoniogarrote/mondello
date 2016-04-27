@@ -2,6 +2,7 @@ package mondello.electron.components.pages
 
 import knockout._
 import knockout.tags.KoText
+import mondello.electron.components.pages.images.dialogs.LaunchConfigurationDialog
 import mondello.electron.components.pages.images.{ImageFooter, ImagesBrowser, SelectedImage}
 import mondello.models.Image
 import mondello.proxies.Docker
@@ -43,6 +44,7 @@ object Images extends KoComponent {
         SelectedImage.tag(`class`:="pane padded-more",
           KoText.all.params:="selectedImage: selectedImage")
         ),
+      LaunchConfigurationDialog.tag(),
       ImageFooter.tag(`class`:="toolbar-footer",
         KoText.all.params:="selectedImage: selectedImage")
     ).toString()

@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.images
 
 import knockout.{KoComponent, KoObservable}
+import mondello.electron.components.pages.images.dialogs.LaunchConfigurationDialog
 import mondello.models.Image
 
 import scala.scalajs.js.annotation.ScalaJSDefined
@@ -13,6 +14,8 @@ class ImageFooter extends KoComponent {
   override val tagName: String = ImageFooter.tagName
 
   var selectedImage:KoObservable[Image] = null
+
+  nestedComponents += ("LaunchConfigurationDialog" -> LaunchConfigurationDialog)
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     selectedImage = params("selectedImage").asInstanceOf[KoObservable[Image]]
@@ -80,6 +83,7 @@ class ImageFooter extends KoComponent {
 
   def launchConfiguration() = {
     println("** Launch Configuration")
+    LaunchConfigurationDialog.show()
   }
 
 }

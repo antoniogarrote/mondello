@@ -4,6 +4,7 @@ import knockout.{KoComponent, KoObservable}
 import mondello.electron.Renderer
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.Machines
+import mondello.electron.components.pages.images.dialogs.LaunchConfigurationDialog
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.ScalaJSDefined

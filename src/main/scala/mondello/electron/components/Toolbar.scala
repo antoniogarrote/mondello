@@ -1,6 +1,7 @@
 package mondello.electron.components
 
 import knockout.{KoComponent, KoObservable}
+import mondello.electron.components.pages.images.dialogs.LaunchConfigurationDialog
 import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
 import mondello.models.Machine
 
