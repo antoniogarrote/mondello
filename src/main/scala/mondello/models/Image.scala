@@ -9,7 +9,7 @@ case class Image(repository:String,
                  id:String,
                  createdAt:String,
                  size:Long,
-                 inspect:js.Object) {
+                 inspect:js.Dynamic) {
 
   val now:Long = new java.util.Date().getTime
 

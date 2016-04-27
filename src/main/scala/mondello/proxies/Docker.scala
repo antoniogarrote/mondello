@@ -35,10 +35,10 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     }
   }
 
-  def inspect(imageIds:List[String]): Future[List[js.Object]] = {
+  def inspect(imageIds:List[String]): Future[List[js.Dynamic]] = {
     consoleProcess.execute("inspect", imageIds.toArray).map { (lines) =>
-      val parsedInspect = js.JSON.parse(lines.mkString("")).asInstanceOf[js.Array[js.Object]]
-      val resultInspect = mutable.Buffer[js.Object]()
+      val parsedInspect = js.JSON.parse(lines.mkString("")).asInstanceOf[js.Array[js.Dynamic]]
+      val resultInspect = mutable.Buffer[js.Dynamic]()
       for(inspect <- parsedInspect){
         resultInspect.append(inspect)
       }
@@ -46,9 +46,9 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     }
   }
 
-  def inspect(imageId:String): Future[js.Object] = {
+  def inspect(imageId:String): Future[js.Dynamic] = {
     val inspected = inspect(List[String](imageId))
-    val result = Promise[js.Object]()
+    val result = Promise[js.Dynamic]()
     inspected.onComplete {
       case Success(inspectedList) => result.success(inspectedList.head)
       case Failure(e) => result.failure(e)
