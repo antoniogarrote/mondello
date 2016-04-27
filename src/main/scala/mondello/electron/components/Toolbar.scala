@@ -35,6 +35,7 @@ object Toolbar extends KoComponent {
       div(`class`:="toolbar-actions",
         commonButtons(),
         machinesToolbar(),
+        imagesToolbar(),
         rightButtons()
       ),
       NewMachineDialog.tag()
@@ -45,22 +46,22 @@ object Toolbar extends KoComponent {
 
   def commonButtons():Frag = {
     div(`class`:="btn-group",
-      button(attrs.data.bind:="css: {active: page() == 'machines'}",
+      button(attrs.data.bind:="css: {active: page() == 'machines'}, click: function(){ selectPage('machines') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-drive"),
         raw("&nbsp; Machines")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'images'}",
+      button(attrs.data.bind:="css: {active: page() === 'images'}, click: function(){ selectPage('images') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-box"),
         raw("&nbsp; Images")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'containers'}",
+      button(attrs.data.bind:="css: {active: page() === 'containers'}, click: function(){ selectPage('containers') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-rocket"),
         raw("&nbsp; Containers")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'projects'}",
+      button(attrs.data.bind:="css: {active: page() === 'projects'}, click: function(){ selectPage('projects') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-pencil"),
         raw("&nbsp; Projects")
@@ -73,6 +74,19 @@ object Toolbar extends KoComponent {
       button(`class`:="btn btn-default",
         span(`class`:="icon icon-plus"), attrs.data.bind:="click: showNewMachine()",
         "New Machine"
+      )
+    )
+  }
+
+  def imagesToolbar():Frag = {
+    span(attrs.data.bind:="if: page()=='images'",
+      button(`class`:="btn btn-default",
+        span(`class`:="icon icon-cloud"), attrs.data.bind:="click: downloadImage()",
+        raw("&nbsp; Pull New")
+      ),
+      button(`class`:="btn btn-default",
+        span(`class`:="icon icon-doc-text"), attrs.data.bind:="click: buildImage()",
+        raw("&nbsp; Build New")
       )
     )
   }
@@ -92,11 +106,26 @@ object Toolbar extends KoComponent {
 
   // callbacks
 
+  def selectPage(page:String) = this.page(page)
+
+
   def showNewMachine():js.Function1[js.Any,Unit] = {
     (evt:js.Any) => {
       println("* show new machine dialog")
       newMachineDialog.show()
       ()
+    }
+  }
+
+  def downloadImage():js.Function1[js.Any,Unit] = {
+    (evt: js.Any) => {
+      println("* Donwload image dialog")
+    }
+  }
+
+  def buildImage():js.Function1[js.Any,Unit] = {
+    (evt: js.Any) => {
+      println("* Donwload image dialog")
     }
   }
 }
