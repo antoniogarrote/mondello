@@ -50,7 +50,12 @@ class MachineFooter extends KoComponent {
   // Callbacks
 
   def destroyMachine():js.Function1[js.Any,Unit] = {
-    (event:js.Any) => println("** Destroying machine clicked")
+    (event:js.Any) => {
+      println("** Destroying machine clicked")
+      MondelloApp.showModal(s"Destroying Docker machine ${this.selectedMachine().name}")
+      Machines.removeMachine(this.selectedMachine(), (_) => MondelloApp.closeModal())
+      ()
+    }
   }
 
   def stopMachine():js.Function1[js.Any,Unit] = {

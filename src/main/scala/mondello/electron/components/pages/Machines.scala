@@ -2,12 +2,12 @@ package mondello.electron.components.pages
 
 import knockout.tags.KoText.all._
 import knockout.{KoComponent, KoObservable, KoObservableArray}
-import mondello.electron.components.pages.machines.{MachineFooter, MachinesBrowser, NewMachineDialog}
+import mondello.electron.components.pages.machines.{MachineFooter, MachinesBrowser}
 import mondello.models.Machine
 import mondello.proxies.DockerMachine
 
 import scala.scalajs.js.annotation.{JSName, ScalaJSDefined}
-import scala.scalajs.js.{Any, Dictionary}
+import scala.scalajs.js.{Any, Dictionary, Dynamic}
 import scala.util.Try
 import scala.concurrent.Future
 import scalatags.Text.all._
@@ -36,8 +36,7 @@ object Machines extends KoComponent {
   nestedComponents += (
     "selected" -> new mondello.electron.components.pages.machines.Machine(),
     "browser" -> new MachinesBrowser(),
-    "footer" -> new MachineFooter(),
-    "new-machine" -> new NewMachineDialog()
+    "footer" -> new MachineFooter()
   )
 
 
@@ -60,8 +59,7 @@ object Machines extends KoComponent {
       ),
       MachineFooter.tag(`class`:="toolbar-footer",
         params:="selectedMachine: selectedMachine"
-      ),
-      NewMachineDialog.tag()
+      )
     ).toString()
   }
 
@@ -69,7 +67,7 @@ object Machines extends KoComponent {
     println("*** Reloading Docker Machines")
     val f = dockerMachine.all
     f.onSuccess {
-      case machines => {
+      case machines =>
         var foundSelectedMachine = false
         dockerMachines.removeAll()
         machines.foreach({ (machine:Machine) =>
@@ -80,7 +78,6 @@ object Machines extends KoComponent {
           dockerMachines.push(machine)
         })
         if(!foundSelectedMachine) selectedMachine(null)
-      }
     }
     f.onFailure {
       case e => g.alert(s"!!! Error loading machines $e")
@@ -91,28 +88,38 @@ object Machines extends KoComponent {
   }
 
   def startMachine(machine:mondello.models.Machine, cb:(Boolean)=>Unit=null): Future[Boolean] = {
-    runMachineCommand(machine, (machine) => dockerMachine.start(machine.name), cb)
+    runMachineCommand[Machine](machine, (machine) => dockerMachine.start(machine.name), cb)
   }
 
   def stopMachine(machine:mondello.models.Machine, cb:(Boolean)=>Unit=null): Future[Boolean] = {
-    runMachineCommand(machine, (machine) => dockerMachine.stop(machine.name), cb)
+    runMachineCommand[Machine](machine, (machine) => dockerMachine.stop(machine.name), cb)
   }
 
-  private def runMachineCommand(machine:Machine, cmd:(Machine)=>Future[Boolean], cb:(Boolean)=>Unit=null): Future[Boolean] = {
+  def removeMachine(machine: Machine, cb: (Boolean) => Unit=null):Future[Boolean] = {
+    runMachineCommand[Machine](machine, (machine) => dockerMachine.remove(machine.name), cb)
+  }
+
+  def createMachine(name:String, driver:String, labels:List[String], envs:List[String], cb:(Boolean)=>Unit=null): Future[Boolean] = {
+    runMachineCommand[(String,String,List[String],List[String])](
+      (name, driver, labels, envs),
+      {case (n,d,ls,es) => dockerMachine.newMachine(n,d,ls,es)},
+      cb)
+  }
+
+
+  private def runMachineCommand[T](machine:T, cmd:(T)=>Future[Boolean], cb:(Boolean)=>Unit=null): Future[Boolean] = {
     val f:Future[Boolean] = cmd(machine)
     f.onSuccess {
-      case result => {
+      case result =>
         reloadMachines().andThen[Unit]({case (_:Try[List[mondello.models.Machine]]) => if(cb != null) cb(true)})
         true
-      }
     }
 
     f.onFailure {
-      case e => {
+      case e =>
         g.alert(e.getMessage)
         if(cb != null) cb(false)
         false
-      }
     }
 
     f

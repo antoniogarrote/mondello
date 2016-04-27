@@ -1,6 +1,7 @@
 package mondello.electron.components
 
 import knockout.{KoComponent, KoObservable}
+import mondello.electron.components.pages.machines.NewMachineDialog
 import mondello.models.Machine
 
 import scala.scalajs.js
@@ -17,6 +18,9 @@ object Toolbar extends KoComponent {
 
   var page:KoObservable[String] = null
   var selectedMachine:KoObservable[Machine] = null
+  var newMachineDialog:NewMachineDialog = new NewMachineDialog()
+
+  nestedComponents += ("newMachineDialog" -> newMachineDialog)
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     page = params("page").asInstanceOf[KoObservable[String]]
@@ -32,7 +36,8 @@ object Toolbar extends KoComponent {
         commonButtons(),
         machinesToolbar(),
         rightButtons()
-      )
+      ),
+      NewMachineDialog.tag()
     ).toString()
   }
 
@@ -90,6 +95,8 @@ object Toolbar extends KoComponent {
   def showNewMachine():js.Function1[js.Any,Unit] = {
     (evt:js.Any) => {
       println("* show new machine dialog")
+      newMachineDialog.show()
+      ()
     }
   }
 }

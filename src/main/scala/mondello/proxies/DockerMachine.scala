@@ -33,11 +33,13 @@ class DockerMachine(env: Environment)(implicit ec:ExecutionContext, consoleProce
   def stop(name:String): Future[Boolean] = consoleProcess.execute("stop", Array(name)).map((_) => true)
 
   def newMachine(name:String, driver:String, labels:List[String], env:List[String]): Future[Boolean] = {
-    val driverCmd = s"--driver=$driver";
+    val driverCmd = s"--driver=$driver"
     val labelsCmd = labels.map((label) => s"--engine-label=$label")
     val envCmd = env.map((e) => s"--engine-env=$e")
-    consoleProcess.execute("create", (List(driverCmd) ++ labelsCmd ++ envCmd).toArray).map((_) => true)
+    consoleProcess.execute("create", (List(name, driverCmd) ++ labelsCmd ++ envCmd).toArray).map((_) => true)
   }
+
+  def remove(name:String): Future[Boolean] = consoleProcess.execute("rm", Array("-f", name)).map((_) => true)
 
   protected def parseMachineLine(line:String):Machine = {
     line.split("\\s+") match {
