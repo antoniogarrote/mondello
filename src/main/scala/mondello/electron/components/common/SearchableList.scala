@@ -3,13 +3,12 @@ package mondello.electron.components.common
 import knockout.{Ko, KoObservable, KoObservableArray}
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSExport
+import scala.scalajs.js.annotation.{JSExport, JSExportAll}
 
+@JSExportAll
 trait SearchableList[T] {
-  @JSExport
   var containerSearch:KoObservable[String] = Ko.observable("")
 
-  @JSExport
   var searchResults:KoObservableArray[T] = Ko.observableArray()
 
   def reloadSearchResults(elements:KoObservableArray[T], searchText:String): Unit = {

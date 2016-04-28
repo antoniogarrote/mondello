@@ -11,12 +11,12 @@ import mondello.proxies.Docker
 import scala.concurrent.{Future, Promise}
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js.Dynamic.{global => g}
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scala.util.Try
 import scalatags.Text.all._
 
-@ScalaJSDefined
+@JSExportAll
 object Images extends KoComponent {
   override val tagName: String = "docker-images"
   val tag = KoComponent.mkTag(tagName)

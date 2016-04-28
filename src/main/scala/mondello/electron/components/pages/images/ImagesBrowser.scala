@@ -4,12 +4,12 @@ import knockout.{Ko, KoComponent, KoObservable, KoObservableArray}
 import mondello.models.Image
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
-@ScalaJSDefined
+@JSExportAll
 class ImagesBrowser extends KoComponent {
   override val tagName: String = ImagesBrowser.tagName
 

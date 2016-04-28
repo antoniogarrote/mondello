@@ -6,7 +6,7 @@ import mondello.electron.components.pages.machines.{MachineFooter, MachinesBrows
 import mondello.models.Machine
 import mondello.proxies.DockerMachine
 
-import scala.scalajs.js.annotation.{JSName, ScalaJSDefined}
+import scala.scalajs.js.annotation.{JSExport, JSExportAll, JSName, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary, Dynamic}
 import scala.util.Try
 import scala.concurrent.Future
@@ -15,10 +15,10 @@ import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 
 
-@ScalaJSDefined
+@JSExportAll
 object Machines extends KoComponent {
 
-  @JSName("buildMachinesPage")
+  @JSExport("apply")
   def apply(dockerMachine:DockerMachine): Machines.type = {
     this.dockerMachine = dockerMachine
     this

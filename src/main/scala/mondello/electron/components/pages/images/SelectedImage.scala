@@ -3,12 +3,12 @@ package mondello.electron.components.pages.images
 import knockout.{KoComponent, KoObservable}
 import mondello.models.Image
 
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
-@ScalaJSDefined
+@JSExportAll
 class SelectedImage extends KoComponent {
   override val tagName: String = SelectedImage.tagName
 

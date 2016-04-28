@@ -3,12 +3,12 @@ package mondello.electron.components.pages.machines
 import knockout._
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary, JSON}
 import scalatags.Text.all._
 import scalatags.Text.{TypedTag, attrs}
 
-@ScalaJSDefined
+@JSExportAll
 class SelectedMachine extends KoComponent {
   override val tagName: String = SelectedMachine.tagName
 

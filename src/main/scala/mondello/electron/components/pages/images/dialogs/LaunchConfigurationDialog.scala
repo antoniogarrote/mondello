@@ -2,13 +2,13 @@ package mondello.electron.components.pages.images.dialogs
 
 import knockout.{Ko, KoComponent, KoObservable}
 
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scala.scalajs.js.Dynamic.{global => g}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
-@ScalaJSDefined
+@JSExportAll
 object LaunchConfigurationDialog extends KoComponent{
   override val tagName: String = "launch-configuration-dialog"
   val tag = KoComponent.mkTag(tagName)

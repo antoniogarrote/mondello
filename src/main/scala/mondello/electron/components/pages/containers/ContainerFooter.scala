@@ -2,10 +2,10 @@ package mondello.electron.components.pages.containers
 
 import knockout.KoComponent
 
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 
-@ScalaJSDefined
+@JSExportAll
 object ContainerFooter extends KoComponent {
   override val tagName: String = "container-footer"
   val tag = KoComponent.mkTag(tagName)

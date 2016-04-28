@@ -4,11 +4,11 @@ import knockout.{Ko, KoComponent, KoObservable}
 
 import scala.scalajs.js.{Any, Dictionary}
 import scala.scalajs.js.Dynamic.{global => g}
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
-@ScalaJSDefined
+@JSExportAll
 object BuildImageDialog extends KoComponent {
   override val tagName: String = "build-image-dialog"
   val tag = KoComponent.mkTag(tagName)

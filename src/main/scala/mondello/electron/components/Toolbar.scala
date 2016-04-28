@@ -6,12 +6,12 @@ import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
 import mondello.models.Machine
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
-@ScalaJSDefined
+@JSExportAll
 object Toolbar extends KoComponent {
 
   override val tagName: String = "toolbar"

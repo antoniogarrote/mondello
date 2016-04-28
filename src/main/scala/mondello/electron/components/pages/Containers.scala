@@ -8,12 +8,12 @@ import mondello.proxies.Docker
 
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.concurrent.Promise
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 
-@ScalaJSDefined
+@JSExportAll
 object Containers extends KoComponent{
   override val tagName: String = "docker-containers"
 

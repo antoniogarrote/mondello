@@ -7,7 +7,7 @@ import mondello.proxies.{Docker, DockerMachine}
 import mondello.config.Environment
 import mondello.electron.components.pages.{Containers, Images, Machines}
 
-import scala.scalajs.js.annotation.{JSName, ScalaJSDefined}
+import scala.scalajs.js.annotation.{JSExport, JSExportAll, JSName, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js.Dynamic.{global => g}
@@ -16,10 +16,10 @@ import mondello.platform.js.Implicits.ConsoleProcess
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
-@ScalaJSDefined
+@JSExportAll
 object MondelloApp extends KoComponent {
 
-  @JSName("buildMondelloApp")
+  @JSExport("apply")
   def apply(): this.type = {
     loadingMachines(true)
     Machines(dockerMachine).reloadMachines()

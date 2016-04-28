@@ -6,13 +6,13 @@ import mondello.electron.components.pages.Machines
 
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
 
-@ScalaJSDefined
+@JSExportAll
 class NewMachineDialog extends KoComponent {
   override val tagName: String = NewMachineDialog.tagName
 

@@ -2,12 +2,12 @@ package knockout
 
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scalatags.Text.TypedTag
 
 
-@ScalaJSDefined
-abstract class KoComponent extends js.Object {
+@JSExportAll
+abstract class KoComponent {
 
   val tagName:String
 
@@ -36,7 +36,7 @@ object KoComponent {
 
     val factoryFun:js.Function2[js.Dictionary[js.Any], js.Any, js.Any] = { (params:js.Dictionary[js.Any], config:js.Any) =>
       component.viewModel(params)
-      component
+      component.asInstanceOf[js.Any]
     }
     val registrationInfo = js.Dictionary(
       "template" -> component.template,
@@ -46,5 +46,5 @@ object KoComponent {
     g.ko.components.register(component.tagName, registrationInfo)
   }
 
-  def mkTag(tagName: String) = TypedTag[String](tagName, List(),false)
+  def mkTag(tagName: String) = TypedTag[String](tagName, List(), void = false)
 }

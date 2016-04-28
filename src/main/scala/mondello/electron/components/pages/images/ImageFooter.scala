@@ -5,12 +5,12 @@ import mondello.electron.components.pages.images.dialogs.{LaunchConfigurationDia
 import mondello.models.Image
 import mondello.electron.components.pages.Images
 
-import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
-@ScalaJSDefined
+@JSExportAll
 class ImageFooter extends KoComponent {
   override val tagName: String = ImageFooter.tagName
 
