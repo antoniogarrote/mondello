@@ -1,7 +1,7 @@
 package mondello.electron.components
 
 import knockout.{KoComponent, KoObservable}
-import mondello.electron.components.pages.images.dialogs.{LaunchConfigurationDialog, PullImageDialog}
+import mondello.electron.components.pages.images.dialogs.{BuildImageDialog, LaunchConfigurationDialog, PullImageDialog}
 import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
 import mondello.models.Machine
 
@@ -23,7 +23,8 @@ object Toolbar extends KoComponent {
 
   nestedComponents += (
     "newMachineDialog" -> newMachineDialog,
-    "PullImageDialog" -> PullImageDialog
+    "PullImageDialog" -> PullImageDialog,
+    "BuildImageDialog" -> BuildImageDialog
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
@@ -43,7 +44,8 @@ object Toolbar extends KoComponent {
         rightButtons()
       ),
       NewMachineDialog.tag(),
-      PullImageDialog.tag()
+      PullImageDialog.tag(),
+      BuildImageDialog.tag()
     ).toString()
   }
 
@@ -131,6 +133,7 @@ object Toolbar extends KoComponent {
   }
 
   def buildImage() = {
-      println("* Donwload image dialog")
+    println("* Build image dialog")
+    BuildImageDialog.show()
   }
 }
