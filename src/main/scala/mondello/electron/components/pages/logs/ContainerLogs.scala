@@ -2,6 +2,7 @@ package mondello.electron.components.pages.logs
 
 import knockout.{KoComponent, KoObservable, KoObservableArray}
 import mondello.electron.components.Toolbar
+import mondello.electron.components.pages.Containers
 import mondello.models.Container
 
 import scala.scalajs.js.annotation.JSExportAll
@@ -56,5 +57,8 @@ object ContainerLogs extends KoComponent("container-logs") {
 
   def startLoggingContainer():KoCallback[Container] = koCallback({ (container) =>
     println(s"* Start logging container: ${container.id}")
+    Containers.logContainer(container,{ (data) =>
+      println(s"******** GOT SOMETHING $data")
+    })
   })
 }

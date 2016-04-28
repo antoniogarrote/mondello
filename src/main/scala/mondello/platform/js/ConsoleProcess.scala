@@ -4,6 +4,7 @@ import mondello.config.Environment
 
 import scala.concurrent.{Future, Promise}
 import scala.scalajs.js
+import scala.scalajs.js.{Any, JSConverters}
 import scala.scalajs.js.Dynamic.{global => g, newInstance => jsnew}
 
 
@@ -79,6 +80,20 @@ object Implicits {
       })
 
       result.future
+    }
+
+    override def executeChild(command: String, commandArgs: Array[String], cb: (String) => Unit)(implicit environment: Environment): Any = {
+      val spawnArgsArray = (List(command) ++ commandArgs).toArray
+      val spawnArgs:js.Array[String] =  (new JSConverters.JSRichGenTraversableOnce[String](spawnArgsArray)).toJSArray
+      val child = g.require("child_process").spawn(environment.cmdPath, spawnArgs, js.Dictionary("shell" -> true))
+      val jscb:scalajs.js.Function1[js.Any,Unit] = {(data:js.Any) => cb(data.toString) }
+      val closecb:scalajs.js.Function1[js.Any,Unit] = {(_:js.Any) => cb(null) }
+
+      child.stdout.on("data", jscb);
+      child.stderr.on("data", jscb);
+      child.on("close", closecb);
+
+      child
     }
   }
 }

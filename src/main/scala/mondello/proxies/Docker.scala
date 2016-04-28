@@ -86,6 +86,10 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     consoleProcess.executeInteractive("attach", Array("--sig-proxy", id)).map((_) => true)
   }
 
+  def logsChild(id:String, cb:(String)=>Unit):js.Any = {
+    consoleProcess.executeChild("logs", Array("-f",id),cb)
+  }
+
   protected def startImageInternal(interactive:Boolean, id: String, command: String, opts: Map[String, String], f:(List[String]) => Future[Array[String]]) = {
     val entrypointArg = makeCmdLineArg("entrypoint", opts("entrypoint"))
     val nameArg = makeCmdLineArg("name", opts("name"))

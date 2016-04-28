@@ -107,6 +107,10 @@ object Containers extends KoComponent("docker-containers"){
     runContainerInternal(container,() => docker().stopContainer(container.id))
   }
 
+  def logContainer(container:Container, cb:(String) => Unit): Unit = {
+    docker().logsChild(container.id, cb)
+  }
+
   protected def runContainerInternal(container:Container, cf:()=>Future[Boolean]) = {
     if(container != null) {
       val f = cf()

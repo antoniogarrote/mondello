@@ -6,6 +6,7 @@ import utest._
 
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.concurrent.{Future, Promise}
+import scala.scalajs.js.Any
 
 
 object DockerMachineTest extends TestSuite {
@@ -29,6 +30,8 @@ object DockerMachineTest extends TestSuite {
     }
 
     override def executeInteractive(command: String, commandArgs: Array[String])(implicit environment: Environment): Future[Array[String]] = ???
+
+    override def executeChild(command: String, commandArgs: Array[String], cb: (String) => Unit)(implicit environment: Environment): Any = ???
   }
 
   val tests = this {
