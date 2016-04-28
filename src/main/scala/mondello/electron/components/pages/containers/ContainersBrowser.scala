@@ -30,7 +30,7 @@ object ContainersBrowser extends KoComponent with SearchableList[Container] {
     ul(`class`:="list-group",
       li(`class`:="list-group-header",
         input(id:="containerSearchBox",`class`:="form-control", `type`:="text", placeholder:="Containers Search",
-          attrs.data.bind:="textInput: containerSearch"
+          attrs.data.bind:="textInput: elementSearch"
         )
       ),
       // No Containers

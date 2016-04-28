@@ -7,8 +7,7 @@ import scala.scalajs.js.annotation.{JSExport, JSExportAll}
 
 @JSExportAll
 trait SearchableList[T] {
-  var containerSearch:KoObservable[String] = Ko.observable("")
-
+  var elementSearch:KoObservable[String] = Ko.observable("")
   var searchResults:KoObservableArray[T] = Ko.observableArray()
 
   def reloadSearchResults(elements:KoObservableArray[T], searchText:String): Unit = {
@@ -23,9 +22,9 @@ trait SearchableList[T] {
   }
 
   def subscribe(elements:KoObservableArray[T]) = {
-    elements.subscribe((_:js.Array[T]) => reloadSearchResults(elements, containerSearch()))
-    containerSearch.subscribe((searchText:String) => reloadSearchResults(elements, searchText))
-    reloadSearchResults(elements, containerSearch())
+    elements.subscribe((_:js.Array[T]) => reloadSearchResults(elements, elementSearch()))
+    elementSearch.subscribe((searchText:String) => reloadSearchResults(elements, searchText))
+    reloadSearchResults(elements, elementSearch())
   }
 
   def isResult(element:T,searchText:String):Boolean

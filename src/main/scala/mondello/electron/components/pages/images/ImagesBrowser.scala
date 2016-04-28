@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.images
 
 import knockout.{Ko, KoComponent, KoObservable, KoObservableArray}
+import mondello.electron.components.common.SearchableList
 import mondello.models.Image
 
 import scala.scalajs.js
@@ -10,30 +11,25 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-class ImagesBrowser extends KoComponent {
+class ImagesBrowser extends KoComponent with SearchableList[Image] {
   override val tagName: String = ImagesBrowser.tagName
 
   var loadingImages:KoObservable[Boolean] = null
   var selectedImage:KoObservable[Image] = null
   var images:KoObservableArray[Image] = null
-  var imageSearch:KoObservable[String] = Ko.observable("")
-  var searchResults:KoObservableArray[Image] = Ko.observableArray()
-
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     loadingImages = params("loadingImages").asInstanceOf[KoObservable[Boolean]]
     selectedImage = params("selectedImage").asInstanceOf[KoObservable[Image]]
     images = params("images").asInstanceOf[KoObservableArray[Image]]
-    imageSearch.subscribe((searchText:String) => reloadSearchResults(searchText))
-    images.subscribe((_:js.Array[Image]) => reloadSearchResults(imageSearch()))
-    reloadSearchResults(imageSearch())
+    subscribe(images)
   }
 
   override def template: String = {
     ul(`class`:="list-group",
       li(`class`:="list-group-header",
         input(id:="imageSearchBox",`class`:="form-control", `type`:="text", placeholder:="Images Search",
-          attrs.data.bind:="textInput: imageSearch"
+          attrs.data.bind:="textInput: elementSearch"
         )
       ),
       // Not Images
@@ -73,22 +69,12 @@ class ImagesBrowser extends KoComponent {
 
   // Helper Functions
 
-  def reloadSearchResults(searchText:String): Unit = {
-    searchResults.removeAll()
-    if(images().length > 0) {
-      images.slice(0, images().length).foreach { (image) =>
-        if (
-          image.id.indexOf(searchText) > -1 ||
-          image.createdAt.indexOf(searchText) > -1 ||
-          image.repository.indexOf(searchText) > -1 ||
-          image.tag.indexOf(searchText) > -1
-        ) {
-          searchResults.push(image)
-        }
-      }
-    }
+  override def isResult(image: Image, searchText: String): Boolean = {
+      image.id.indexOf(searchText) > -1 ||
+      image.createdAt.indexOf(searchText) > -1 ||
+      image.repository.indexOf(searchText) > -1 ||
+      image.tag.indexOf(searchText) > -1
   }
-
 }
 
 object ImagesBrowser {
