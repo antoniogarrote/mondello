@@ -38,7 +38,7 @@ class ImagesBrowser extends KoComponent {
       ),
       // Not Images
       li(`class`:="list-group-item",
-        attrs.data.bind:="if: loadingImages",
+        attrs.data.bind:="visible: loadingImages()",
         div(`class`:="media-body",
           div(`class`:="spinner",
             div(`class`:="rect1"),
@@ -49,19 +49,18 @@ class ImagesBrowser extends KoComponent {
           ))
       ),
       // Images
-      raw("<!-- ko ifnot: loadingImages -->"),
       raw("<!-- ko foreach: searchResults -->"),
       li(`class`:="list-group-item",
         attrs.data.bind:="click: $parent.selectImage(),"++
+          "visible: !$parent.loadingImages(),"++
           "css: {active: ($parent.selectedImage() && $parent.selectedImage().id == id)}",
         div(`class`:="media-body",
           span(`class`:="icon icon-box"),
           raw("&nbsp;"),
-          strong(attrs.data.bind:="text: id"),
+          strong(attrs.data.bind:="text: idSmall"),
           p(attrs.data.bind:="text: repository")
         )
       ),
-      raw("<!-- /ko -->"),
       raw("<!-- /ko -->")
     ).toString()
   }

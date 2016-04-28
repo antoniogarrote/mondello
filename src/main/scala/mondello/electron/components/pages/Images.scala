@@ -86,16 +86,31 @@ object Images extends KoComponent {
 
   def startImageInteractive(entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
     println("** Start Image Interactive")
+    startImageInternal(interactive = true, entrypoint, name,link, expose, publish, envs, command)
+  }
+
+  def startImage(entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
+    println("** Start Image")
+    startImageInternal(interactive = false, entrypoint, name,link, expose, publish, envs, command)
+  }
+
+  protected def startImageInternal(interactive:Boolean, entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
     if(selectedImage() != null) {
-      MondelloApp.showModal(s"Starting image interactively ${this.selectedImage().repository}:${this.selectedImage().tag}")
-      val f = docker().startImageInteractive(selectedImage().id, command, Map(
+      MondelloApp.showModal(s"Starting image ${this.selectedImage().repository}:${this.selectedImage().tag}")
+      val id = selectedImage().id
+      val opts = Map(
         "entrypoint" -> entrypoint,
         "name" -> name,
         "link" -> link,
         "expose" -> expose,
         "publish" -> publish,
         "env" -> envs
-      ))
+      )
+      val f = if (interactive)
+        docker().startImageInteractive(id, command, opts)
+      else
+        docker().startImage(id, command, opts)
+
 
       f.onSuccess {
         case result =>

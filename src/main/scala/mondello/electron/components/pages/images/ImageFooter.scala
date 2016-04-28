@@ -76,6 +76,18 @@ class ImageFooter extends KoComponent {
 
   def startImageDetached() = {
     println("** Start Image Detached")
+    if(selectedImage != null) {
+      println("** Start Image Interactive")
+      Images.startImage(
+        LaunchConfigurationDialog.entryPoint(),
+        LaunchConfigurationDialog.name(),
+        LaunchConfigurationDialog.link(),
+        LaunchConfigurationDialog.expose(),
+        LaunchConfigurationDialog.publish(),
+        LaunchConfigurationDialog.envVars(),
+        LaunchConfigurationDialog.command()
+      )
+    }
   }
 
   def startImageInteractive() = {
