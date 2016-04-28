@@ -4,6 +4,7 @@ import knockout._
 import knockout.tags.KoText
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.containers.{ContainerFooter, ContainersBrowser, SelectedContainer}
+import mondello.electron.components.pages.logs.ContainerLogs
 import mondello.models.Container
 import mondello.proxies.Docker
 
@@ -21,21 +22,25 @@ object Containers extends KoComponent("docker-containers"){
   var containers:KoObservableArray[Container] = Ko.observableArray()
   var selectedContainer:KoObservable[Container] = Ko.observable(null)
   var loadingContainers:KoObservable[Boolean] = Ko.observable(false)
+  var displayContainerLogs:KoObservable[Boolean] = null
 
 
   nestedComponents += (
     "ContainerFooter" -> ContainerFooter,
     "ContainerBrowser" -> ContainersBrowser,
-    "SelectedContainer" -> SelectedContainer
+    "SelectedContainer" -> SelectedContainer,
+    "ContainerLogs" -> ContainerLogs
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     this.docker = params("docker").asInstanceOf[KoComputed[Docker]]
     this.docker.subscribe((_:Docker) => reloadContainers())
+    this.displayContainerLogs = params("displayContainerLogs").asInstanceOf[KoObservable[Boolean]]
   }
 
   override def template: String = {
     div(`class`:="window-content",
+      raw("<!-- ko ifnot: displayContainerLogs -->"),
       div(`class`:="pane-group",
         ContainersBrowser.tag(`class`:="pane pane-sm sidebar",
           KoText.all.params:="loadingContainers: loadingContainers, selectedContainer: selectedContainer, containers: containers"),
@@ -43,7 +48,11 @@ object Containers extends KoComponent("docker-containers"){
           KoText.all.params:="selectedContainer: selectedContainer")
       ),
       ContainerFooter.tag(`class`:="toolbar-footer",
-        KoText.all.params:="selectedContainer: selectedContainer")
+        KoText.all.params:="selectedContainer: selectedContainer"),
+      raw("<!-- /ko -->"),
+      raw("<!-- ko if: displayContainerLogs -->"),
+      ContainerLogs.tag(KoText.all.params:="containers: containers, displayContainerLogs: displayContainerLogs"),
+      raw("<!-- /ko -->")
     ).toString()
   }
 

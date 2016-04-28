@@ -35,6 +35,7 @@ object MondelloApp extends KoComponent("mondello-app") {
   val selectedMachine: KoObservable[Machine] = Ko.observable(null)
   val loadingMachines: KoObservable[Boolean] = Ko.observable(false)
   val dockerMachines: KoObservableArray[Machine] = Ko.observableArray[Machine]()
+  val displayContainerLogs: KoObservable[Boolean] = Ko.observable(false)
   var docker:KoComputed[Docker] = null
 
   nestedComponents += (
@@ -55,7 +56,7 @@ object MondelloApp extends KoComponent("mondello-app") {
 
   override def template: String = {
     div(id:="main",`class`:="window",
-      Toolbar.tag(KoText.all.params:="selectedMachine: selectedMachine, page: page"),
+      Toolbar.tag(KoText.all.params:="selectedMachine: selectedMachine, page: page, displayContainerLogs: displayContainerLogs"),
       Machines.tag(
         KoText.all.params:="machines: dockerMachines, loadingMachines: loadingMachines, selectedMachine: selectedMachine",
         attrs.data.bind:="visible: page()=='machines'"
@@ -65,7 +66,7 @@ object MondelloApp extends KoComponent("mondello-app") {
         attrs.data.bind:="visible: page()=='images'"
       ),
       Containers.tag(
-        KoText.all.params:="docker: docker",
+        KoText.all.params:="docker: docker, displayContainerLogs: displayContainerLogs",
         attrs.data.bind:="visible: page()=='containers'"
       )
     ).toString()

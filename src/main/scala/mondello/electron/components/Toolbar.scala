@@ -2,6 +2,7 @@ package mondello.electron.components
 
 import knockout.{KoComponent, KoObservable}
 import mondello.electron.components.pages.images.dialogs.{BuildImageDialog, LaunchConfigurationDialog, PullImageDialog}
+import mondello.electron.components.pages.logs.ContainerLogs
 import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
 import mondello.models.Machine
 
@@ -18,6 +19,7 @@ object Toolbar extends KoComponent("mondello-toolbar") {
   var page:KoObservable[String] = null
   var selectedMachine:KoObservable[Machine] = null
   var newMachineDialog = NewMachineDialog
+  var displayContainerLogs:KoObservable[Boolean] = null
 
   nestedComponents += (
     "newMachineDialog" -> newMachineDialog,
@@ -28,6 +30,7 @@ object Toolbar extends KoComponent("mondello-toolbar") {
   override def viewModel(params: Dictionary[Any]): Unit = {
     page = params("page").asInstanceOf[KoObservable[String]]
     selectedMachine = params("selectedMachine").asInstanceOf[KoObservable[Machine]]
+    displayContainerLogs = params("displayContainerLogs").asInstanceOf[KoObservable[Boolean]]
   }
 
   override def template: String = {
@@ -101,7 +104,7 @@ object Toolbar extends KoComponent("mondello-toolbar") {
   def containersToolbar(): Frag = {
     span(attrs.data.bind:="if: page()=='containers'",
       button(`class`:="btn btn-default",
-        span(`class`:="icon icon-megaphone"), attrs.data.bind:="click: displayLogs",
+        span(`class`:="icon icon-megaphone"), attrs.data.bind:="click: displayLogs, css:{pressed: $parent.displayContainerLogs()}",
         raw("&nbsp; Logs")
       )
     )
@@ -145,5 +148,7 @@ object Toolbar extends KoComponent("mondello-toolbar") {
 
   def displayLogs() = {
     println("* Display logs")
+    val oldValue = displayContainerLogs()
+    displayContainerLogs(!oldValue)
   }
 }

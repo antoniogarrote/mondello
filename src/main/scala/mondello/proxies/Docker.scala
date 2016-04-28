@@ -56,6 +56,8 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     result.future
   }
 
+  // Callbacks
+
   def startImageInteractive(id: String, command: String, opts: Map[String, String]):Future[Boolean] = {
     startImageInternal(interactive = true, id, command,opts, (args) => consoleProcess.executeInteractive("run", args.toArray))
   }

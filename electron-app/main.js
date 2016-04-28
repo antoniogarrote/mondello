@@ -8318,6 +8318,7 @@ function $c_Lmondello_electron_components_MondelloApp$() {
   this.selectedMachine$2 = null;
   this.loadingMachines$2 = null;
   this.dockerMachines$2 = null;
+  this.displayContainerLogs$2 = null;
   this.docker$2 = null
 }
 $c_Lmondello_electron_components_MondelloApp$.prototype = new $h_Lknockout_KoComponent();
@@ -8336,6 +8337,7 @@ $c_Lmondello_electron_components_MondelloApp$.prototype.init___ = (function() {
   this.selectedMachine$2 = $g.ko.observable(null);
   this.loadingMachines$2 = $g.ko.observable(false);
   this.dockerMachines$2 = $g.ko.observableArray();
+  this.displayContainerLogs$2 = $g.ko.observable(false);
   this.docker$2 = null;
   var this$10 = this.nestedComponents$1;
   var y = $m_Lmondello_electron_components_pages_Machines$().apply__Lmondello_proxies_DockerMachine__Lmondello_electron_components_pages_Machines$(this.dockerMachine$2);
@@ -8384,7 +8386,7 @@ $c_Lmondello_electron_components_MondelloApp$.prototype.template__T = (function(
   var jsx$7 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName, $m_sci_Nil$(), false);
   var this$5 = $m_Lknockout_tags_KoText$all$().params$1;
   var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$6 = jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "selectedMachine: selectedMachine, page: page", ev$2)]));
+  var jsx$6 = jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "selectedMachine: selectedMachine, page: page, displayContainerLogs: displayContainerLogs", ev$2)]));
   var this$6 = $m_Lmondello_electron_components_pages_Machines$();
   var tagName$1 = this$6.tagName$1;
   var jsx$5 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$1, $m_sci_Nil$(), false);
@@ -8402,13 +8404,16 @@ $c_Lmondello_electron_components_MondelloApp$.prototype.template__T = (function(
   var jsx$1 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$3, $m_sci_Nil$(), false);
   var this$14 = $m_Lknockout_tags_KoText$all$().params$1;
   var ev$5 = $m_Lscalatags_Text$all$().stringAttr$1;
-  return jsx$10.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$9, jsx$8, jsx$6, jsx$4, jsx$2, jsx$1.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$14, "docker: docker", ev$5), $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("visible: page()=='containers'", $m_Lscalatags_Text$all$().stringAttr$1)]))])).toString__T()
+  return jsx$10.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$9, jsx$8, jsx$6, jsx$4, jsx$2, jsx$1.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$14, "docker: docker, displayContainerLogs: displayContainerLogs", ev$5), $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("visible: page()=='containers'", $m_Lscalatags_Text$all$().stringAttr$1)]))])).toString__T()
 });
 $c_Lmondello_electron_components_MondelloApp$.prototype.closeModal__sjs_js_Dynamic = (function() {
   return $g.$("#modal").hide()
 });
 $c_Lmondello_electron_components_MondelloApp$.prototype.$$js$exported$meth$showModal__T__O = (function(title) {
   return this.showModal__T__sjs_js_Dynamic(title)
+});
+$c_Lmondello_electron_components_MondelloApp$.prototype.$$js$exported$prop$displayContainerLogs__O = (function() {
+  return this.displayContainerLogs$2
 });
 $c_Lmondello_electron_components_MondelloApp$.prototype.$$js$exported$meth$viewModel__sjs_js_Dictionary__O = (function(params) {
   this.viewModel__sjs_js_Dictionary__V(params)
@@ -8478,6 +8483,12 @@ Object.defineProperty($c_Lmondello_electron_components_MondelloApp$.prototype, "
   }),
   "enumerable": true
 });
+Object.defineProperty($c_Lmondello_electron_components_MondelloApp$.prototype, "displayContainerLogs", {
+  "get": (function() {
+    return this.$$js$exported$prop$displayContainerLogs__O()
+  }),
+  "enumerable": true
+});
 Object.defineProperty($c_Lmondello_electron_components_MondelloApp$.prototype, "docker", {
   "set": (function(arg$1) {
     var prep0 = arg$1;
@@ -8515,7 +8526,8 @@ function $c_Lmondello_electron_components_Toolbar$() {
   $c_Lknockout_KoComponent.call(this);
   this.page$2 = null;
   this.selectedMachine$2 = null;
-  this.newMachineDialog$2 = null
+  this.newMachineDialog$2 = null;
+  this.displayContainerLogs$2 = null
 }
 $c_Lmondello_electron_components_Toolbar$.prototype = new $h_Lknockout_KoComponent();
 $c_Lmondello_electron_components_Toolbar$.prototype.constructor = $c_Lmondello_electron_components_Toolbar$;
@@ -8536,6 +8548,7 @@ $c_Lmondello_electron_components_Toolbar$.prototype.init___ = (function() {
   this.page$2 = null;
   this.selectedMachine$2 = null;
   this.newMachineDialog$2 = $m_Lmondello_electron_components_pages_machines_dialogs_NewMachineDialog$();
+  this.displayContainerLogs$2 = null;
   var this$7 = this.nestedComponents$1;
   var y = this.newMachineDialog$2;
   var elem1 = new $c_T2().init___O__O("newMachineDialog", y);
@@ -8574,6 +8587,9 @@ $c_Lmondello_electron_components_Toolbar$.prototype.rightButtons__Lscalatags_gen
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$machinesToolbar__O = (function() {
   return this.machinesToolbar__Lscalatags_generic_Frag()
+});
+$c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$prop$displayContainerLogs__Lknockout_KoObservable__O = (function(x$1) {
+  this.displayContainerLogs$2 = x$1
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.commonButtons__Lscalatags_generic_Frag = (function() {
   var jsx$25 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
@@ -8686,6 +8702,9 @@ $c_Lmondello_electron_components_Toolbar$.prototype.imagesToolbar__Lscalatags_ge
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$containersToolbar__O = (function() {
   return this.containersToolbar__Lscalatags_generic_Frag()
 });
+$c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$prop$displayContainerLogs__O = (function() {
+  return this.displayContainerLogs$2
+});
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$prop$page__Lknockout_KoObservable__O = (function(x$1) {
   this.page$2 = x$1
 });
@@ -8706,7 +8725,14 @@ $c_Lmondello_electron_components_Toolbar$.prototype.viewModel__sjs_js_Dictionary
     var jsx$2;
     throw new $c_ju_NoSuchElementException().init___T("key not found: selectedMachine")
   };
-  this.selectedMachine$2 = jsx$2
+  this.selectedMachine$2 = jsx$2;
+  if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "displayContainerLogs"))) {
+    var jsx$3 = params.displayContainerLogs
+  } else {
+    var jsx$3;
+    throw new $c_ju_NoSuchElementException().init___T("key not found: displayContainerLogs")
+  };
+  this.displayContainerLogs$2 = jsx$3
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.pullImage__sjs_js_Dynamic = (function() {
   var this$2 = $m_s_Console$();
@@ -8750,9 +8776,7 @@ $c_Lmondello_electron_components_Toolbar$.prototype.showNewMachine__sjs_js_Funct
   })
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$displayLogs__O = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Display logs\n")
+  this.displayLogs__V()
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$selectPage__T__O = (function(page) {
   this.selectPage__T__V(page)
@@ -8777,12 +8801,19 @@ $c_Lmondello_electron_components_Toolbar$.prototype.containersToolbar__Lscalatag
   var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
   var jsx$2 = jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "icon icon-megaphone", ev$1)]));
-  var jsx$1 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: displayLogs", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$1 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: displayLogs, css:{pressed: $parent.displayContainerLogs()}", $m_Lscalatags_Text$all$().stringAttr$1);
   var this$3 = $m_Lscalatags_Text$all$();
   return jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$6, jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, jsx$2, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Logs")]))]))
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$prop$selectedMachine__O = (function() {
   return this.selectedMachine$2
+});
+$c_Lmondello_electron_components_Toolbar$.prototype.displayLogs__V = (function() {
+  var this$2 = $m_s_Console$();
+  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Display logs\n");
+  var oldValue = $uZ((0, this.displayContainerLogs$2)());
+  (0, this.displayContainerLogs$2)((!oldValue))
 });
 Object.defineProperty($c_Lmondello_electron_components_Toolbar$.prototype, "page", {
   "set": (function(arg$1) {
@@ -8811,6 +8842,16 @@ Object.defineProperty($c_Lmondello_electron_components_Toolbar$.prototype, "newM
   }),
   "get": (function() {
     return this.$$js$exported$prop$newMachineDialog__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_Toolbar$.prototype, "displayContainerLogs", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$displayContainerLogs__Lknockout_KoObservable__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$displayContainerLogs__O()
   }),
   "enumerable": true
 });
@@ -8866,7 +8907,8 @@ function $c_Lmondello_electron_components_pages_Containers$() {
   this.docker$2 = null;
   this.containers$2 = null;
   this.selectedContainer$2 = null;
-  this.loadingContainers$2 = null
+  this.loadingContainers$2 = null;
+  this.displayContainerLogs$2 = null
 }
 $c_Lmondello_electron_components_pages_Containers$.prototype = new $h_Lknockout_KoComponent();
 $c_Lmondello_electron_components_pages_Containers$.prototype.constructor = $c_Lmondello_electron_components_pages_Containers$;
@@ -8882,14 +8924,17 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.init___ = (function
   this.containers$2 = $g.ko.observableArray();
   this.selectedContainer$2 = $g.ko.observable(null);
   this.loadingContainers$2 = $g.ko.observable(false);
-  var this$7 = this.nestedComponents$1;
+  this.displayContainerLogs$2 = null;
+  var this$9 = this.nestedComponents$1;
   var y = $m_Lmondello_electron_components_pages_containers_ContainerFooter$();
   var elem1 = new $c_T2().init___O__O("ContainerFooter", y);
   var y$1 = $m_Lmondello_electron_components_pages_containers_ContainersBrowser$();
   var elem2 = new $c_T2().init___O__O("ContainerBrowser", y$1);
   var y$2 = $m_Lmondello_electron_components_pages_containers_SelectedContainer$();
-  var elems = new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_T2().init___O__O("SelectedContainer", y$2)]);
-  $s_scg_Growable$class__$$plus$eq__scg_Growable__O__O__sc_Seq__scg_Growable(this$7, elem1, elem2, elems);
+  var jsx$1 = new $c_T2().init___O__O("SelectedContainer", y$2);
+  var y$3 = $m_Lmondello_electron_components_pages_logs_ContainerLogs$();
+  var elems = new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$1, new $c_T2().init___O__O("ContainerLogs", y$3)]);
+  $s_scg_Growable$class__$$plus$eq__scg_Growable__O__O__sc_Seq__scg_Growable(this$9, elem1, elem2, elems);
   return this
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$meth$stopContainer__Lmondello_models_Container__O = (function(container) {
@@ -8919,6 +8964,9 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.startContainer__Lmo
     return this$6
   }
 });
+$c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$prop$displayContainerLogs__Lknockout_KoObservable__O = (function(x$1) {
+  this.displayContainerLogs$2 = x$1
+});
 $c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$prop$selectedContainer__O = (function() {
   return this.selectedContainer$2
 });
@@ -8929,41 +8977,55 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$prop$
   this.docker$2 = x$1
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.template__T = (function() {
-  var jsx$12 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var jsx$18 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
   var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$11 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "window-content", ev);
-  var jsx$10 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
-  var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var jsx$17 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "window-content", ev);
+  var this$2 = $m_Lscalatags_Text$all$();
+  var jsx$16 = new $c_Lscalatags_Text$RawFrag().init___T("<!-- ko ifnot: displayContainerLogs -->");
+  var jsx$15 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$4 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$9 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "pane-group", ev$1);
-  var this$3 = $m_Lmondello_electron_components_pages_containers_ContainersBrowser$();
-  var tagName = this$3.tagName$1;
-  var jsx$8 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName, $m_sci_Nil$(), false);
-  var this$5 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var jsx$14 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$4, "pane-group", ev$1);
+  var this$5 = $m_Lmondello_electron_components_pages_containers_ContainersBrowser$();
+  var tagName = this$5.tagName$1;
+  var jsx$13 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName, $m_sci_Nil$(), false);
+  var this$7 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$7 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "pane pane-sm sidebar", ev$2);
-  var this$6 = $m_Lknockout_tags_KoText$all$().params$1;
+  var jsx$12 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$7, "pane pane-sm sidebar", ev$2);
+  var this$8 = $m_Lknockout_tags_KoText$all$().params$1;
   var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$6 = jsx$8.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$7, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, "loadingContainers: loadingContainers, selectedContainer: selectedContainer, containers: containers", ev$3)]));
-  var this$7 = $m_Lmondello_electron_components_pages_containers_SelectedContainer$();
-  var tagName$1 = this$7.tagName$1;
-  var jsx$5 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$1, $m_sci_Nil$(), false);
-  var this$9 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var jsx$11 = jsx$13.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$12, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$8, "loadingContainers: loadingContainers, selectedContainer: selectedContainer, containers: containers", ev$3)]));
+  var this$9 = $m_Lmondello_electron_components_pages_containers_SelectedContainer$();
+  var tagName$1 = this$9.tagName$1;
+  var jsx$10 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$1, $m_sci_Nil$(), false);
+  var this$11 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$4 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$4 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$9, "pane padded-more", ev$4);
-  var this$10 = $m_Lknockout_tags_KoText$all$().params$1;
+  var jsx$9 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$11, "pane padded-more", ev$4);
+  var this$12 = $m_Lknockout_tags_KoText$all$().params$1;
   var ev$5 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$3 = jsx$10.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$9, jsx$6, jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$10, "selectedContainer: selectedContainer", ev$5)]))]));
-  var this$11 = $m_Lmondello_electron_components_pages_containers_ContainerFooter$();
-  var tagName$2 = this$11.tagName$1;
-  var jsx$2 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$2, $m_sci_Nil$(), false);
-  var this$13 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var jsx$8 = jsx$15.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$14, jsx$11, jsx$10.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$9, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$12, "selectedContainer: selectedContainer", ev$5)]))]));
+  var this$13 = $m_Lmondello_electron_components_pages_containers_ContainerFooter$();
+  var tagName$2 = this$13.tagName$1;
+  var jsx$7 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$2, $m_sci_Nil$(), false);
+  var this$15 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$6 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$1 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$13, "toolbar-footer", ev$6);
-  var this$14 = $m_Lknockout_tags_KoText$all$().params$1;
+  var jsx$6 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$15, "toolbar-footer", ev$6);
+  var this$16 = $m_Lknockout_tags_KoText$all$().params$1;
   var ev$7 = $m_Lscalatags_Text$all$().stringAttr$1;
-  return jsx$12.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$11, jsx$3, jsx$2.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$1, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$14, "selectedContainer: selectedContainer", ev$7)]))])).toString__T()
+  var jsx$5 = jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$6, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$16, "selectedContainer: selectedContainer", ev$7)]));
+  var this$17 = $m_Lscalatags_Text$all$();
+  var jsx$4 = new $c_Lscalatags_Text$RawFrag().init___T("<!-- /ko -->");
+  var this$19 = $m_Lscalatags_Text$all$();
+  var jsx$3 = new $c_Lscalatags_Text$RawFrag().init___T("<!-- ko if: displayContainerLogs -->");
+  var this$21 = $m_Lmondello_electron_components_pages_logs_ContainerLogs$();
+  var tagName$3 = this$21.tagName$1;
+  var jsx$2 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$3, $m_sci_Nil$(), false);
+  var this$23 = $m_Lknockout_tags_KoText$all$().params$1;
+  var ev$8 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$1 = jsx$2.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$23, "containers: containers, displayContainerLogs: displayContainerLogs", ev$8)]));
+  var this$24 = $m_Lscalatags_Text$all$();
+  return jsx$18.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$17, jsx$16, jsx$8, jsx$5, jsx$4, jsx$3, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("<!-- /ko -->")])).toString__T()
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.stopContainer__Lmondello_models_Container__s_concurrent_Future = (function(container) {
   var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Stop Container ", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1, container.names$1]));
@@ -9007,6 +9069,9 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.startContainerInter
     return this$6
   }
 });
+$c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$prop$displayContainerLogs__O = (function() {
+  return this.displayContainerLogs$2
+});
 $c_Lmondello_electron_components_pages_Containers$.prototype.viewModel__sjs_js_Dictionary__V = (function(params) {
   if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "docker"))) {
     var jsx$1 = params.docker
@@ -9020,7 +9085,14 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.viewModel__sjs_js_D
     $as_Lmondello_proxies_Docker(x$1$2);
     return $m_Lmondello_electron_components_pages_Containers$().reloadContainers__s_concurrent_Future()
   });
-  qual$1.subscribe(x$4)
+  qual$1.subscribe(x$4);
+  if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "displayContainerLogs"))) {
+    var jsx$2 = params.displayContainerLogs
+  } else {
+    var jsx$2;
+    throw new $c_ju_NoSuchElementException().init___T("key not found: displayContainerLogs")
+  };
+  this.displayContainerLogs$2 = jsx$2
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$prop$loadingContainers__Lknockout_KoObservable__O = (function(x$1) {
   this.loadingContainers$2 = x$1
@@ -9113,6 +9185,16 @@ Object.defineProperty($c_Lmondello_electron_components_pages_Containers$.prototy
   }),
   "get": (function() {
     return this.$$js$exported$prop$loadingContainers__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_Containers$.prototype, "displayContainerLogs", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$displayContainerLogs__Lknockout_KoObservable__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$displayContainerLogs__O()
   }),
   "enumerable": true
 });
@@ -11472,6 +11554,143 @@ function $m_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$(
     $n_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$ = new $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$().init___()
   };
   return $n_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$
+}
+/** @constructor */
+function $c_Lmondello_electron_components_pages_logs_ContainerLogs$() {
+  $c_Lknockout_KoComponent.call(this);
+  this.displayContainerLogs$2 = null;
+  this.containers$2 = null
+}
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype = new $h_Lknockout_KoComponent();
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.constructor = $c_Lmondello_electron_components_pages_logs_ContainerLogs$;
+/** @constructor */
+function $h_Lmondello_electron_components_pages_logs_ContainerLogs$() {
+  /*<skip>*/
+}
+$h_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype = $c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype;
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.init___ = (function() {
+  $c_Lknockout_KoComponent.prototype.init___T.call(this, "container-logs");
+  this.displayContainerLogs$2 = null;
+  this.containers$2 = null;
+  return this
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.$$js$exported$prop$displayContainerLogs__Lknockout_KoObservable__O = (function(x$1) {
+  this.displayContainerLogs$2 = x$1
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.template__T = (function() {
+  var jsx$13 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$12 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "upper", ev);
+  var jsx$11 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().table__Lscalatags_generic_TypedTag());
+  var this$2 = $m_Lscalatags_Text$all$().id__Lscalatags_generic_Attr();
+  var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$10 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "log-container-selection", ev$1);
+  var this$3 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$9 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$3, "table-striped", ev$2);
+  var jsx$8 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().thead__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().tr__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().th__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag($m_sci_Nil$()), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().th__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Id"))])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().th__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Label"))])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().th__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Command"))])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().th__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Created At"))])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().th__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Running For"))]))]))]));
+  var jsx$7 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().tbody__Lscalatags_generic_TypedTag());
+  var jsx$6 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("foreach: containers", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$5 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().tr__Lscalatags_generic_TypedTag());
+  var jsx$4 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("if: $data.running", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().td__Lscalatags_generic_TypedTag());
+  var jsx$2 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().input__Lscalatags_generic_TypedTag());
+  var jsx$1 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("form-control", $m_Lscalatags_Text$all$().stringAttr$1);
+  var this$9 = $m_Lscalatags_Text$all$().type__Lscalatags_generic_Attr();
+  var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var this$15 = new $c_sci_StringOps().init___T(jsx$13.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$12, jsx$11.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$10, jsx$9, jsx$8, jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$6, jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$2.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$1, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$9, "checkbox", ev$3), $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: $parent.startLoggingContainer()", $m_Lscalatags_Text$all$().stringAttr$1)]))])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().td__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("text:$data.id", $m_Lscalatags_Text$all$().stringAttr$1)])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().td__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("text:$data.names", $m_Lscalatags_Text$all$().stringAttr$1)])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().td__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("text:$data.command", $m_Lscalatags_Text$all$().stringAttr$1)])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().td__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("text:$data.createdAt", $m_Lscalatags_Text$all$().stringAttr$1)])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().td__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("text:$data.runningFor", $m_Lscalatags_Text$all$().stringAttr$1)]))]))]))]))])).toString__T());
+  var jsx$15 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$11 = $m_Lscalatags_Text$all$().id__Lscalatags_generic_Attr();
+  var ev$4 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$14 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$11, "console", ev$4);
+  var this$12 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$5 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var that = new $c_sci_StringOps().init___T(jsx$15.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$14, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$12, "lower", ev$5), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().p__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("# select running machines to start tailing logs"))]))])).toString__T());
+  var bf = $m_s_Predef$().StringCanBuildFrom$2;
+  return $as_T($s_sc_TraversableLike$class__$$plus$plus__sc_TraversableLike__sc_GenTraversableOnce__scg_CanBuildFrom__O(this$15, that, bf))
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.startLoggingContainer__sjs_js_Function2 = (function() {
+  return this.koCallback__F1__sjs_js_Function2(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(container$2) {
+    var container = $as_Lmondello_models_Container(container$2);
+    var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Start logging container: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1]));
+    var this$2 = $m_s_Console$();
+    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"))
+  })))
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.$$js$exported$meth$startLoggingContainer__O = (function() {
+  return this.startLoggingContainer__sjs_js_Function2()
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.$$js$exported$prop$displayContainerLogs__O = (function() {
+  return this.displayContainerLogs$2
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.viewModel__sjs_js_Dictionary__V = (function(params) {
+  if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "displayContainerLogs"))) {
+    var jsx$1 = params.displayContainerLogs
+  } else {
+    var jsx$1;
+    throw new $c_ju_NoSuchElementException().init___T("key not found: displayContainerLogs")
+  };
+  this.displayContainerLogs$2 = jsx$1;
+  $m_Lmondello_electron_components_Toolbar$().displayContainerLogs$2 = this.displayContainerLogs$2;
+  if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "containers"))) {
+    var jsx$2 = params.containers
+  } else {
+    var jsx$2;
+    throw new $c_ju_NoSuchElementException().init___T("key not found: containers")
+  };
+  this.containers$2 = jsx$2
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.$$js$exported$meth$viewModel__sjs_js_Dictionary__O = (function(params) {
+  this.viewModel__sjs_js_Dictionary__V(params)
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.$$js$exported$prop$containers__O = (function() {
+  return this.containers$2
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.$$js$exported$prop$containers__Lknockout_KoObservableArray__O = (function(x$1) {
+  this.containers$2 = x$1
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.$$js$exported$prop$template__O = (function() {
+  return this.template__T()
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype, "displayContainerLogs", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$displayContainerLogs__Lknockout_KoObservable__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$displayContainerLogs__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype, "containers", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$containers__Lknockout_KoObservableArray__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$containers__O()
+  }),
+  "enumerable": true
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.startLoggingContainer = (function() {
+  return this.$$js$exported$meth$startLoggingContainer__O()
+});
+var $d_Lmondello_electron_components_pages_logs_ContainerLogs$ = new $TypeData().initClass({
+  Lmondello_electron_components_pages_logs_ContainerLogs$: 0
+}, false, "mondello.electron.components.pages.logs.ContainerLogs$", {
+  Lmondello_electron_components_pages_logs_ContainerLogs$: 1,
+  Lknockout_KoComponent: 1,
+  O: 1
+});
+$c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.$classData = $d_Lmondello_electron_components_pages_logs_ContainerLogs$;
+var $n_Lmondello_electron_components_pages_logs_ContainerLogs$ = (void 0);
+function $m_Lmondello_electron_components_pages_logs_ContainerLogs$() {
+  if ((!$n_Lmondello_electron_components_pages_logs_ContainerLogs$)) {
+    $n_Lmondello_electron_components_pages_logs_ContainerLogs$ = new $c_Lmondello_electron_components_pages_logs_ContainerLogs$().init___()
+  };
+  return $n_Lmondello_electron_components_pages_logs_ContainerLogs$
 }
 /** @constructor */
 function $c_Lmondello_electron_components_pages_machines_MachineFooter$() {
