@@ -23,6 +23,9 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
   var bufferSize:KoObservable[Integer] = null
   val childrenRegistry = mutable.Map[String,js.Any]()
   val logs:KoObservableArray[String] = Ko.observableArray()
+  val filteredLogs:KoObservableArray[String] = Ko.observableArray()
+  val searchText:KoObservable[String] = Ko.observable("")
+  val showFiltered:KoObservable[Boolean] = Ko.observable(false)
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     displayContainerLogs = params("displayContainerLogs").asInstanceOf[KoObservable[Boolean]]
@@ -61,8 +64,16 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
       )
     ).toString() ++ div(id:="console",`class`:="lower",
       p("# select running machines to start tailing logs"),
+      raw("<!-- ko ifnot: showFiltered -->"),
       raw("<!-- ko foreach: logs -->"),
       span(attrs.data.bind:="html: $data"),
+      raw("<!-- /ko -->"),
+      raw("<!-- /ko -->"),
+
+      raw("<!-- ko if: showFiltered -->"),
+      raw("<!-- ko foreach: filteredLogs -->"),
+      span(attrs.data.bind:="html: $data"),
+      raw("<!-- /ko -->"),
       raw("<!-- /ko -->")
     ).toString() ++ footer(id:="logs-toolbar",`class`:="toolbar toolbar-footer",
       div(`class`:="toolbar-actions",
@@ -74,7 +85,7 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
           "Clear"
         ),
         span(id:="log-search-box",`class`:="form-group",
-          input(`class`:="form-control", placeholder:="Search Text")
+          input(`class`:="form-control", placeholder:="Search Text", attrs.data.bind:="value:searchText")
         ),
         button(
           `class`:="btn btn-large btn-default",
@@ -96,14 +107,38 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
 
   def clearLog():KoCallback[js.Any] = koCallback({(_) =>
     println("** Clearing log")
+    logs.removeAll()
   })
 
-  def searchLog():KoCallback[String] = koCallback({(searchText) =>
-    println(s"** Searching log for $searchText")
+  def searchLog():KoCallback[js.Any] = koCallback({(_) =>
+    println(s"** Searching log for ${searchText()}")
+    val textToSearch = searchText()
+    filteredLogs.removeAll()
+    val exp = """<[a-z\s/'\"=0-9]+>"""
+    for(line <- logs()) {
+      if(line.replaceAll(exp,"").indexOf(textToSearch) > -1) {
+        filteredLogs.push(line)
+      }
+    }
+    showFiltered(true)
+
+    val matches = g.$(".token").toArray().asInstanceOf[js.Array[js.Any]]
+    for(matchToken <- matches) {
+      g.$(matchToken).attr("class","token")
+      g.$(matchToken).attr("style","")
+      if(g.$(matchToken).text().asInstanceOf[String].indexOf(textToSearch) > -1) {
+        val e = g.$(matchToken)
+        e.attr("class","token token-match")
+        e.css("background-color","blue")
+        e.css("color","white")
+      }
+    }
   })
 
   def cancelSearchLog():KoCallback[js.Any] = koCallback({(_) =>
     println("** Cancel search log")
+    showFiltered(false)
+    searchText("")
   })
 
   def startLoggingContainer():KoCallback[Container] = koCallback({ (container) =>
@@ -116,11 +151,13 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
           childrenRegistry.remove(container.id)
         }else {
           // got some more data
-          val tokenized = tokenizeData(data)
-          var html = "<p style='color:" + color + "'>=====" + container.id + " / " + container.names + "</p>"
-          html = html + "<p style='color:" + color + "'>" + tokenized + "</p>"
-          logs.push(html)
-          if (logs().length > bufferSize()) logs.shift()
+          val tokenized = tokenizeData(data, color)
+          val html = "<br/><span style='color:" + color + "'>=====" + container.id + " / " + container.names + "</span><br/>"
+          val totalLines = List(html) ++ tokenized
+          for(line <- totalLines) {
+            logs.push(line)
+            if (logs().length > bufferSize()) logs.shift()
+          }
         }
       })
       childrenRegistry.update(container.id, child)
@@ -136,13 +173,16 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
     true
   })
 
-  protected def tokenizeData(data:String):String = {
-    data.replace("\n","<br/>").split("\\s").map { (token) =>
-      if(token == "") {
-        token
-      } else {
-        "<span class='token'>"+token+"</span>"
-      }
-    }.mkString("&nbsp;")
+  protected def tokenizeData(data:String, color:String):Array[String] = {
+    data.split("\n").map { (line) =>
+      val tokenizedLine = line.split("\\s").map { (token) =>
+        if(token == "") {
+          token
+        } else {
+          "<span class='token'>"+token+"</span>"
+        }
+      }.mkString("&nbsp;")
+      s"<span style='color:$color'class='token-line'>$tokenizedLine</span><br/>"
+    }
   }
 }
