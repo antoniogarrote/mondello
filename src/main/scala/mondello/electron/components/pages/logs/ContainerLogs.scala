@@ -13,6 +13,8 @@ import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
+import scala.scalajs.js.Dynamic.{global => g}
+
 @JSExportAll
 object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
 
@@ -46,7 +48,7 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
           tr(attrs.data.bind:="if: $data.running",
             td(
               input(attrs.data.bind:="form-control", `type`:="checkbox",
-                attrs.data.bind:="click: $parent.startLoggingContainer()"
+                attrs.data.bind:="click: $parent.startLoggingContainer(), attr: {id: 'container-log-'+$data.id}"
               )
             ),
             td(attrs.data.bind:="text:$data.id"),
@@ -62,8 +64,47 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
       raw("<!-- ko foreach: logs -->"),
       span(attrs.data.bind:="html: $data"),
       raw("<!-- /ko -->")
+    ).toString() ++ footer(id:="logs-toolbar",`class`:="toolbar toolbar-footer",
+      div(`class`:="toolbar-actions",
+        button(
+          `class`:="btn btn-large btn-default",
+          attrs.data.bind:="click: clearLog()",
+          span(`class`:="icon icon-trash"),
+          raw("&nbsp;"),
+          "Clear"
+        ),
+        span(id:="log-search-box",`class`:="form-group",
+          input(`class`:="form-control", placeholder:="Search Text")
+        ),
+        button(
+          `class`:="btn btn-large btn-default",
+          attrs.data.bind:="click: searchLog()",
+          span(`class`:="icon icon-search"),
+          raw("&nbsp;"),
+          "Search"
+        ),
+        button(
+          `class`:="btn btn-large btn-default",
+          attrs.data.bind:="click: cancelSearchLog()",
+          span(`class`:="icon icon-cancel-circled"),
+          raw("&nbsp;"),
+          "Cancel"
+        )
+      )
     ).toString()
   }
+
+  def clearLog():KoCallback[js.Any] = koCallback({(_) =>
+    println("** Clearing log")
+  })
+
+  def searchLog():KoCallback[String] = koCallback({(searchText) =>
+    println(s"** Searching log for $searchText")
+  })
+
+  def cancelSearchLog():KoCallback[js.Any] = koCallback({(_) =>
+    println("** Cancel search log")
+  })
 
   def startLoggingContainer():KoCallback[Container] = koCallback({ (container) =>
     println(s"* Start logging container: ${container.id}")
@@ -85,10 +126,14 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
       childrenRegistry.update(container.id, child)
     } else {
       val child = childrenRegistry.remove(container.id).get
-      println("CHILD")
-      println(child)
-      child.asInstanceOf[js.Dynamic].kill()
+      println(s"* Killing log observer child for container ${container.id}")
+      try {
+        child.asInstanceOf[js.Dynamic].kill()
+      } catch {
+        case e:Throwable => println(s"!! Error killing log observer $e")
+      }
     }
+    true
   })
 
   protected def tokenizeData(data:String):String = {

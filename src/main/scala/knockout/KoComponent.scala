@@ -9,10 +9,10 @@ import scalatags.Text.TypedTag
 @JSExportAll
 abstract class KoComponent(val tagName:String) {
 
-  type KoCallback[T] = js.Function2[T,js.Any,Unit]
+  type KoCallback[T] = js.Function2[T,js.Any,js.Any]
 
-  def koCallback[T](f:T => Unit):KoCallback[T] = (e:T, evt:js.Any) => f(e)
-  def koCallback[T](f:(T,js.Any) => Unit):KoCallback[T] = f
+  def koCallback[T](f:T => js.Any):KoCallback[T] = (e:T, evt:js.Any) => f(e)
+  def koCallback[T](f:(T,js.Any) => js.Any):KoCallback[T] = f
 
   def tag = KoComponent.mkTag(tagName)
 

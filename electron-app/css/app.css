@@ -306,3 +306,9 @@ container-footer {
   width: 100%;
   bottom: 0px;
 }
+
+#logs-toolbar {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+}
