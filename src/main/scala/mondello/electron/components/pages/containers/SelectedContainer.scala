@@ -6,11 +6,11 @@ import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 
 @JSExportAll
-object ContainerFooter extends KoComponent("container-footer") {
+object SelectedContainer extends KoComponent("selected-container") {
 
   override def viewModel(params: Dictionary[Any]): Unit = {}
 
   override def template: String = {
-    "<b>container footer</b>"
+    "<b>selected container</b>"
   }
 }

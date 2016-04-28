@@ -14,10 +14,7 @@ import scalatags.Text.all._
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 
 @JSExportAll
-object Containers extends KoComponent{
-  override val tagName: String = "docker-containers"
-
-  val tag = KoComponent.mkTag(tagName)
+object Containers extends KoComponent("docker-containers"){
 
   var docker:KoComputed[Docker] = null
   var containers:KoObservableArray[Container] = Ko.observableArray()
@@ -62,7 +59,6 @@ object Containers extends KoComponent{
       val f = docker().containers
       f.onSuccess {
         case newContainers =>
-          println(s"====> FOUND ${newContainers.size} CONTAINERS")
           var foundSelectedContainer = false
           containers.removeAll()
           newContainers.foreach({ (Container: Container) =>
@@ -70,7 +66,6 @@ object Containers extends KoComponent{
               foundSelectedContainer = true
               selectedContainer(Container)
             }
-            println("-- PUSHING CONTAINER!")
             containers.push(Container)
           })
           if (!foundSelectedContainer) selectedContainer(null)

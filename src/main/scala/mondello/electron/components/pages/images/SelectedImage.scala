@@ -9,8 +9,7 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-class SelectedImage extends KoComponent {
-  override val tagName: String = SelectedImage.tagName
+object SelectedImage extends KoComponent("selected-image") {
 
   var selectedImage:KoObservable[Image] = null
 
@@ -151,9 +150,4 @@ class SelectedImage extends KoComponent {
       )
     )
   }
-}
-
-object SelectedImage {
-  val tagName = "selected-image"
-  val tag = KoComponent.mkTag(tagName)
 }

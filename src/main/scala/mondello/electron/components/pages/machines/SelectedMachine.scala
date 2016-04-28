@@ -9,23 +9,22 @@ import scalatags.Text.all._
 import scalatags.Text.{TypedTag, attrs}
 
 @JSExportAll
-class SelectedMachine extends KoComponent {
-  override val tagName: String = SelectedMachine.tagName
+object SelectedMachine extends KoComponent("docker-machine") {
 
-  var selectedMachine:KoObservable[mondello.models.Machine] = null
-  var environment:KoComputed[js.Array[js.Dictionary[String]]] = null
-  var driverInfo:KoComputed[js.Array[js.Dictionary[String]]] = null
-  var engineInfo:KoComputed[js.Array[js.Dictionary[String]]] = null
-  var swarmInfo:KoComputed[js.Array[js.Dictionary[String]]] = null
-  var authInfo:KoComputed[js.Array[js.Dictionary[String]]] = null
+  var selectedMachine: KoObservable[mondello.models.Machine] = null
+  var environment: KoComputed[js.Array[js.Dictionary[String]]] = null
+  var driverInfo: KoComputed[js.Array[js.Dictionary[String]]] = null
+  var engineInfo: KoComputed[js.Array[js.Dictionary[String]]] = null
+  var swarmInfo: KoComputed[js.Array[js.Dictionary[String]]] = null
+  var authInfo: KoComputed[js.Array[js.Dictionary[String]]] = null
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     selectedMachine = params("selectedMachine").asInstanceOf[KoObservable[mondello.models.Machine]]
     environment = Ko.computed({ () =>
       val array = js.Array[js.Dictionary[String]]()
-      if(selectedMachine() != null) {
-        val machine:mondello.models.Machine = selectedMachine()
-        if(machine.env != null) machine.env.foreach({
+      if (selectedMachine() != null) {
+        val machine: mondello.models.Machine = selectedMachine()
+        if (machine.env != null) machine.env.foreach({
           case ((k: String, v: String)) => array.push(js.Dictionary[String]("key" -> k, "value" -> v))
         })
       }
@@ -40,19 +39,19 @@ class SelectedMachine extends KoComponent {
 
   override def template: String = {
     span(
-      span(attrs.data.bind:="if: selectedMachine()",
+      span(attrs.data.bind := "if: selectedMachine()",
         machineHeader(),
         firstSection(),
-        hashSection("Environment","environment"),
-        hashSection("Driver","driverInfo"),
-        hashSection("Engine","engineInfo"),
-        hashSection("Swarm","swarmInfo"),
-        hashSection("Authentication","authInfo")
+        hashSection("Environment", "environment"),
+        hashSection("Driver", "driverInfo"),
+        hashSection("Engine", "engineInfo"),
+        hashSection("Swarm", "swarmInfo"),
+        hashSection("Authentication", "authInfo")
       ),
-      span(attrs.data.bind:="ifnot: selectedMachine()",
-        div(id:="hero-outer",
-          div(id:="hero-inner",
-            img(src:="images/mondello.png")
+      span(attrs.data.bind := "ifnot: selectedMachine()",
+        div(id := "hero-outer",
+          div(id := "hero-inner",
+            img(src := "images/mondello.png")
           )
         )
       )
@@ -61,20 +60,20 @@ class SelectedMachine extends KoComponent {
 
   // helper functions
 
-  private def makeComputedHash(f:(mondello.models.Machine) => js.Any):KoComputed[js.Array[js.Dictionary[String]]] = {
+  private def makeComputedHash(f: (mondello.models.Machine) => js.Any): KoComputed[js.Array[js.Dictionary[String]]] = {
     Ko.computed({ () =>
       val array = js.Array[js.Dictionary[String]]()
-      if(selectedMachine() != null) {
-        val machine:mondello.models.Machine = selectedMachine()
+      if (selectedMachine() != null) {
+        val machine: mondello.models.Machine = selectedMachine()
         val data = f(machine)
-        if(data != null) data.asInstanceOf[js.Dictionary[js.Dynamic]].foreach({
+        if (data != null) data.asInstanceOf[js.Dictionary[js.Dynamic]].foreach({
           case ((k: String, v: js.Dynamic)) =>
             v.constructor.name.asInstanceOf[String] match {
               case "Array" => array.push(js.Dictionary[String]("key" -> k, "value" -> v.join(",").asInstanceOf[String]))
               case "Object" => array.push(js.Dictionary[String]("key" -> k, "value" -> JSON.stringify(v)))
-              case _        => array.push(js.Dictionary[String]("key" -> k, "value" -> v.toString))
+              case _ => array.push(js.Dictionary[String]("key" -> k, "value" -> v.toString))
             }
-          case ((k:String, null)) => array.push(js.Dictionary[String]("key" -> k, "value" -> ""))
+          case ((k: String, null)) => array.push(js.Dictionary[String]("key" -> k, "value" -> ""))
         })
       }
       array
@@ -84,72 +83,67 @@ class SelectedMachine extends KoComponent {
   // templates
 
   private def machineHeader(): Frag = {
-    div(`class`:="header-section",
+    div(`class` := "header-section",
       span(
-        attrs.data.bind:="visible: selectedMachine().state === 'Running'",
-        `class`:="icon icon-record",
-        attrs.style:="color:#34c84a"),
+        attrs.data.bind := "visible: selectedMachine().state === 'Running'",
+        `class` := "icon icon-record",
+        attrs.style := "color:#34c84a"),
       span(
-        attrs.data.bind:="visible: selectedMachine().state === 'Saved'",
-        `class`:="icon icon-record",
-        attrs.style:="color:#fdbc40"),
+        attrs.data.bind := "visible: selectedMachine().state === 'Saved'",
+        `class` := "icon icon-record",
+        attrs.style := "color:#fdbc40"),
       span(
-        attrs.data.bind:="visible: selectedMachine().state !== 'Running' && selectedMachine().state !== 'Saved'",
-        `class`:="icon icon-record",
-        attrs.style:="color:#fc605b"),
-      h2(attrs.data.bind:="text: selectedMachine().name")
+        attrs.data.bind := "visible: selectedMachine().state !== 'Running' && selectedMachine().state !== 'Saved'",
+        `class` := "icon icon-record",
+        attrs.style := "color:#fc605b"),
+      h2(attrs.data.bind := "text: selectedMachine().name")
     )
   }
 
   private def firstSection(): Frag = {
-    div(`class`:="first-section",
+    div(`class` := "first-section",
       h4("Attributes"),
-      div(`class`:="form-group",
-        label(`class`:="form-group", "Status"),
-        input(`class`:="form-control",
-          attrs.data.bind:="value: selectedMachine().state")
+      div(`class` := "form-group",
+        label(`class` := "form-group", "Status"),
+        input(`class` := "form-control",
+          attrs.data.bind := "value: selectedMachine().state")
       ),
-      div(`class`:="form-group",
-        label(`class`:="form-group", "Driver"),
-        input(`class`:="form-control",
-          attrs.data.bind:="value: selectedMachine().driver")
+      div(`class` := "form-group",
+        label(`class` := "form-group", "Driver"),
+        input(`class` := "form-control",
+          attrs.data.bind := "value: selectedMachine().driver")
       ),
-      div(`class`:="form-group",
-        label(`class`:="form-group", "URL"),
-        input(`class`:="form-control",
-          attrs.data.bind:="value: selectedMachine().url")
+      div(`class` := "form-group",
+        label(`class` := "form-group", "URL"),
+        input(`class` := "form-control",
+          attrs.data.bind := "value: selectedMachine().url")
       ),
-      div(`class`:="form-group",
-        label(`class`:="form-group", "Swarm"),
-        input(`class`:="form-control",
-          attrs.data.bind:="value: selectedMachine().swarm")
+      div(`class` := "form-group",
+        label(`class` := "form-group", "Swarm"),
+        input(`class` := "form-control",
+          attrs.data.bind := "value: selectedMachine().swarm")
       )
     )
   }
 
 
-  private def hashSection(sectionName:String, dataFunction:String): Frag = {
-    div(`class`:="environment-section",
+  private def hashSection(sectionName: String, dataFunction: String): Frag = {
+    div(`class` := "environment-section",
       h4(sectionName),
-      table(`class`:="table-striped",
+      table(`class` := "table-striped",
         thead(
           tr(
             th("Variable"),
             th("Value")
           )
         ),
-        tbody(attrs.data.bind:=s"foreach: $dataFunction()",
+        tbody(attrs.data.bind := s"foreach: $dataFunction()",
           tr(
-            td(attrs.data.bind:="text: key"),
-            td(attrs.data.bind:="text: value")
+            td(attrs.data.bind := "text: key"),
+            td(attrs.data.bind := "text: value")
           )
         )
       )
     )
   }
-}
-
-object SelectedMachine {
-  val tagName:String = "machine"
-  def tag:TypedTag[String] = KoComponent.mkTag(tagName)
 }

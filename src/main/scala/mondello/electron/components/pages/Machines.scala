@@ -16,7 +16,7 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 
 
 @JSExportAll
-object Machines extends KoComponent {
+object Machines extends KoComponent("docker-machines") {
 
   @JSExport("apply")
   def apply(dockerMachine:DockerMachine): Machines.type = {
@@ -25,18 +25,15 @@ object Machines extends KoComponent {
   }
 
   var dockerMachine:DockerMachine = null
-  override val tagName: String = "machines"
-  val tag = KoComponent.mkTag(tagName)
-
   var loadingMachines:KoObservable[Boolean] = null
   var dockerMachines:KoObservableArray[Machine] = null
   var selectedMachine:KoObservable[Machine] = null
 
 
   nestedComponents += (
-    "selected" -> new mondello.electron.components.pages.machines.SelectedMachine(),
-    "browser" -> new MachinesBrowser(),
-    "footer" -> new MachineFooter()
+    "selected" -> mondello.electron.components.pages.machines.SelectedMachine,
+    "browser" -> MachinesBrowser,
+    "footer" -> MachineFooter
   )
 
 

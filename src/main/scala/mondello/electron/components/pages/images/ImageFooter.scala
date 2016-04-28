@@ -11,8 +11,7 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-class ImageFooter extends KoComponent {
-  override val tagName: String = ImageFooter.tagName
+object ImageFooter extends KoComponent("image-footer") {
 
   var selectedImage:KoObservable[Image] = null
 
@@ -111,10 +110,4 @@ class ImageFooter extends KoComponent {
     println("** Launch Configuration")
     LaunchConfigurationDialog.show()
   }
-
-}
-
-object ImageFooter {
-  val tagName = "image-footer"
-  val tag = KoComponent.mkTag(tagName)
 }

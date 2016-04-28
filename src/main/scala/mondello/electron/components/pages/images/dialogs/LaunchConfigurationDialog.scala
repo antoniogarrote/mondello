@@ -9,10 +9,7 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-object LaunchConfigurationDialog extends KoComponent{
-  override val tagName: String = "launch-configuration-dialog"
-  val tag = KoComponent.mkTag(tagName)
-
+object LaunchConfigurationDialog extends KoComponent("launch-configuration-dialog") {
   val name:KoObservable[String] = Ko.observable("")
   val command:KoObservable[String] = Ko.observable("")
   val entryPoint:KoObservable[String] = Ko.observable("")

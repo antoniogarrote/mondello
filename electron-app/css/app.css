@@ -262,7 +262,7 @@
  Adjustments
 */
 
-machines {
+docker-machines {
   display:flex;
   position:relative;
   height:100%;

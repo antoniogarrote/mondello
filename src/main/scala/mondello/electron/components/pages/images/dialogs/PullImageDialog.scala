@@ -10,9 +10,7 @@ import scalatags.Text.attrs
 
 
 @JSExportAll
-object PullImageDialog extends KoComponent{
-  override val tagName: String = "pull-image-dialog"
-  val tag = KoComponent.mkTag(tagName)
+object PullImageDialog extends KoComponent("pull-image-dialog") {
 
   val imageName:KoObservable[String] = Ko.observable("")
   val imageTag:KoObservable[String] = Ko.observable("latest")

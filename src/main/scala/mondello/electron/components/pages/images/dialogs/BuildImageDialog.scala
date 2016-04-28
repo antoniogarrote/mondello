@@ -9,9 +9,7 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-object BuildImageDialog extends KoComponent {
-  override val tagName: String = "build-image-dialog"
-  val tag = KoComponent.mkTag(tagName)
+object BuildImageDialog extends KoComponent("build-image-dialog") {
 
   val buildArgs:KoObservable[String] = Ko.observable("")
   val imageTag:KoObservable[String] = Ko.observable("latest")

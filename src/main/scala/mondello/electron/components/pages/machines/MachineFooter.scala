@@ -14,8 +14,7 @@ import scalatags.Text.attrs
 
 
 @JSExportAll
-class MachineFooter extends KoComponent {
-  override val tagName: String = MachineFooter.tagName
+object MachineFooter extends KoComponent("machine-footer") {
 
   var selectedMachine:KoObservable[mondello.models.Machine] = null
 
@@ -76,9 +75,4 @@ class MachineFooter extends KoComponent {
     Machines.startMachine(this.selectedMachine(), (_) => MondelloApp.closeModal())
     ()
   }
-}
-
-object MachineFooter {
-  val tagName = "machine-footer"
-  val tag = KoComponent.mkTag(tagName)
 }

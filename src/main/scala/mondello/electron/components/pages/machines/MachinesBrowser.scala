@@ -10,9 +10,7 @@ import scalatags.Text.tags2._
 import scalatags.Text.{TypedTag, attrs}
 
 @JSExportAll
-class MachinesBrowser extends KoComponent {
-
-  override val tagName: String = MachinesBrowser.tagName
+object MachinesBrowser extends KoComponent("machines-browser") {
 
   var loadingMachines:KoObservable[Boolean] = null
   var machines:KoObservableArray[Machine] = null
@@ -66,9 +64,4 @@ class MachinesBrowser extends KoComponent {
   def selectMachine():js.Function2[Machine,js.Any,Unit] = {
     (machine:Machine, event:js.Any) => this.selectedMachine(machine)
   }
-}
-
-object MachinesBrowser {
-  val tagName:String = "machines-browser"
-  def tag:TypedTag[String] = KoComponent.mkTag(tagName)
 }

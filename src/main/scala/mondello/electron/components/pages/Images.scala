@@ -17,9 +17,7 @@ import scala.util.Try
 import scalatags.Text.all._
 
 @JSExportAll
-object Images extends KoComponent {
-  override val tagName: String = "docker-images"
-  val tag = KoComponent.mkTag(tagName)
+object Images extends KoComponent("docker-images") {
 
   var docker:KoComputed[Docker] = null
   var images:KoObservableArray[Image] = Ko.observableArray()
@@ -27,9 +25,9 @@ object Images extends KoComponent {
   var loadingImages:KoObservable[Boolean] = Ko.observable(false)
 
   nestedComponents += (
-    "imagesBrowser" -> new ImagesBrowser(),
-    "images" -> new SelectedImage(),
-    "imageFooter" -> new ImageFooter()
+    "imagesBrowser" -> ImagesBrowser,
+    "images" -> SelectedImage,
+    "imageFooter" -> ImageFooter
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {

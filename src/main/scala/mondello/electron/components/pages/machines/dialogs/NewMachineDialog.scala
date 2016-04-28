@@ -13,8 +13,7 @@ import scalatags.Text.attrs
 
 
 @JSExportAll
-class NewMachineDialog extends KoComponent {
-  override val tagName: String = NewMachineDialog.tagName
+object NewMachineDialog extends KoComponent("new-machine-dialog") {
 
   var machineName = Ko.observable[String](null)
   var machineDriver = Ko.observable[String]("virtualbox")
@@ -113,9 +112,4 @@ class NewMachineDialog extends KoComponent {
     }
   }
 
-}
-
-object NewMachineDialog {
-  val tagName = "new-machine-dialog"
-  val tag = KoComponent.mkTag(tagName)
 }

@@ -12,14 +12,12 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-object Toolbar extends KoComponent {
+object Toolbar extends KoComponent("mondello-toolbar") {
 
-  override val tagName: String = "toolbar"
-  val tag = KoComponent.mkTag(tagName)
 
   var page:KoObservable[String] = null
   var selectedMachine:KoObservable[Machine] = null
-  var newMachineDialog:NewMachineDialog = new NewMachineDialog()
+  var newMachineDialog = NewMachineDialog
 
   nestedComponents += (
     "newMachineDialog" -> newMachineDialog,
@@ -29,8 +27,6 @@ object Toolbar extends KoComponent {
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     page = params("page").asInstanceOf[KoObservable[String]]
-    println("GOT A PAGE:")
-    println(page())
     selectedMachine = params("selectedMachine").asInstanceOf[KoObservable[Machine]]
   }
 

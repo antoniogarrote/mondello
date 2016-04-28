@@ -17,7 +17,7 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-object MondelloApp extends KoComponent {
+object MondelloApp extends KoComponent("mondello-app") {
 
   @JSExport("apply")
   def apply(): this.type = {
@@ -26,8 +26,6 @@ object MondelloApp extends KoComponent {
     this
   }
 
-  override val tagName: String = "mondello-app"
-  val tag = KoComponent.mkTag(tagName)
   val page: KoObservable[String] = Ko.observable("machines")
 
   val env:Environment = Environment.defaultEnv

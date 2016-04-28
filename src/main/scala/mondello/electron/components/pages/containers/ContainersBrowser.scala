@@ -11,26 +11,38 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-object ContainersBrowser extends KoComponent with SearchableList[Container] {
-  override val tagName: String = "containers-browser"
-  val tag = KoComponent.mkTag(tagName)
+object ContainersBrowser extends KoComponent("containers-browser") {
 
   var containers:KoObservableArray[Container] = null
   var selectedContainer:KoObservable[Container] = null
   var loadingContainers:KoObservable[Boolean] = null
 
+  val searchList = new SearchableList[Container] {
+    override def isResult(container: Container, searchText: String): Boolean =  {
+      val searchMatch = subString(searchText)(_)
+      searchMatch { container.command } ||
+        searchMatch { container.createdAt } ||
+        searchMatch { container.id } ||
+        searchMatch { container.image } ||
+        searchMatch { container.labels.toString() } ||
+        searchMatch { container.names.toString } ||
+        searchMatch { container.ports.toString() } ||
+        searchMatch { container.status }
+    }
+  }
+
   override def viewModel(params: Dictionary[Any]): Unit = {
     loadingContainers = params("loadingContainers").asInstanceOf[KoObservable[Boolean]]
     selectedContainer = params("selectedContainer").asInstanceOf[KoObservable[Container]]
     containers = params("containers").asInstanceOf[KoObservableArray[Container]]
-    subscribe(containers)
+    searchList.subscribe(containers)
   }
 
   override def template: String = {
     ul(`class`:="list-group",
       li(`class`:="list-group-header",
         input(id:="containerSearchBox",`class`:="form-control", `type`:="text", placeholder:="Containers Search",
-          attrs.data.bind:="textInput: elementSearch"
+          attrs.data.bind:="textInput: searchList.elementSearch"
         )
       ),
       // No Containers
@@ -46,7 +58,7 @@ object ContainersBrowser extends KoComponent with SearchableList[Container] {
           ))
       ),
       // Containers
-      raw("<!-- ko foreach: searchResults -->"),
+      raw("<!-- ko foreach: searchList.searchResults -->"),
       li(`class`:="list-group-item",
         attrs.data.bind:="click: $parent.selectContainer.bind($parent,$data),"++
           "visible: !$parent.loadingContainers(),"++
@@ -68,17 +80,4 @@ object ContainersBrowser extends KoComponent with SearchableList[Container] {
     this.selectedContainer(container)
   }
 
-  // Helper functions
-
-  override def isResult(container: Container, searchText: String): Boolean = {
-    val searchMatch = subString(searchText)(_)
-    searchMatch { container.command } ||
-      searchMatch { container.createdAt } ||
-      searchMatch { container.id } ||
-      searchMatch { container.image } ||
-      searchMatch { container.labels.toString() } ||
-      searchMatch { container.names.toString } ||
-      searchMatch { container.ports.toString() } ||
-      searchMatch { container.status }
-  }
 }

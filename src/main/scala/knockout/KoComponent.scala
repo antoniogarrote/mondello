@@ -7,9 +7,14 @@ import scalatags.Text.TypedTag
 
 
 @JSExportAll
-abstract class KoComponent {
+abstract class KoComponent(val tagName:String) {
 
-  val tagName:String
+  type KoCallback[T] = js.Function2[T,js.Any,Unit]
+
+  def koCallback[T](f:T => Unit):KoCallback[T] = (e:T, evt:js.Any) => f(e)
+  def koCallback[T](f:(T,js.Any) => Unit):KoCallback[T] = f
+
+  def tag = KoComponent.mkTag(tagName)
 
   def viewModel(params:js.Dictionary[js.Any])
 
