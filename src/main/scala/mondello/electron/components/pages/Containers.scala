@@ -14,6 +14,7 @@ import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
+import scala.scalajs.js
 
 @JSExportAll
 object Containers extends KoComponent("docker-containers"){
@@ -23,6 +24,7 @@ object Containers extends KoComponent("docker-containers"){
   var selectedContainer:KoObservable[Container] = Ko.observable(null)
   var loadingContainers:KoObservable[Boolean] = Ko.observable(false)
   var displayContainerLogs:KoObservable[Boolean] = null
+  var bufferSize:KoObservable[Integer] = Ko.observable(150)
 
 
   nestedComponents += (
@@ -51,7 +53,7 @@ object Containers extends KoComponent("docker-containers"){
         KoText.all.params:="selectedContainer: selectedContainer"),
       raw("<!-- /ko -->"),
       raw("<!-- ko if: displayContainerLogs -->"),
-      ContainerLogs.tag(KoText.all.params:="containers: containers, displayContainerLogs: displayContainerLogs"),
+      ContainerLogs.tag(KoText.all.params:="containers: containers, displayContainerLogs: displayContainerLogs, bufferSize: bufferSize"),
       raw("<!-- /ko -->")
     ).toString()
   }
@@ -107,7 +109,7 @@ object Containers extends KoComponent("docker-containers"){
     runContainerInternal(container,() => docker().stopContainer(container.id))
   }
 
-  def logContainer(container:Container, cb:(String) => Unit): Unit = {
+  def logContainer(container:Container, cb:(String) => Unit): js.Any = {
     docker().logsChild(container.id, cb)
   }
 
