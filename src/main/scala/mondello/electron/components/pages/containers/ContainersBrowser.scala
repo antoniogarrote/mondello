@@ -64,7 +64,14 @@ object ContainersBrowser extends KoComponent("containers-browser") {
           "visible: !$parent.loadingContainers(),"++
           "css: {active: ($parent.selectedContainer() && $parent.selectedContainer().id == id)}",
         div(`class`:="media-body",
-          span(`class`:="icon icon-box"),
+          raw("<!-- ko if: running -->"),
+          span(`class`:="icon icon-record", style:="color:#34c84a"),
+          raw("<!-- /ko -->"),
+          raw("<!-- ko ifnot: running -->"),
+          span(`class`:="icon icon-record", style:="color:#fc605b"),
+          raw("<!-- /ko -->"),
+          raw("&nbsp;"),
+          span(`class`:="icon icon-rocket"),
           raw("&nbsp;"),
           strong(attrs.data.bind:="text: id"),
           p(attrs.data.bind:="text: names")

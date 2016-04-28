@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.images
 
 import knockout.{KoComponent, KoObservable}
+import mondello.electron.components.common.TableRenderer
 import mondello.models.Image
 
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
@@ -9,7 +10,7 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-object SelectedImage extends KoComponent("selected-image") {
+object SelectedImage extends KoComponent("selected-image") with TableRenderer {
 
   var selectedImage:KoObservable[Image] = null
 
@@ -54,7 +55,7 @@ object SelectedImage extends KoComponent("selected-image") {
       ("Docker Version", "inspect.DockerVersion"),
       ("Architecture", "inspect.Architecture"),
       ("Author", "inspect.Author"))
-    makeTable("Attributes", attributes)
+    makeTable("Attributes", "selectedImage()", attributes)
   }
 
   private def configSection(): Frag = {
@@ -72,7 +73,7 @@ object SelectedImage extends KoComponent("selected-image") {
       ("Stdin Once","inspect.Config.StdinOnce"),
       ("Working Dir","inspect.Config.WorkingDir")
     )
-    makeTable("Configuration", attributes)
+    makeTable("Configuration", "selectedImage()", attributes)
   }
 
   private def envSection(): Frag = {
@@ -125,26 +126,6 @@ object SelectedImage extends KoComponent("selected-image") {
         tbody(attrs.data.bind:="foreach: Object.keys(selectedImage().inspect.Config.Volumes || {})",
           tr(
             td(attrs.data.bind:="text: $data")
-          )
-        )
-      )
-    )
-  }
-
-  private def makeTable(tableName:String, attributesMapping:Seq[Tuple2[String,String]]): Frag = {
-    div(`class`:="first-section",
-      h4(tableName),
-      table(`class`:="table-striped",
-        thead(
-          tr(
-            th("Variable"),
-            th("Value")
-          )
-        ),
-        tbody(
-          for((property, function) <- attributesMapping) yield tr(
-            td(property),
-            td(attrs.data.bind:=s"text: selectedImage().$function")
           )
         )
       )
