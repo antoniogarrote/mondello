@@ -2,12 +2,13 @@ package mondello.electron.components.pages
 
 import knockout._
 import knockout.tags.KoText
+import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.containers.{ContainerFooter, ContainersBrowser, SelectedContainer}
 import mondello.models.Container
 import mondello.proxies.Docker
 
 import scala.scalajs.js.Dynamic.{global => g}
-import scala.concurrent.Promise
+import scala.concurrent.{Future, Promise}
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
@@ -79,4 +80,41 @@ object Containers extends KoComponent("docker-containers"){
     }
   }
 
+  def startContainerInteractive(container:Container) = {
+    println(s"** Start Container ${container.id}:${container.names} Interactive")
+    MondelloApp.showModal(s"Starting container ${container.names}")
+    runContainerInternal(container,() => docker().startContainerInteractive(container.id))
+  }
+
+  def startContainer(container:Container) = {
+    println(s"** Start Container ${container.id}:${container.names}")
+    MondelloApp.showModal(s"Starting container ${container.names}")
+    runContainerInternal(container,() => docker().startContainer(container.id))
+  }
+
+  def stopContainer(container:Container) = {
+    println(s"** Stop Container ${container.id}:${container.names}")
+    MondelloApp.showModal(s"Stopping container ${container.names}")
+    runContainerInternal(container,() => docker().stopContainer(container.id))
+  }
+
+  protected def runContainerInternal(container:Container, cf:()=>Future[Boolean]) = {
+    if(container != null) {
+      val f = cf()
+      f.onSuccess {
+        case result =>
+          reloadContainers().onComplete((_) => MondelloApp.closeModal())
+      }
+
+      f.onFailure {
+        case e =>
+          g.alert(e.getMessage)
+          MondelloApp.closeModal()
+      }
+
+      f
+    } else {
+      Promise[Boolean]().success(true).future
+    }
+  }
 }

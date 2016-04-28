@@ -37,6 +37,7 @@ object Toolbar extends KoComponent("mondello-toolbar") {
         commonButtons(),
         machinesToolbar(),
         imagesToolbar(),
+        containersToolbar(),
         rightButtons()
       ),
       NewMachineDialog.tag(),
@@ -97,6 +98,15 @@ object Toolbar extends KoComponent("mondello-toolbar") {
     )
   }
 
+  def containersToolbar(): Frag = {
+    span(attrs.data.bind:="if: page()=='containers'",
+      button(`class`:="btn btn-default",
+        span(`class`:="icon icon-megaphone"), attrs.data.bind:="click: displayLogs",
+        raw("&nbsp; Logs")
+      )
+    )
+  }
+
   def rightButtons():Frag = {
     span(
       button(`class`:="btn btn-default pull-right",
@@ -131,5 +141,9 @@ object Toolbar extends KoComponent("mondello-toolbar") {
   def buildImage() = {
     println("* Build image dialog")
     BuildImageDialog.show()
+  }
+
+  def displayLogs() = {
+    println("* Display logs")
   }
 }

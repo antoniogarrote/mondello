@@ -300,3 +300,9 @@ docker-containers {
   height:100%;
   width:100%;
 }
+
+container-footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+}

@@ -64,6 +64,26 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     startImageInternal(interactive = false, id, command,opts, (args) => consoleProcess.execute("run", args.toArray))
   }
 
+  def stopContainer(id:String):Future[Boolean] = {
+    consoleProcess.execute("stop", Array(id)).map((_) => true)
+  }
+
+  def destroyContainer(id:String):Future[Boolean] = {
+    consoleProcess.execute("rm", Array("-f", id)).map((_) => true)
+  }
+
+  def startContainerInteractive(id:String):Future[Boolean] = {
+    consoleProcess.executeInteractive("start", Array("-i", "-a", id)).map((_) => true)
+  }
+
+  def startContainer(id:String):Future[Boolean] = {
+    consoleProcess.execute("start", Array(id)).map((_) => true)
+  }
+
+  def attachContainer(id:String):Future[Boolean] = {
+    consoleProcess.executeInteractive("attach", Array("--sig-proxy", id)).map((_) => true)
+  }
+
   protected def startImageInternal(interactive:Boolean, id: String, command: String, opts: Map[String, String], f:(List[String]) => Future[Array[String]]) = {
     val entrypointArg = makeCmdLineArg("entrypoint", opts("entrypoint"))
     val nameArg = makeCmdLineArg("name", opts("name"))
