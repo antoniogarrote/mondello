@@ -1,12 +1,11 @@
 package mondello.electron.components.pages.images
 
-import knockout.tags.KoText
 import knockout.{Ko, KoComponent, KoObservable, KoObservableArray}
 import mondello.models.Image
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.ScalaJSDefined
-import scala.scalajs.js.{Any, Dictionary, JSON}
+import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 

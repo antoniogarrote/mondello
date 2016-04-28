@@ -27,6 +27,8 @@ object DockerMachineTest extends TestSuite {
       }
       result.success(text.split("\n")).future
     }
+
+    override def executeInteractive(command: String, commandArgs: Array[String])(implicit environment: Environment): Future[Array[String]] = ???
   }
 
   val tests = this {
@@ -38,11 +40,10 @@ object DockerMachineTest extends TestSuite {
       result.onComplete { (machines) =>
         try {
           assert(machines.isSuccess)
-          machines.get(0) match {
-            case Machine(name, _, _, _, _, _, env, _) => {
+          machines.get.head match {
+            case Machine(name, _, _, _, _, _, env, _) =>
               assert(name == "integration")
               assert(env("DOCKER_TLS_VERIFY") == "1")
-            }
           }
 
           machines.get(1) match {

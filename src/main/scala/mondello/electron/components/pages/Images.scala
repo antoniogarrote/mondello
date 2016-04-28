@@ -8,12 +8,11 @@ import mondello.models.Image
 import mondello.proxies.Docker
 
 import scala.concurrent.Promise
-import scala.scalajs.js.{Any, Dictionary}
-import scala.scalajs.js.annotation.ScalaJSDefined
-import scalatags.Text.all._
-import scalatags.Text.attrs
-import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
+import scala.scalajs.js.Dynamic.{global => g}
+import scala.scalajs.js.annotation.ScalaJSDefined
+import scala.scalajs.js.{Any, Dictionary}
+import scalatags.Text.all._
 
 @ScalaJSDefined
 object Images extends KoComponent {

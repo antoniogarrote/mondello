@@ -91,14 +91,16 @@ object DockerTest extends TestSuite {
       }
       result.success(text.split("\n")).future
     }
+
+    override def executeInteractive(command: String, commandArgs: Array[String])(implicit environment: Environment): Future[Array[String]] = ???
   }
   val tests = this {
     'images {
       val env = Environment.defaultEnv.copy(cmdPath = "testCmdPath")
       new Docker("machine1", env).images.map { (machines) =>
         assert(machines.length == 1)
-        assert(machines(0).id == "1eb489aef01029c3f040401ed85e7807563b7d2cf3af48511802847c74f3af2e")
-        assert(machines(0).createdAt == "2016-02-08T21:26:38.695612711Z")
+        assert(machines.head.id == "1eb489aef01029c3f040401ed85e7807563b7d2cf3af48511802847c74f3af2e")
+        assert(machines.head.createdAt == "2016-02-08T21:26:38.695612711Z")
       }
     }
     'ps {

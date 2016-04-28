@@ -1,0 +1,10 @@
+{
+  "name": "mondello",
+  "version": "0.1.1",
+  "description": "Docker utilities on OSX",
+  "author": "Antonio Garrote",
+  "license": "MIT",
+  "dependencies": {
+    "temporary": "0.0.8"
+  }
+}
