@@ -5,7 +5,7 @@ import knockout._
 import mondello.models.Machine
 import mondello.proxies.{Docker, DockerMachine}
 import mondello.config.Environment
-import mondello.electron.components.pages.{Machines,Images}
+import mondello.electron.components.pages.{Containers, Images, Machines}
 
 import scala.scalajs.js.annotation.{JSName, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
@@ -40,9 +40,10 @@ object MondelloApp extends KoComponent {
   var docker:KoComputed[Docker] = null
 
   nestedComponents += (
-    "machines" -> Machines(dockerMachine),
-    "images" -> Images,
-    "toolbar" -> Toolbar
+    "Machines" -> Machines(dockerMachine),
+    "Images" -> Images,
+    "Containers" -> Containers,
+    "Toolbar" -> Toolbar
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
@@ -64,6 +65,10 @@ object MondelloApp extends KoComponent {
       Images.tag(
         KoText.all.params:="docker: docker",
         attrs.data.bind:="visible: page()=='images'"
+      ),
+      Containers.tag(
+        KoText.all.params:="docker: docker",
+        attrs.data.bind:="visible: page()=='containers'"
       )
     ).toString()
   }
