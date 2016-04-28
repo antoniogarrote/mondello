@@ -1,7 +1,7 @@
 package mondello.electron.components.pages.images
 
 import knockout.{KoComponent, KoObservable}
-import mondello.electron.components.pages.images.dialogs.LaunchConfigurationDialog
+import mondello.electron.components.pages.images.dialogs.{LaunchConfigurationDialog, PullImageDialog}
 import mondello.models.Image
 import mondello.electron.components.pages.Images
 
@@ -16,7 +16,9 @@ class ImageFooter extends KoComponent {
 
   var selectedImage:KoObservable[Image] = null
 
-  nestedComponents += ("LaunchConfigurationDialog" -> LaunchConfigurationDialog)
+  nestedComponents += (
+    "LaunchConfigurationDialog" -> LaunchConfigurationDialog
+    )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     selectedImage = params("selectedImage").asInstanceOf[KoObservable[Image]]

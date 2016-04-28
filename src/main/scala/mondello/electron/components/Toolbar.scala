@@ -1,7 +1,7 @@
 package mondello.electron.components
 
 import knockout.{KoComponent, KoObservable}
-import mondello.electron.components.pages.images.dialogs.LaunchConfigurationDialog
+import mondello.electron.components.pages.images.dialogs.{LaunchConfigurationDialog, PullImageDialog}
 import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
 import mondello.models.Machine
 
@@ -21,7 +21,10 @@ object Toolbar extends KoComponent {
   var selectedMachine:KoObservable[Machine] = null
   var newMachineDialog:NewMachineDialog = new NewMachineDialog()
 
-  nestedComponents += ("newMachineDialog" -> newMachineDialog)
+  nestedComponents += (
+    "newMachineDialog" -> newMachineDialog,
+    "PullImageDialog" -> PullImageDialog
+    )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     page = params("page").asInstanceOf[KoObservable[String]]
@@ -39,7 +42,8 @@ object Toolbar extends KoComponent {
         imagesToolbar(),
         rightButtons()
       ),
-      NewMachineDialog.tag()
+      NewMachineDialog.tag(),
+      PullImageDialog.tag()
     ).toString()
   }
 
@@ -85,11 +89,11 @@ object Toolbar extends KoComponent {
   def imagesToolbar():Frag = {
     span(attrs.data.bind:="if: page()=='images'",
       button(`class`:="btn btn-default",
-        span(`class`:="icon icon-cloud"), attrs.data.bind:="click: downloadImage()",
+        span(`class`:="icon icon-cloud"), attrs.data.bind:="click: pullImage",
         raw("&nbsp; Pull New")
       ),
       button(`class`:="btn btn-default",
-        span(`class`:="icon icon-doc-text"), attrs.data.bind:="click: buildImage()",
+        span(`class`:="icon icon-doc-text"), attrs.data.bind:="click: buildImage",
         raw("&nbsp; Build New")
       )
     )
@@ -121,15 +125,12 @@ object Toolbar extends KoComponent {
     }
   }
 
-  def downloadImage():js.Function1[js.Any,Unit] = {
-    (evt: js.Any) => {
-      println("* Donwload image dialog")
-    }
+  def pullImage() = {
+    println("* Donwload image dialog")
+    PullImageDialog.show()
   }
 
-  def buildImage():js.Function1[js.Any,Unit] = {
-    (evt: js.Any) => {
+  def buildImage() = {
       println("* Donwload image dialog")
-    }
   }
 }
