@@ -2,16 +2,18 @@ package mondello.electron.components.pages
 
 import knockout._
 import knockout.tags.KoText
+import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.images.dialogs.LaunchConfigurationDialog
 import mondello.electron.components.pages.images.{ImageFooter, ImagesBrowser, SelectedImage}
 import mondello.models.Image
 import mondello.proxies.Docker
 
-import scala.concurrent.Promise
+import scala.concurrent.{Future, Promise}
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.annotation.ScalaJSDefined
 import scala.scalajs.js.{Any, Dictionary}
+import scala.util.Try
 import scalatags.Text.all._
 
 @ScalaJSDefined
@@ -79,6 +81,36 @@ object Images extends KoComponent {
       // finished loading
       f.onComplete((_) => loadingImages(false))
       f
+    }
+  }
+
+  def startImageInteractive(entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
+    println("** Start Image Interactive")
+    if(selectedImage() != null) {
+      MondelloApp.showModal(s"Starting image interactively ${this.selectedImage().repository}:${this.selectedImage().tag}")
+      val f = docker().startImageInteractive(selectedImage().id, command, Map(
+        "entrypoint" -> entrypoint,
+        "name" -> name,
+        "link" -> link,
+        "expose" -> expose,
+        "publish" -> publish,
+        "env" -> envs
+      ))
+
+      f.onSuccess {
+        case result =>
+          MondelloApp.closeModal()
+      }
+
+      f.onFailure {
+        case e =>
+          g.alert(e.getMessage)
+          MondelloApp.closeModal()
+      }
+
+      f
+    } else {
+      Promise[Boolean]().success(true).future
     }
   }
 }

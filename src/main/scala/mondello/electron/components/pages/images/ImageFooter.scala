@@ -3,6 +3,7 @@ package mondello.electron.components.pages.images
 import knockout.{KoComponent, KoObservable}
 import mondello.electron.components.pages.images.dialogs.LaunchConfigurationDialog
 import mondello.models.Image
+import mondello.electron.components.pages.Images
 
 import scala.scalajs.js.annotation.ScalaJSDefined
 import scala.scalajs.js.{Any, Dictionary}
@@ -78,7 +79,18 @@ class ImageFooter extends KoComponent {
   }
 
   def startImageInteractive() = {
-    println("** Start Image Interactive")
+    if(selectedImage != null) {
+      println("** Start Image Interactive")
+      Images.startImageInteractive(
+        LaunchConfigurationDialog.entryPoint(),
+        LaunchConfigurationDialog.name(),
+        LaunchConfigurationDialog.link(),
+        LaunchConfigurationDialog.expose(),
+        LaunchConfigurationDialog.publish(),
+        LaunchConfigurationDialog.envVars(),
+        LaunchConfigurationDialog.command()
+      )
+    }
   }
 
   def launchConfiguration() = {

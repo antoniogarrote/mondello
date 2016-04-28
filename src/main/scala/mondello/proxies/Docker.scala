@@ -56,6 +56,25 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     result.future
   }
 
+  def startImageInteractive(id: String, command: String, opts: Map[String, String]):Future[Boolean] = {
+    val entrypointArg = makeCmdLineArg("entrypoint", opts("entrypoint"))
+    val nameArg = makeCmdLineArg("name", opts("name"))
+    val linkArg = makeCmdLineArg("link", opts("link"))
+    val exposeArg = makeCmdLineArg("expose", opts("expose"))
+    val publishArg = makeCmdLineArg("publish", opts("publish"))
+    val envsArg = opts.getOrElse("env","").replace(",","\n").lines.map(_.replace("\n","").replace("\r","")).map(makeCmdLineArg("env",_))
+
+    val args = List("--interactive=true", "--tty", entrypointArg, nameArg, linkArg, exposeArg, publishArg) ++ envsArg ++ List(id, command)
+    consoleProcess.executeInteractive("run",args.toArray).map((_) => true)
+  }
+
+  protected def makeCmdLineArg(name:String, value:String): String = {
+    if(value != null && value != "") {
+      s"--$name=$value"
+    } else {
+      ""
+    }
+  }
   protected def parseImageLine(line: String): Image = {
     line.split("\\s+") match {
       case Array(repository, tag, id, _*) =>
