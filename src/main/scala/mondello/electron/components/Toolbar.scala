@@ -25,6 +25,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   var newMachineDialog = NewMachineDialog
   var displayContainerLogs:KoObservable[Boolean] = null
   var showLogin:KoObservable[Boolean] = null
+  var showSettings:KoObservable[Boolean] = null
 
   nestedComponents += (
     "newMachineDialog" -> newMachineDialog,
@@ -37,6 +38,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
     selectedMachine = params("selectedMachine").asInstanceOf[KoObservable[Machine]]
     displayContainerLogs = params("displayContainerLogs").asInstanceOf[KoObservable[Boolean]]
     showLogin = params("showLogin").asInstanceOf[KoObservable[Boolean]]
+    showSettings = params("showSettings").asInstanceOf[KoObservable[Boolean]]
   }
 
   override def template: String = {
@@ -130,6 +132,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   def rightButtons():Frag = {
     span(`class`:="span-toolbar-actions",
       button(`class`:="btn btn-default pull-right",
+        attrs.data.bind:="click: displaySettings",
         span(`class`:="icon icon-cog"),
         raw("&nbsp; Settings")
       ),
@@ -145,8 +148,9 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
 
   def selectPage(page:String) = this.page(page)
 
-
   def displayLogin() = showLogin(true)
+
+  def displaySettings() = showSettings(true)
 
   def showNewMachine():js.Function1[js.Any,Unit] = {
     (evt:js.Any) => {

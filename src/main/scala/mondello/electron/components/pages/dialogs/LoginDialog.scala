@@ -1,17 +1,17 @@
-package mondello.electron.components.pages
+package mondello.electron.components.pages.dialogs
 
 import knockout.{Ko, KoComponent, KoObservable, KoObservableArray}
 import mondello.models.Credential
 
 import scala.scalajs.js
+import scala.scalajs.js.Dynamic.{global => g}
+import scala.scalajs.js.annotation.JSExportAll
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
-import scala.scalajs.js.Dynamic.{global => g}
-import scala.scalajs.js.annotation.JSExportAll
 
 @JSExportAll
-object Login extends KoComponent("login") {
+object LoginDialog extends KoComponent("login") {
 
   val index:KoObservable[String] = Ko.observable("")
   val email:KoObservable[String] = Ko.observable("")

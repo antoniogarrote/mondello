@@ -6,6 +6,7 @@ import mondello.models.{Machine, Project}
 import mondello.proxies.{Docker, DockerCompose, DockerMachine}
 import mondello.config.{Environment, Settings}
 import mondello.electron.components.pages._
+import mondello.electron.components.pages.dialogs.{LoginDialog, SettingsDialog}
 
 import scala.scalajs.js.annotation.{JSExport, JSExportAll, JSName, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
@@ -42,6 +43,7 @@ object MondelloApp extends KoComponent("mondello-app") {
   val dockerMachines: KoObservableArray[Machine] = Ko.observableArray[Machine]()
   val displayContainerLogs: KoObservable[Boolean] = Ko.observable(false)
   val showLogin: KoObservable[Boolean] = Ko.observable(false)
+  val showSettings: KoObservable[Boolean] = Ko.observable(false)
   var docker:KoComputed[Docker] = null
   var dockerCompose:KoComputed[DockerCompose] = null
 
@@ -51,7 +53,8 @@ object MondelloApp extends KoComponent("mondello-app") {
     "Containers" -> Containers,
     "Compose" -> Compose,
     "Toolbar" -> Toolbar,
-    "Login" -> Login
+    "Login" -> LoginDialog,
+    "Settings" -> SettingsDialog
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
@@ -72,7 +75,8 @@ object MondelloApp extends KoComponent("mondello-app") {
 
   override def template: String = {
     div(id:="main",`class`:="window",
-      Toolbar.tag(KoText.all.params:="selectedMachine: selectedMachine, page: page, displayContainerLogs: displayContainerLogs, showLogin:showLogin"),
+      Toolbar.tag(KoText.all.params:="selectedMachine: selectedMachine, page: page, displayContainerLogs: displayContainerLogs," +
+        " showLogin:showLogin, showSettings: showSettings"),
       Machines.tag(
         KoText.all.params:="machines: dockerMachines, loadingMachines: loadingMachines, selectedMachine: selectedMachine",
         attrs.data.bind:="visible: page()=='machines'"
@@ -89,8 +93,11 @@ object MondelloApp extends KoComponent("mondello-app") {
         KoText.all.params:="dockerCompose: dockerCompose",
         attrs.data.bind:="visible: page()=='compose'"
       ),
-      Login.tag(
+      LoginDialog.tag(
         KoText.all.params:="showLogin: showLogin"
+      ),
+      SettingsDialog.tag(
+        KoText.all.params:="showSettings: showSettings"
       )
     ).toString()
   }
