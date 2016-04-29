@@ -5,7 +5,7 @@ import knockout._
 import mondello.models.{Machine, Project}
 import mondello.proxies.{Docker, DockerCompose, DockerMachine}
 import mondello.config.{Environment, Settings}
-import mondello.electron.components.pages.{Compose, Containers, Images, Machines}
+import mondello.electron.components.pages._
 
 import scala.scalajs.js.annotation.{JSExport, JSExportAll, JSName, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
@@ -41,6 +41,7 @@ object MondelloApp extends KoComponent("mondello-app") {
   val loadingMachines: KoObservable[Boolean] = Ko.observable(false)
   val dockerMachines: KoObservableArray[Machine] = Ko.observableArray[Machine]()
   val displayContainerLogs: KoObservable[Boolean] = Ko.observable(false)
+  val showLogin: KoObservable[Boolean] = Ko.observable(false)
   var docker:KoComputed[Docker] = null
   var dockerCompose:KoComputed[DockerCompose] = null
 
@@ -49,7 +50,8 @@ object MondelloApp extends KoComponent("mondello-app") {
     "Images" -> Images,
     "Containers" -> Containers,
     "Compose" -> Compose,
-    "Toolbar" -> Toolbar
+    "Toolbar" -> Toolbar,
+    "Login" -> Login
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
@@ -70,7 +72,7 @@ object MondelloApp extends KoComponent("mondello-app") {
 
   override def template: String = {
     div(id:="main",`class`:="window",
-      Toolbar.tag(KoText.all.params:="selectedMachine: selectedMachine, page: page, displayContainerLogs: displayContainerLogs"),
+      Toolbar.tag(KoText.all.params:="selectedMachine: selectedMachine, page: page, displayContainerLogs: displayContainerLogs, showLogin:showLogin"),
       Machines.tag(
         KoText.all.params:="machines: dockerMachines, loadingMachines: loadingMachines, selectedMachine: selectedMachine",
         attrs.data.bind:="visible: page()=='machines'"
@@ -86,6 +88,9 @@ object MondelloApp extends KoComponent("mondello-app") {
       Compose.tag(
         KoText.all.params:="dockerCompose: dockerCompose",
         attrs.data.bind:="visible: page()=='compose'"
+      ),
+      Login.tag(
+        KoText.all.params:="showLogin: showLogin"
       )
     ).toString()
   }

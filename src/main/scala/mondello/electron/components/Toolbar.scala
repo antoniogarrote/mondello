@@ -4,15 +4,14 @@ import knockout.{KoComponent, KoObservable}
 import mondello.config.Settings
 import mondello.electron.components.common.FileLoader
 import mondello.electron.components.pages.Compose
-import mondello.electron.components.pages.images.dialogs.{BuildImageDialog, LaunchConfigurationDialog, PullImageDialog}
-import mondello.electron.components.pages.logs.ContainerLogs
+import mondello.electron.components.pages.images.dialogs.{BuildImageDialog, PullImageDialog}
 import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
 import mondello.models.{Machine, Project}
 
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
-import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
+import scala.scalajs.js.annotation.JSExportAll
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
@@ -25,6 +24,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   var selectedMachine:KoObservable[Machine] = null
   var newMachineDialog = NewMachineDialog
   var displayContainerLogs:KoObservable[Boolean] = null
+  var showLogin:KoObservable[Boolean] = null
 
   nestedComponents += (
     "newMachineDialog" -> newMachineDialog,
@@ -36,6 +36,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
     page = params("page").asInstanceOf[KoObservable[String]]
     selectedMachine = params("selectedMachine").asInstanceOf[KoObservable[Machine]]
     displayContainerLogs = params("displayContainerLogs").asInstanceOf[KoObservable[Boolean]]
+    showLogin = params("showLogin").asInstanceOf[KoObservable[Boolean]]
   }
 
   override def template: String = {
@@ -133,6 +134,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
         raw("&nbsp; Settings")
       ),
       button(`class`:="btn btn-default pull-right",
+        attrs.data.bind:="click: displayLogin",
         span(`class`:="icon icon-users"),
         raw("&nbsp; Credentials")
       )
@@ -143,6 +145,8 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
 
   def selectPage(page:String) = this.page(page)
 
+
+  def displayLogin() = showLogin(true)
 
   def showNewMachine():js.Function1[js.Any,Unit] = {
     (evt:js.Any) => {
