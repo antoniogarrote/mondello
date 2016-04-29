@@ -1,14 +1,20 @@
 package mondello.electron.components.pages
 
-import knockout.{KoComponent, KoComputed}
+import knockout.{Ko, KoComponent, KoComputed, KoObservableArray}
+import mondello.config.Settings
+import mondello.models.Project
 import mondello.proxies.DockerCompose
 
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
+
 object Compose extends KoComponent("docker-compose") {
 
+
   var dockerCompose:KoComputed[DockerCompose] = null
+  val projects:KoObservableArray[Project] = Ko.observableArray[Project]()
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     dockerCompose = params("dockerCompose").asInstanceOf[KoComputed[DockerCompose]]
@@ -32,5 +38,16 @@ object Compose extends KoComponent("docker-compose") {
         KoText.all.params:="selectedImage: selectedImage")
         */
     ).toString()
+  }
+
+  def reloadProjects() = {
+    println("* Reloading projects")
+    projects.removeAll()
+    Settings.compose.foreach { (projectFile) =>
+      Project.load(projectFile).foreach[Unit] { (project) =>
+        projects.push(project)
+      }
+    }
+    println(projects())
   }
 }

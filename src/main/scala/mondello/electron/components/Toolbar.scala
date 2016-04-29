@@ -1,11 +1,15 @@
 package mondello.electron.components
 
 import knockout.{KoComponent, KoObservable}
+import mondello.config.Settings
+import mondello.electron.components.common.FileLoader
+import mondello.electron.components.pages.Compose
 import mondello.electron.components.pages.images.dialogs.{BuildImageDialog, LaunchConfigurationDialog, PullImageDialog}
 import mondello.electron.components.pages.logs.ContainerLogs
 import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
-import mondello.models.Machine
+import mondello.models.{Machine, Project}
 
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
@@ -14,7 +18,7 @@ import scalatags.Text.all._
 import scalatags.Text.attrs
 
 @JSExportAll
-object Toolbar extends KoComponent("mondello-toolbar") {
+object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
 
 
   var page:KoObservable[String] = null
@@ -166,23 +170,20 @@ object Toolbar extends KoComponent("mondello-toolbar") {
 
   def loadComposeFile() = {
     val result:js.UndefOr[js.Array[String]] = g.require("remote").dialog.showOpenDialog(
-      js.Dictionary("title" -> "Select a Dockerfile to build", "properties" -> js.Array[String]("openFile"))
+      js.Dictionary("title" -> "Loading Docker-Compose Project file", "properties" -> js.Array[String]("openFile"))
     ).asInstanceOf[js.UndefOr[js.Array[String]]]
     if(result.isDefined) {
       val filenames = result.get
       if(filenames.length > 0 ) {
-        if (filenames.head.endsWith("Dockerfile")) {
-          println(s"SELECTED: ${filenames.head}")
-        } else {
-          g.alert("You must select a Dockerfile")
-        }
+        Settings.saveProject(filenames.head)
+        Compose.reloadProjects()
       }
     }
   }
 
   def loadBuildFile() = {
     val result:js.UndefOr[js.Array[String]] = g.require("remote").dialog.showOpenDialog(
-      js.Dictionary("title" -> "Loading Docker-Compose Project file", "properties" -> js.Array[String]("openFile"))
+      js.Dictionary("title" -> "Select a Dockerfile to build", "properties" -> js.Array[String]("openFile"))
     ).asInstanceOf[js.UndefOr[js.Array[String]]]
     if(result.isDefined) {
       val filenames = result.get

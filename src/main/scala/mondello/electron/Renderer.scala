@@ -17,7 +17,7 @@ object Renderer {
   @JSExport
   def main(): Unit = {
     Settings.loadSettings().map { (settings) =>
-      println("*** Mondello running")
+      println(s"*** Mondello running")
       println(settings)
       // Register components
       KoComponent(MondelloApp(settings))

@@ -2,7 +2,7 @@ package mondello.electron.components
 
 import knockout.tags.KoText
 import knockout._
-import mondello.models.Machine
+import mondello.models.{Machine, Project}
 import mondello.proxies.{Docker, DockerCompose, DockerMachine}
 import mondello.config.{Environment, Settings}
 import mondello.electron.components.pages.{Compose, Containers, Images, Machines}
@@ -26,6 +26,7 @@ object MondelloApp extends KoComponent("mondello-app") {
     dockerMachine = new DockerMachine(env)
     loadingMachines(true)
     Machines(dockerMachine).reloadMachines()
+    Compose.reloadProjects()
     this
   }
 

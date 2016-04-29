@@ -7,7 +7,11 @@ import scala.scalajs.js.timers._
 
 object Main extends js.JSApp {
 
+  val mondelloSettingsPath = g.require("path").join(g.require("app").getPath("appData"), "mondello.json").toString
+
   def main(): Unit = {
+
+    println(s"** Mondello main process, path: $mondelloSettingsPath")
 
     val app = g.require("app").asInstanceOf[App]  // Module to control application life.
 
@@ -49,5 +53,6 @@ object Main extends js.JSApp {
 
     })
 
+    Messages.subscribeMondelloSettingsPath(mondelloSettingsPath)
   }
 }
