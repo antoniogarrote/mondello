@@ -3,7 +3,7 @@ package mondello.electron.components.pages
 import knockout.tags.KoText
 import knockout._
 import mondello.config.Settings
-import mondello.electron.components.pages.compose.{ProjectsBrowser, SelectedProject}
+import mondello.electron.components.pages.compose.{ProjectFooter, ProjectsBrowser, SelectedProject}
 import mondello.models.Project
 import mondello.proxies.DockerCompose
 
@@ -23,7 +23,8 @@ object Compose extends KoComponent("docker-compose") {
 
   nestedComponents += (
     "ProjectsBrowser" -> ProjectsBrowser,
-    "SelectedProject" -> SelectedProject
+    "SelectedProject" -> SelectedProject,
+    "ProjectFooter" -> ProjectFooter
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
@@ -37,14 +38,9 @@ object Compose extends KoComponent("docker-compose") {
         KoText.all.params:=s"loadingProjects: loadingProjects, selectedProject: selectedProject, projects: projects"),
         SelectedProject.tag(`class`:="pane padded-more",
           KoText.all.params:="selectedProject: selectedProject")
-      )
-      /*
-      ,
-      LaunchConfigurationDialog.tag(),
-      PullImageDialog.tag(),
-      ImageFooter.tag(`class`:="toolbar-footer",
-        KoText.all.params:="selectedImage: selectedImage")
-        */
+      ),
+      ProjectFooter.tag(`class`:="toolbar-footer",
+        KoText.all.params:="selectedProject: selectedProject")
     ).toString()
   }
 

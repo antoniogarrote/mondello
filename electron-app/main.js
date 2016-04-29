@@ -10007,13 +10007,14 @@ $c_Lmondello_electron_components_pages_Compose$.prototype.init___ = (function() 
   this.projects$2 = $g.ko.observableArray();
   this.loadingProjects$2 = $g.ko.observable(false);
   this.selectedProject$2 = $g.ko.observable(null);
-  var this$5 = this.nestedComponents$1;
+  var this$7 = this.nestedComponents$1;
   var y = $m_Lmondello_electron_components_pages_compose_ProjectsBrowser$();
   var elem1 = new $c_T2().init___O__O("ProjectsBrowser", y);
   var y$1 = $m_Lmondello_electron_components_pages_compose_SelectedProject$();
   var elem2 = new $c_T2().init___O__O("SelectedProject", y$1);
-  var elems = new $c_sjs_js_WrappedArray().init___sjs_js_Array([]);
-  $s_scg_Growable$class__$$plus$eq__scg_Growable__O__O__sc_Seq__scg_Growable(this$5, elem1, elem2, elems);
+  var y$2 = $m_Lmondello_electron_components_pages_compose_ProjectFooter$();
+  var elems = new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_T2().init___O__O("ProjectFooter", y$2)]);
+  $s_scg_Growable$class__$$plus$eq__scg_Growable__O__O__sc_Seq__scg_Growable(this$7, elem1, elem2, elems);
   return this
 });
 $c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$loadingProjects__O = (function() {
@@ -10026,33 +10027,42 @@ $c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$pro
   return this.projects$2
 });
 $c_Lmondello_electron_components_pages_Compose$.prototype.template__T = (function() {
-  var jsx$9 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var jsx$12 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
   var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$8 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "window-content", ev);
-  var jsx$7 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var jsx$11 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "window-content", ev);
+  var jsx$10 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
   var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$6 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "pane-group", ev$1);
+  var jsx$9 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "pane-group", ev$1);
   var this$3 = $m_Lmondello_electron_components_pages_compose_ProjectsBrowser$();
   var tagName = this$3.tagName$1;
-  var jsx$5 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName, $m_sci_Nil$(), false);
+  var jsx$8 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName, $m_sci_Nil$(), false);
   var this$5 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$4 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "pane pane-sm sidebar", ev$2);
+  var jsx$7 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "pane pane-sm sidebar", ev$2);
   var this$6 = $m_Lknockout_tags_KoText$all$().params$1;
   var v = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["loadingProjects: loadingProjects, selectedProject: selectedProject, projects: projects"])).s__sc_Seq__T($m_sci_Nil$());
   var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$3 = jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, v, ev$3)]));
+  var jsx$6 = jsx$8.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$7, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, v, ev$3)]));
   var this$7 = $m_Lmondello_electron_components_pages_compose_SelectedProject$();
   var tagName$1 = this$7.tagName$1;
-  var jsx$2 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$1, $m_sci_Nil$(), false);
+  var jsx$5 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$1, $m_sci_Nil$(), false);
   var this$9 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$4 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$1 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$9, "pane padded-more", ev$4);
+  var jsx$4 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$9, "pane padded-more", ev$4);
   var this$10 = $m_Lknockout_tags_KoText$all$().params$1;
   var ev$5 = $m_Lscalatags_Text$all$().stringAttr$1;
-  return jsx$9.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$8, jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$6, jsx$3, jsx$2.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$1, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$10, "selectedProject: selectedProject", ev$5)]))]))])).toString__T()
+  var jsx$3 = jsx$10.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$9, jsx$6, jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$10, "selectedProject: selectedProject", ev$5)]))]));
+  var this$11 = $m_Lmondello_electron_components_pages_compose_ProjectFooter$();
+  var tagName$2 = this$11.tagName$1;
+  var jsx$2 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$2, $m_sci_Nil$(), false);
+  var this$13 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$6 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$1 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$13, "toolbar-footer", ev$6);
+  var this$14 = $m_Lknockout_tags_KoText$all$().params$1;
+  var ev$7 = $m_Lscalatags_Text$all$().stringAttr$1;
+  return jsx$12.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$11, jsx$3, jsx$2.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$1, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$14, "selectedProject: selectedProject", ev$7)]))])).toString__T()
 });
 $c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$meth$viewModel__sjs_js_Dictionary__O = (function(params) {
   this.viewModel__sjs_js_Dictionary__V(params)
@@ -11100,6 +11110,138 @@ function $m_Lmondello_electron_components_pages_Machines$() {
     $n_Lmondello_electron_components_pages_Machines$ = new $c_Lmondello_electron_components_pages_Machines$().init___()
   };
   return $n_Lmondello_electron_components_pages_Machines$
+}
+/** @constructor */
+function $c_Lmondello_electron_components_pages_compose_ProjectFooter$() {
+  $c_Lknockout_KoComponent.call(this);
+  this.selectedProject$2 = null
+}
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype = new $h_Lknockout_KoComponent();
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.constructor = $c_Lmondello_electron_components_pages_compose_ProjectFooter$;
+/** @constructor */
+function $h_Lmondello_electron_components_pages_compose_ProjectFooter$() {
+  /*<skip>*/
+}
+$h_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype = $c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype;
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.$$js$exported$prop$selectedProject__Lknockout_KoObservable__O = (function(x$1) {
+  this.selectedProject$2 = x$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.init___ = (function() {
+  $c_Lknockout_KoComponent.prototype.init___T.call(this, "project-footer");
+  this.selectedProject$2 = null;
+  return this
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.$$js$exported$meth$upAttached__O = (function() {
+  var this$2 = $m_s_Console$();
+  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* up project attached\n")
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.$$js$exported$meth$upDetached__O = (function() {
+  var this$2 = $m_s_Console$();
+  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* up project detached\n")
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.template__T = (function() {
+  var jsx$22 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().footer__Lscalatags_generic_TypedTag());
+  var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$21 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "toolbar toolbar-footer", ev);
+  var jsx$20 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$19 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "toolbar-actions", ev$1);
+  var jsx$18 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
+  var this$3 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$17 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$3, "btn btn-large btn-default", ev$2);
+  var jsx$16 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: destroyProject, css: {'btn-disabled':!selectedProject()}", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$15 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$4 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$14 = jsx$15.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$4, "icon icon-trash", ev$3)]));
+  var this$5 = $m_Lscalatags_Text$all$();
+  var jsx$13 = jsx$18.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$17, jsx$16, jsx$14, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp;"), ($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Remove Project"))]));
+  var jsx$12 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
+  var this$8 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$4 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$11 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$8, "btn btn-large btn-default pull-right", ev$4);
+  var jsx$10 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: upDetached, css: {'btn-disabled': !selectedProject()}", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$9 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$9 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$5 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$8 = jsx$9.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$9, "icon icon-up", ev$5)]));
+  var this$10 = $m_Lscalatags_Text$all$();
+  var jsx$7 = jsx$12.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$11, jsx$10, jsx$8, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp;"), ($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Up Detach."))]));
+  var jsx$6 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
+  var this$13 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$6 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$5 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$13, "btn btn-large btn-default pull-right", ev$6);
+  var jsx$4 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: upAttached, css: {'btn-disabled': !selectedProject()}", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$14 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$7 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$2 = jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$14, "icon icon-publish", ev$7)]));
+  var this$15 = $m_Lscalatags_Text$all$();
+  var jsx$1 = jsx$6.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$5, jsx$4, jsx$2, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp;"), ($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Up Attach"))]));
+  var this$18 = $m_Lscalatags_Text$all$();
+  return jsx$22.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$21, jsx$20.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$19, jsx$13, jsx$7, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp;")]))])).toString__T()
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.$$js$exported$meth$destroyProject__O = (function() {
+  var this$2 = $m_s_Console$();
+  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* destroy project\n")
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.viewModel__sjs_js_Dictionary__V = (function(params) {
+  if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "selectedProject"))) {
+    var jsx$1 = params.selectedProject
+  } else {
+    var jsx$1;
+    throw new $c_ju_NoSuchElementException().init___T("key not found: selectedProject")
+  };
+  this.selectedProject$2 = jsx$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.$$js$exported$meth$viewModel__sjs_js_Dictionary__O = (function(params) {
+  this.viewModel__sjs_js_Dictionary__V(params)
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.$$js$exported$prop$selectedProject__O = (function() {
+  return this.selectedProject$2
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.$$js$exported$prop$template__O = (function() {
+  return this.template__T()
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype, "selectedProject", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$selectedProject__Lknockout_KoObservable__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$selectedProject__O()
+  }),
+  "enumerable": true
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.destroyProject = (function() {
+  return this.$$js$exported$meth$destroyProject__O()
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.upDetached = (function() {
+  return this.$$js$exported$meth$upDetached__O()
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.upAttached = (function() {
+  return this.$$js$exported$meth$upAttached__O()
+});
+var $d_Lmondello_electron_components_pages_compose_ProjectFooter$ = new $TypeData().initClass({
+  Lmondello_electron_components_pages_compose_ProjectFooter$: 0
+}, false, "mondello.electron.components.pages.compose.ProjectFooter$", {
+  Lmondello_electron_components_pages_compose_ProjectFooter$: 1,
+  Lknockout_KoComponent: 1,
+  O: 1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.$classData = $d_Lmondello_electron_components_pages_compose_ProjectFooter$;
+var $n_Lmondello_electron_components_pages_compose_ProjectFooter$ = (void 0);
+function $m_Lmondello_electron_components_pages_compose_ProjectFooter$() {
+  if ((!$n_Lmondello_electron_components_pages_compose_ProjectFooter$)) {
+    $n_Lmondello_electron_components_pages_compose_ProjectFooter$ = new $c_Lmondello_electron_components_pages_compose_ProjectFooter$().init___()
+  };
+  return $n_Lmondello_electron_components_pages_compose_ProjectFooter$
 }
 /** @constructor */
 function $c_Lmondello_electron_components_pages_compose_ProjectsBrowser$() {
@@ -16018,27 +16160,30 @@ $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$prop$page__O =
   return this.page$2
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.rightButtons__Lscalatags_generic_Frag = (function() {
-  var jsx$10 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
-  var jsx$9 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
+  var jsx$11 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
   var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$8 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "btn btn-default pull-right", ev);
-  var jsx$7 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var jsx$10 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "span-toolbar-actions", ev);
+  var jsx$9 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
   var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$6 = jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "icon icon-cog", ev$1)]));
-  var this$3 = $m_Lscalatags_Text$all$();
+  var jsx$8 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "btn btn-default pull-right", ev$1);
+  var jsx$7 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$3 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$6 = jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$3, "icon icon-cog", ev$2)]));
+  var this$4 = $m_Lscalatags_Text$all$();
   var jsx$5 = jsx$9.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$8, jsx$6, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Settings")]));
   var jsx$4 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
-  var this$5 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
-  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$3 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "btn btn-default pull-right", ev$2);
-  var jsx$2 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
   var this$6 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$1 = jsx$2.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, "icon icon-users", ev$3)]));
-  var this$7 = $m_Lscalatags_Text$all$();
-  return jsx$10.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$5, jsx$4.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$3, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Credentials")]))]))
+  var jsx$3 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, "btn btn-default pull-right", ev$3);
+  var jsx$2 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$7 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$4 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$1 = jsx$2.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$7, "icon icon-users", ev$4)]));
+  var this$8 = $m_Lscalatags_Text$all$();
+  return jsx$11.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$10, jsx$5, jsx$4.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$3, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Credentials")]))]))
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$machinesToolbar__O = (function() {
   return this.machinesToolbar__Lscalatags_generic_Frag()
@@ -16129,48 +16274,54 @@ $c_Lmondello_electron_components_Toolbar$.prototype.template__T = (function() {
   return jsx$8.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$7, jsx$5, jsx$3, jsx$2, jsx$1, new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$2, $m_sci_Nil$(), false).apply__sc_Seq__Lscalatags_Text$TypedTag($m_sci_Nil$())])).toString__T()
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.imagesToolbar__Lscalatags_generic_Frag = (function() {
-  var jsx$13 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var jsx$14 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$13 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "span-toolbar-actions", ev);
   var jsx$12 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("if: page()=='images'", $m_Lscalatags_Text$all$().stringAttr$1);
   var jsx$11 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
-  var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
-  var ev = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$10 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "btn btn-default", ev);
-  var jsx$9 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
   var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$8 = jsx$9.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "icon icon-cloud", ev$1)]));
+  var jsx$10 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "btn btn-default", ev$1);
+  var jsx$9 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$3 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$8 = jsx$9.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$3, "icon icon-cloud", ev$2)]));
   var jsx$7 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: pullImage", $m_Lscalatags_Text$all$().stringAttr$1);
-  var this$3 = $m_Lscalatags_Text$all$();
+  var this$4 = $m_Lscalatags_Text$all$();
   var jsx$6 = jsx$11.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$10, jsx$8, jsx$7, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Pull New")]));
   var jsx$5 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
-  var this$5 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
-  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$4 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "btn btn-default", ev$2);
-  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
   var this$6 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$2 = jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, "icon icon-doc-text", ev$3)]));
+  var jsx$4 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, "btn btn-default", ev$3);
+  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$7 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$4 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$2 = jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$7, "icon icon-doc-text", ev$4)]));
   var jsx$1 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: buildImage", $m_Lscalatags_Text$all$().stringAttr$1);
-  var this$7 = $m_Lscalatags_Text$all$();
-  return jsx$13.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$12, jsx$6, jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, jsx$2, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Build New")]))]))
+  var this$8 = $m_Lscalatags_Text$all$();
+  return jsx$14.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$13, jsx$12, jsx$6, jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, jsx$2, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Build New")]))]))
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.composeToolbar__Lscalatags_generic_Frag = (function() {
-  var jsx$8 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
-  var jsx$7 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("if: page()=='compose'", $m_Lscalatags_Text$all$().stringAttr$1);
-  var jsx$6 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
+  var jsx$9 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
   var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$5 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "btn btn-default", ev);
-  var jsx$4 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var jsx$8 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "span-toolbar-actions", ev);
+  var jsx$7 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("if: page()=='compose'", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$6 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
   var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$3 = jsx$4.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "icon icon-plus", ev$1)]));
-  var this$3 = $m_Lscalatags_Text$all$().title__Lscalatags_generic_Attr();
+  var jsx$5 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "btn btn-default", ev$1);
+  var jsx$4 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$3 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$2 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$3, "Loads a new Docker Compose project from a YAML file", ev$2);
+  var jsx$3 = jsx$4.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$3, "icon icon-plus", ev$2)]));
+  var this$4 = $m_Lscalatags_Text$all$().title__Lscalatags_generic_Attr();
+  var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$2 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$4, "Loads a new Docker Compose project from a YAML file", ev$3);
   var jsx$1 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: loadComposeFile", $m_Lscalatags_Text$all$().stringAttr$1);
-  var this$4 = $m_Lscalatags_Text$all$();
-  return jsx$8.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$7, jsx$6.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$5, jsx$3, jsx$2, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Load Project")]))]))
+  var this$5 = $m_Lscalatags_Text$all$();
+  return jsx$9.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$8, jsx$7, jsx$6.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$5, jsx$3, jsx$2, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Load Project")]))]))
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$containersToolbar__O = (function() {
   return this.containersToolbar__Lscalatags_generic_Frag()
@@ -16238,16 +16389,19 @@ $c_Lmondello_electron_components_Toolbar$.prototype.selectPage__T__V = (function
   (0, this.page$2)(page)
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.machinesToolbar__Lscalatags_generic_Frag = (function() {
-  var jsx$5 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
-  var jsx$4 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("if: page()=='machines'", $m_Lscalatags_Text$all$().stringAttr$1);
-  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
+  var jsx$6 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
   var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$2 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "btn btn-default", ev);
-  var jsx$1 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var jsx$5 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "span-toolbar-actions", ev);
+  var jsx$4 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("if: page()=='machines'", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
   var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
-  return jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$2, jsx$1.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "icon icon-plus", ev$1)])), $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: showNewMachine()", $m_Lscalatags_Text$all$().stringAttr$1), ($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("New Machine"))]))]))
+  var jsx$2 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "btn btn-default", ev$1);
+  var jsx$1 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$3 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
+  return jsx$6.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$5, jsx$4, jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$2, jsx$1.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$3, "icon icon-plus", ev$2)])), $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: showNewMachine()", $m_Lscalatags_Text$all$().stringAttr$1), ($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("New Machine"))]))]))
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.showNewMachine__sjs_js_Function1 = (function() {
   return (function(evt$2) {
@@ -16273,19 +16427,22 @@ $c_Lmondello_electron_components_Toolbar$.prototype.buildImage__sjs_js_Dynamic =
   return $m_Lmondello_electron_components_pages_images_dialogs_BuildImageDialog$().show__sjs_js_Dynamic()
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.containersToolbar__Lscalatags_generic_Frag = (function() {
-  var jsx$7 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
-  var jsx$6 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("if: page()=='containers'", $m_Lscalatags_Text$all$().stringAttr$1);
-  var jsx$5 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
+  var jsx$8 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
   var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$4 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "btn btn-default", ev);
-  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var jsx$7 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "span-toolbar-actions", ev);
+  var jsx$6 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("if: page()=='containers'", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$5 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
   var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$2 = jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "icon icon-megaphone", ev$1)]));
+  var jsx$4 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "btn btn-default", ev$1);
+  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$3 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$2 = jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$3, "icon icon-megaphone", ev$2)]));
   var jsx$1 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: displayLogs, css:{pressed: $parent.displayContainerLogs()}", $m_Lscalatags_Text$all$().stringAttr$1);
-  var this$3 = $m_Lscalatags_Text$all$();
-  return jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$6, jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, jsx$2, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Logs")]))]))
+  var this$4 = $m_Lscalatags_Text$all$();
+  return jsx$8.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$7, jsx$6, jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, jsx$2, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Logs")]))]))
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$prop$selectedMachine__O = (function() {
   return this.selectedMachine$2

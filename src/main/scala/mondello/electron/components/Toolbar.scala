@@ -86,7 +86,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   }
 
   def machinesToolbar():Frag = {
-    span(attrs.data.bind:="if: page()=='machines'",
+    span(`class`:="span-toolbar-actions",attrs.data.bind:="if: page()=='machines'",
       button(`class`:="btn btn-default",
         span(`class`:="icon icon-plus"), attrs.data.bind:="click: showNewMachine()",
         "New Machine"
@@ -95,7 +95,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   }
 
   def imagesToolbar():Frag = {
-    span(attrs.data.bind:="if: page()=='images'",
+    span(`class`:="span-toolbar-actions",attrs.data.bind:="if: page()=='images'",
       button(`class`:="btn btn-default",
         span(`class`:="icon icon-cloud"), attrs.data.bind:="click: pullImage",
         raw("&nbsp; Pull New")
@@ -108,7 +108,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   }
 
   def containersToolbar(): Frag = {
-    span(attrs.data.bind:="if: page()=='containers'",
+    span(`class`:="span-toolbar-actions",attrs.data.bind:="if: page()=='containers'",
       button(`class`:="btn btn-default",
         span(`class`:="icon icon-megaphone"), attrs.data.bind:="click: displayLogs, css:{pressed: $parent.displayContainerLogs()}",
         raw("&nbsp; Logs")
@@ -117,7 +117,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   }
 
   def composeToolbar(): Frag = {
-    span(attrs.data.bind:="if: page()=='compose'",
+    span(`class`:="span-toolbar-actions",attrs.data.bind:="if: page()=='compose'",
       button(`class`:="btn btn-default",
         span(`class`:="icon icon-plus"),title:="Loads a new Docker Compose project from a YAML file",
         attrs.data.bind:="click: loadComposeFile",
@@ -127,7 +127,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   }
 
   def rightButtons():Frag = {
-    span(
+    span(`class`:="span-toolbar-actions",
       button(`class`:="btn btn-default pull-right",
         span(`class`:="icon icon-cog"),
         raw("&nbsp; Settings")
