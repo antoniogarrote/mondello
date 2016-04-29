@@ -77,6 +77,7 @@ class Service(val id:String, val service:js.Dynamic) {
   var selected = false
 }
 
+@JSExportAll
 class Project(val file:String, val services:Array[Service]) {
   val filename = g.require("path").basename(file).asInstanceOf[String]
   val dirname = g.require("path").dirname(file).asInstanceOf[String]

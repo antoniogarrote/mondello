@@ -3029,9 +3029,6 @@ $c_Lknockout_KoComponent.prototype.$$js$exported$meth$topLevel__O = (function() 
 $c_Lknockout_KoComponent.prototype.$$js$exported$meth$koCallback__F1__O = (function(f) {
   return this.koCallback__F1__sjs_js_Function2(f)
 });
-$c_Lknockout_KoComponent.prototype.$$js$exported$meth$viewModel__sjs_js_Dictionary__O = (function(params) {
-  this.viewModel__sjs_js_Dictionary__V(params)
-});
 $c_Lknockout_KoComponent.prototype.koCallback__F2__sjs_js_Function2 = (function(f) {
   return (function(f$1) {
     return (function(arg1, arg2) {
@@ -3057,9 +3054,6 @@ $c_Lknockout_KoComponent.prototype.$$js$exported$prop$parent__Lknockout_KoCompon
 $c_Lknockout_KoComponent.prototype.$$js$exported$prop$tag__O = (function() {
   var tagName = this.tagName$1;
   return new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName, $m_sci_Nil$(), false)
-});
-$c_Lknockout_KoComponent.prototype.$$js$exported$prop$template__O = (function() {
-  return this.template__T()
 });
 $c_Lknockout_KoComponent.prototype.koCallback__F1__sjs_js_Function2 = (function(f) {
   return (function(f$1) {
@@ -3317,6 +3311,9 @@ function $h_Lmondello_models_Project() {
   /*<skip>*/
 }
 $h_Lmondello_models_Project.prototype = $c_Lmondello_models_Project.prototype;
+$c_Lmondello_models_Project.prototype.$$js$exported$prop$filename__O = (function() {
+  return this.filename$1
+});
 $c_Lmondello_models_Project.prototype.init___T__ALmondello_models_Service = (function(file, services) {
   this.file$1 = file;
   this.services$1 = services;
@@ -3324,6 +3321,48 @@ $c_Lmondello_models_Project.prototype.init___T__ALmondello_models_Service = (fun
   this.dirname$1 = $as_T($g.require("path").dirname(file));
   this.servicesCount$1 = services.u.length;
   return this
+});
+$c_Lmondello_models_Project.prototype.$$js$exported$prop$dirname__O = (function() {
+  return this.dirname$1
+});
+$c_Lmondello_models_Project.prototype.$$js$exported$prop$servicesCount__O = (function() {
+  return this.servicesCount$1
+});
+$c_Lmondello_models_Project.prototype.$$js$exported$prop$services__O = (function() {
+  return this.services$1
+});
+$c_Lmondello_models_Project.prototype.$$js$exported$prop$file__O = (function() {
+  return this.file$1
+});
+Object.defineProperty($c_Lmondello_models_Project.prototype, "file", {
+  "get": (function() {
+    return this.$$js$exported$prop$file__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_models_Project.prototype, "services", {
+  "get": (function() {
+    return this.$$js$exported$prop$services__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_models_Project.prototype, "filename", {
+  "get": (function() {
+    return this.$$js$exported$prop$filename__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_models_Project.prototype, "dirname", {
+  "get": (function() {
+    return this.$$js$exported$prop$dirname__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_models_Project.prototype, "servicesCount", {
+  "get": (function() {
+    return this.$$js$exported$prop$servicesCount__O()
+  }),
+  "enumerable": true
 });
 function $is_Lmondello_models_Project(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lmondello_models_Project)))
@@ -3677,6 +3716,18 @@ Object.defineProperty($c_Lmondello_models_Service.prototype, "selected", {
   }),
   "enumerable": true
 });
+function $is_Lmondello_models_Service(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lmondello_models_Service)))
+}
+function $as_Lmondello_models_Service(obj) {
+  return (($is_Lmondello_models_Service(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "mondello.models.Service"))
+}
+function $isArrayOf_Lmondello_models_Service(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lmondello_models_Service)))
+}
+function $asArrayOf_Lmondello_models_Service(obj, depth) {
+  return (($isArrayOf_Lmondello_models_Service(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lmondello.models.Service;", depth))
+}
 var $d_Lmondello_models_Service = new $TypeData().initClass({
   Lmondello_models_Service: 0
 }, false, "mondello.models.Service", {
@@ -9495,16 +9546,18 @@ $c_Lmondello_electron_components_MondelloApp$.prototype.init___ = (function() {
   this.displayContainerLogs$2 = $g.ko.observable(false);
   this.docker$2 = null;
   this.dockerCompose$2 = null;
-  var this$9 = this.nestedComponents$1;
+  var this$11 = this.nestedComponents$1;
   var y = $m_Lmondello_electron_components_pages_Machines$().apply__Lmondello_proxies_DockerMachine__Lmondello_electron_components_pages_Machines$(this.dockerMachine$2);
   var elem1 = new $c_T2().init___O__O("Machines", y);
   var y$1 = $m_Lmondello_electron_components_pages_Images$();
   var elem2 = new $c_T2().init___O__O("Images", y$1);
   var y$2 = $m_Lmondello_electron_components_pages_Containers$();
-  var jsx$1 = new $c_T2().init___O__O("Containers", y$2);
-  var y$3 = $m_Lmondello_electron_components_Toolbar$();
-  var elems = new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$1, new $c_T2().init___O__O("Toolbar", y$3)]);
-  $s_scg_Growable$class__$$plus$eq__scg_Growable__O__O__sc_Seq__scg_Growable(this$9, elem1, elem2, elems);
+  var jsx$2 = new $c_T2().init___O__O("Containers", y$2);
+  var y$3 = $m_Lmondello_electron_components_pages_Compose$();
+  var jsx$1 = new $c_T2().init___O__O("Compose", y$3);
+  var y$4 = $m_Lmondello_electron_components_Toolbar$();
+  var elems = new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$2, jsx$1, new $c_T2().init___O__O("Toolbar", y$4)]);
+  $s_scg_Growable$class__$$plus$eq__scg_Growable__O__O__sc_Seq__scg_Growable(this$11, elem1, elem2, elems);
   return this
 });
 $c_Lmondello_electron_components_MondelloApp$.prototype.$$js$exported$prop$page__O = (function() {
@@ -9741,7 +9794,9 @@ function $m_Lmondello_electron_components_MondelloApp$() {
 function $c_Lmondello_electron_components_pages_Compose$() {
   $c_Lknockout_KoComponent.call(this);
   this.dockerCompose$2 = null;
-  this.projects$2 = null
+  this.projects$2 = null;
+  this.loadingProjects$2 = null;
+  this.selectedProject$2 = null
 }
 $c_Lmondello_electron_components_pages_Compose$.prototype = new $h_Lknockout_KoComponent();
 $c_Lmondello_electron_components_pages_Compose$.prototype.constructor = $c_Lmondello_electron_components_pages_Compose$;
@@ -9755,17 +9810,44 @@ $c_Lmondello_electron_components_pages_Compose$.prototype.init___ = (function() 
   $n_Lmondello_electron_components_pages_Compose$ = this;
   this.dockerCompose$2 = null;
   this.projects$2 = $g.ko.observableArray();
+  this.loadingProjects$2 = $g.ko.observable(false);
+  this.selectedProject$2 = $g.ko.observable(null);
+  var jsx$1 = this.nestedComponents$1;
+  var y = $m_Lmondello_electron_components_pages_compose_ProjectsBrowser$();
+  jsx$1.$$plus$eq__T2__scm_MapLike(new $c_T2().init___O__O("ProjectsBrowser", y));
   return this
 });
+$c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$loadingProjects__O = (function() {
+  return this.loadingProjects$2
+});
+$c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$meth$reloadProjects__O = (function() {
+  this.reloadProjects__V()
+});
+$c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$projects__O = (function() {
+  return this.projects$2
+});
 $c_Lmondello_electron_components_pages_Compose$.prototype.template__T = (function() {
-  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var jsx$6 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
   var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$2 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "window-content", ev);
-  var jsx$1 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var jsx$5 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "window-content", ev);
+  var jsx$4 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
   var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
-  return jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$2, jsx$1.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "pane-group", ev$1)]))])).toString__T()
+  var jsx$3 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "pane-group", ev$1);
+  var this$3 = $m_Lmondello_electron_components_pages_compose_ProjectsBrowser$();
+  var tagName = this$3.tagName$1;
+  var jsx$2 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName, $m_sci_Nil$(), false);
+  var this$5 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$1 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "pane pane-sm sidebar", ev$2);
+  var this$6 = $m_Lknockout_tags_KoText$all$().params$1;
+  var v = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["loadingProjects: loadingProjects, selectedProject: selectedProject, projects: projects"])).s__sc_Seq__T($m_sci_Nil$());
+  var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
+  return jsx$6.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$5, jsx$4.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$3, jsx$2.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$1, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, v, ev$3)]))]))])).toString__T()
+});
+$c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$meth$viewModel__sjs_js_Dictionary__O = (function(params) {
+  this.viewModel__sjs_js_Dictionary__V(params)
 });
 $c_Lmondello_electron_components_pages_Compose$.prototype.viewModel__sjs_js_Dictionary__V = (function(params) {
   if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "dockerCompose"))) {
@@ -9776,31 +9858,68 @@ $c_Lmondello_electron_components_pages_Compose$.prototype.viewModel__sjs_js_Dict
   };
   this.dockerCompose$2 = jsx$1
 });
+$c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$selectedProject__O = (function() {
+  return this.selectedProject$2
+});
 $c_Lmondello_electron_components_pages_Compose$.prototype.reloadProjects__V = (function() {
   var this$2 = $m_s_Console$();
   var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
   this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Reloading projects\n");
   this.projects$2.removeAll();
-  var this$4 = $m_Lmondello_config_Settings$().compose$1;
-  var this$5 = this$4.scala$collection$mutable$ListBuffer$$start$6;
-  var these = this$5;
+  var foundProject = new $c_sr_BooleanRef().init___Z(false);
+  var this$5 = $m_Lmondello_config_Settings$().compose$1;
+  var f = new $c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1().init___sr_BooleanRef(foundProject);
+  var this$6 = this$5.scala$collection$mutable$ListBuffer$$start$6;
+  var these = this$6;
   while ((!these.isEmpty__Z())) {
     var v1 = these.head__O();
-    var projectFile = $as_T(v1);
-    var this$6 = $m_Lmondello_models_Project$().load__T__s_concurrent_Future(projectFile);
-    var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(project$2) {
-      var project = $as_Lmondello_models_Project(project$2);
-      $m_Lmondello_electron_components_pages_Compose$().projects$2.push(project)
-    }));
-    var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
-    $s_s_concurrent_Future$class__foreach__s_concurrent_Future__F1__s_concurrent_ExecutionContext__V(this$6, f, executor);
+    f.apply__T__V($as_T(v1));
     var this$7 = these;
     these = this$7.tail__sci_List()
   };
-  var x = (0, this.projects$2)();
-  var this$9 = $m_s_Console$();
-  var this$10 = $as_Ljava_io_PrintStream(this$9.outVar$2.v$1);
-  this$10.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"))
+  if ((!foundProject.elem$1)) {
+    (0, this.selectedProject$2)(null)
+  }
+});
+$c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$dockerCompose__O = (function() {
+  return this.dockerCompose$2
+});
+$c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$template__O = (function() {
+  return this.template__T()
+});
+$c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$dockerCompose__Lknockout_KoComputed__O = (function(x$1) {
+  this.dockerCompose$2 = x$1
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_Compose$.prototype, "dockerCompose", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$dockerCompose__Lknockout_KoComputed__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$dockerCompose__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_Compose$.prototype, "projects", {
+  "get": (function() {
+    return this.$$js$exported$prop$projects__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_Compose$.prototype, "loadingProjects", {
+  "get": (function() {
+    return this.$$js$exported$prop$loadingProjects__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_Compose$.prototype, "selectedProject", {
+  "get": (function() {
+    return this.$$js$exported$prop$selectedProject__O()
+  }),
+  "enumerable": true
+});
+$c_Lmondello_electron_components_pages_Compose$.prototype.reloadProjects = (function() {
+  return this.$$js$exported$meth$reloadProjects__O()
 });
 var $d_Lmondello_electron_components_pages_Compose$ = new $TypeData().initClass({
   Lmondello_electron_components_pages_Compose$: 0
@@ -10774,6 +10893,491 @@ function $m_Lmondello_electron_components_pages_Machines$() {
   };
   return $n_Lmondello_electron_components_pages_Machines$
 }
+/** @constructor */
+function $c_Lmondello_electron_components_pages_compose_ProjectsBrowser$() {
+  $c_Lknockout_KoComponent.call(this);
+  this.projects$2 = null;
+  this.selectedProject$2 = null;
+  this.loadingProjects$2 = null;
+  this.searchList$2 = null
+}
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype = new $h_Lknockout_KoComponent();
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.constructor = $c_Lmondello_electron_components_pages_compose_ProjectsBrowser$;
+/** @constructor */
+function $h_Lmondello_electron_components_pages_compose_ProjectsBrowser$() {
+  /*<skip>*/
+}
+$h_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype = $c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype;
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$prop$selectedProject__Lknockout_KoObservable__O = (function(x$1) {
+  this.selectedProject$2 = x$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.init___ = (function() {
+  $c_Lknockout_KoComponent.prototype.init___T.call(this, "comppose-projects");
+  $n_Lmondello_electron_components_pages_compose_ProjectsBrowser$ = this;
+  this.projects$2 = null;
+  this.selectedProject$2 = null;
+  this.loadingProjects$2 = null;
+  this.searchList$2 = new $c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1().init___();
+  return this
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$prop$loadingProjects__O = (function() {
+  return this.loadingProjects$2
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$meth$selectProject__O = (function() {
+  return this.selectProject__sjs_js_Function2()
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$prop$projects__O = (function() {
+  return this.projects$2
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.template__T = (function() {
+  var jsx$36 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().ul__Lscalatags_generic_TypedTag());
+  var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$35 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "list-group", ev);
+  var jsx$34 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().li__Lscalatags_generic_TypedTag());
+  var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$33 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "list-group-header", ev$1);
+  var jsx$32 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().input__Lscalatags_generic_TypedTag());
+  var this$3 = $m_Lscalatags_Text$all$().id__Lscalatags_generic_Attr();
+  var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$31 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$3, "projectSearchBox", ev$2);
+  var this$4 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$30 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$4, "form-control", ev$3);
+  var this$5 = $m_Lscalatags_Text$all$().type__Lscalatags_generic_Attr();
+  var ev$4 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$29 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "text", ev$4);
+  var this$6 = $m_Lscalatags_Text$all$().placeholder__Lscalatags_generic_Attr();
+  var ev$5 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$28 = jsx$34.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$33, jsx$32.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$31, jsx$30, jsx$29, new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, "Projects Search", ev$5), $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("textInput: searchList.elementSearch", $m_Lscalatags_Text$all$().stringAttr$1)]))]));
+  var jsx$27 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().li__Lscalatags_generic_TypedTag());
+  var this$7 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$6 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$26 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$7, "list-group-item", ev$6);
+  var jsx$25 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("visible: loadingProjects()", $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$24 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$8 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$7 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$23 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$8, "media-body", ev$7);
+  var jsx$22 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$9 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$8 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$21 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$9, "spinner", ev$8);
+  var jsx$20 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$10 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$9 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$19 = jsx$20.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$10, "rect1", ev$9)]));
+  var jsx$18 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$11 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$10 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$17 = jsx$18.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$11, "rect2", ev$10)]));
+  var jsx$16 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$12 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$11 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$15 = jsx$16.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$12, "rect3", ev$11)]));
+  var jsx$14 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$13 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$12 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$13 = jsx$14.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$13, "rect4", ev$12)]));
+  var jsx$12 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$14 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$13 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$11 = jsx$27.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$26, jsx$25, jsx$24.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$23, jsx$22.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$21, jsx$19, jsx$17, jsx$15, jsx$13, jsx$12.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$14, "rect5", ev$13)]))]))]))]));
+  var this$15 = $m_Lscalatags_Text$all$();
+  var jsx$10 = new $c_Lscalatags_Text$RawFrag().init___T("<!-- ko foreach: searchList.searchResults -->");
+  var jsx$9 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().li__Lscalatags_generic_TypedTag());
+  var this$17 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$14 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$8 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$17, "list-group-item", ev$14);
+  var jsx$7 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind");
+  var this$20 = new $c_sci_StringOps().init___T("click: $parent.selectProject(),");
+  var that = new $c_sci_StringOps().init___T("visible: !$parent.loadingProjects(),");
+  var bf = $m_s_Predef$().StringCanBuildFrom$2;
+  var this$23 = new $c_sci_StringOps().init___T($as_T($s_sc_TraversableLike$class__$$plus$plus__sc_TraversableLike__sc_GenTraversableOnce__scg_CanBuildFrom__O(this$20, that, bf)));
+  var that$1 = new $c_sci_StringOps().init___T("css: {active: ($parent.selectedProject() && $parent.selectedProject().file == file)}");
+  var bf$1 = $m_s_Predef$().StringCanBuildFrom$2;
+  var jsx$6 = jsx$7.$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair($s_sc_TraversableLike$class__$$plus$plus__sc_TraversableLike__sc_GenTraversableOnce__scg_CanBuildFrom__O(this$23, that$1, bf$1), $m_Lscalatags_Text$all$().stringAttr$1);
+  var jsx$5 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var this$24 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$15 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$4 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$24, "media-body", ev$15);
+  var jsx$3 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$25 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$16 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$2 = jsx$3.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$25, "icon icon-pencil", ev$16)]));
+  var this$26 = $m_Lscalatags_Text$all$();
+  var jsx$1 = jsx$9.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$8, jsx$6, jsx$5.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, jsx$2, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp;"), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().strong__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("text: filename", $m_Lscalatags_Text$all$().stringAttr$1)])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().p__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("text: file", $m_Lscalatags_Text$all$().stringAttr$1)])), $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().p__Lscalatags_generic_TypedTag()).apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("text: servicesCount +' services'", $m_Lscalatags_Text$all$().stringAttr$1)]))]))]));
+  var this$28 = $m_Lscalatags_Text$all$();
+  return jsx$36.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$35, jsx$28, jsx$11, jsx$10, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("<!-- /ko -->")])).toString__T()
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$prop$loadingProjects__Lknockout_KoObservable__O = (function(x$1) {
+  this.loadingProjects$2 = x$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$meth$viewModel__sjs_js_Dictionary__O = (function(params) {
+  this.viewModel__sjs_js_Dictionary__V(params)
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.viewModel__sjs_js_Dictionary__V = (function(params) {
+  if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "loadingProjects"))) {
+    var jsx$1 = params.loadingProjects
+  } else {
+    var jsx$1;
+    throw new $c_ju_NoSuchElementException().init___T("key not found: loadingProjects")
+  };
+  this.loadingProjects$2 = jsx$1;
+  if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "selectedProject"))) {
+    var jsx$2 = params.selectedProject
+  } else {
+    var jsx$2;
+    throw new $c_ju_NoSuchElementException().init___T("key not found: selectedProject")
+  };
+  this.selectedProject$2 = jsx$2;
+  if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "projects"))) {
+    var jsx$3 = params.projects
+  } else {
+    var jsx$3;
+    throw new $c_ju_NoSuchElementException().init___T("key not found: projects")
+  };
+  this.projects$2 = jsx$3;
+  var this$7 = this.searchList$2;
+  var elements = this.projects$2;
+  $s_Lmondello_electron_components_common_SearchableList$class__subscribe__Lmondello_electron_components_common_SearchableList__Lknockout_KoObservableArray__V(this$7, elements)
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$prop$projects__Lknockout_KoObservableArray__O = (function(x$1) {
+  this.projects$2 = x$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$prop$searchList__O = (function() {
+  return this.searchList$2
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$prop$selectedProject__O = (function() {
+  return this.selectedProject$2
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.selectProject__sjs_js_Function2 = (function() {
+  return this.koCallback__F1__sjs_js_Function2(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$4$2) {
+    var x$4 = $as_Lmondello_models_Project(x$4$2);
+    (0, $m_Lmondello_electron_components_pages_compose_ProjectsBrowser$().selectedProject$2)(x$4);
+    var value = (void 0);
+    return value
+  })))
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$$js$exported$prop$template__O = (function() {
+  return this.template__T()
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype, "projects", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$projects__Lknockout_KoObservableArray__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$projects__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype, "selectedProject", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$selectedProject__Lknockout_KoObservable__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$selectedProject__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype, "loadingProjects", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$loadingProjects__Lknockout_KoObservable__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$loadingProjects__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype, "searchList", {
+  "get": (function() {
+    return this.$$js$exported$prop$searchList__O()
+  }),
+  "enumerable": true
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.selectProject = (function() {
+  return this.$$js$exported$meth$selectProject__O()
+});
+var $d_Lmondello_electron_components_pages_compose_ProjectsBrowser$ = new $TypeData().initClass({
+  Lmondello_electron_components_pages_compose_ProjectsBrowser$: 0
+}, false, "mondello.electron.components.pages.compose.ProjectsBrowser$", {
+  Lmondello_electron_components_pages_compose_ProjectsBrowser$: 1,
+  Lknockout_KoComponent: 1,
+  O: 1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$.prototype.$classData = $d_Lmondello_electron_components_pages_compose_ProjectsBrowser$;
+var $n_Lmondello_electron_components_pages_compose_ProjectsBrowser$ = (void 0);
+function $m_Lmondello_electron_components_pages_compose_ProjectsBrowser$() {
+  if ((!$n_Lmondello_electron_components_pages_compose_ProjectsBrowser$)) {
+    $n_Lmondello_electron_components_pages_compose_ProjectsBrowser$ = new $c_Lmondello_electron_components_pages_compose_ProjectsBrowser$().init___()
+  };
+  return $n_Lmondello_electron_components_pages_compose_ProjectsBrowser$
+}
+/** @constructor */
+function $c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1() {
+  $c_O.call(this);
+  this.elementSearch$1 = null;
+  this.searchResults$1 = null
+}
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype = new $h_O();
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.constructor = $c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1;
+/** @constructor */
+function $h_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1() {
+  /*<skip>*/
+}
+$h_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype = $c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype;
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.$$js$exported$prop$searchResults__Lknockout_KoObservableArray__O = (function(x$1) {
+  this.searchResults$1 = x$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.init___ = (function() {
+  $s_Lmondello_electron_components_common_SearchableList$class__$$init$__Lmondello_electron_components_common_SearchableList__V(this);
+  return this
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.$$js$exported$prop$searchResults__O = (function() {
+  return this.searchResults$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.isResult__O__T__Z = (function(element, searchText) {
+  return this.isResult__Lmondello_models_Project__T__Z($as_Lmondello_models_Project(element), searchText)
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.elementSearch__Lknockout_KoObservable = (function() {
+  return this.elementSearch$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.isResult__Lmondello_models_Project__T__Z = (function(project, searchText) {
+  var f = (function(arg$outer, searchText$1) {
+    return (function(x$1$2) {
+      var x$1 = $as_F0(x$1$2);
+      return $s_Lmondello_electron_components_common_SearchableList$class__subString__Lmondello_electron_components_common_SearchableList__T__F0__Z(arg$outer, searchText$1, x$1)
+    })
+  })(this, searchText);
+  var arg1 = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function(project$1) {
+    return (function() {
+      return project$1.file$1
+    })
+  })(project));
+  if ($uZ(f(arg1))) {
+    return true
+  } else {
+    var xs = project.services$1;
+    var t = $m_s_reflect_ManifestFactory$BooleanManifest$();
+    var elems$2 = [];
+    var i = 0;
+    var len = xs.u.length;
+    while ((i < len)) {
+      var index = i;
+      var arg1$1 = xs.u[index];
+      var service = $as_Lmondello_models_Service(arg1$1);
+      var arg1$2 = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function(service$1) {
+        return (function() {
+          return service$1.from$1
+        })
+      })(service));
+      if ($uZ(f(arg1$2))) {
+        var jsx$5 = true
+      } else {
+        var arg1$3 = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function(service$1$1) {
+          return (function() {
+            return service$1$1.id$1
+          })
+        })(service));
+        var jsx$5 = $uZ(f(arg1$3))
+      };
+      if (jsx$5) {
+        var jsx$4 = true
+      } else {
+        var arg1$5 = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function(service$1$2) {
+          return (function() {
+            var array = service$1$2.externaLinks$1;
+            var b = new $c_scm_StringBuilder().init___();
+            var elem$1 = false;
+            elem$1 = true;
+            b.append__T__scm_StringBuilder("");
+            var i$1 = 0;
+            var len$1 = $uI(array.length);
+            while ((i$1 < len$1)) {
+              var index$1 = i$1;
+              var arg1$4 = array[index$1];
+              if (elem$1) {
+                b.append__O__scm_StringBuilder(arg1$4);
+                elem$1 = false
+              } else {
+                b.append__T__scm_StringBuilder("");
+                b.append__O__scm_StringBuilder(arg1$4)
+              };
+              i$1 = ((1 + i$1) | 0)
+            };
+            b.append__T__scm_StringBuilder("");
+            var this$12 = b.underlying$5;
+            return this$12.content$1
+          })
+        })(service));
+        var jsx$4 = $uZ(f(arg1$5))
+      };
+      if (jsx$4) {
+        var jsx$3 = true
+      } else {
+        var arg1$6 = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function(service$1$3) {
+          return (function() {
+            return $objectToString(service$1$3.environment$1)
+          })
+        })(service));
+        var jsx$3 = $uZ(f(arg1$6))
+      };
+      if (jsx$3) {
+        var jsx$2 = true
+      } else {
+        var arg1$8 = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function(service$1$4) {
+          return (function() {
+            var array$1 = service$1$4.links$1;
+            var b$1 = new $c_scm_StringBuilder().init___();
+            var elem$1$1 = false;
+            elem$1$1 = true;
+            b$1.append__T__scm_StringBuilder("");
+            var i$2 = 0;
+            var len$2 = $uI(array$1.length);
+            while ((i$2 < len$2)) {
+              var index$2 = i$2;
+              var arg1$7 = array$1[index$2];
+              if (elem$1$1) {
+                b$1.append__O__scm_StringBuilder(arg1$7);
+                elem$1$1 = false
+              } else {
+                b$1.append__T__scm_StringBuilder("");
+                b$1.append__O__scm_StringBuilder(arg1$7)
+              };
+              i$2 = ((1 + i$2) | 0)
+            };
+            b$1.append__T__scm_StringBuilder("");
+            var this$15 = b$1.underlying$5;
+            return this$15.content$1
+          })
+        })(service));
+        var jsx$2 = $uZ(f(arg1$8))
+      };
+      if (jsx$2) {
+        var jsx$1 = true
+      } else {
+        var arg1$9 = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function(service$1$5) {
+          return (function() {
+            return $objectToString(service$1$5.volumes$1)
+          })
+        })(service));
+        var jsx$1 = $uZ(f(arg1$9))
+      };
+      if (jsx$1) {
+        var elem = true
+      } else {
+        var arg1$10 = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function(service$1$6) {
+          return (function() {
+            return service$1$6.source$1
+          })
+        })(service));
+        var elem = $uZ(f(arg1$10))
+      };
+      elems$2.push(elem);
+      i = ((1 + i) | 0)
+    };
+    var xs$1 = $makeNativeArrayWrapper($d_Z.getArrayOf(), elems$2);
+    var f$1 = (function(x$2$2, x$3$2) {
+      var x$2 = $uZ(x$2$2);
+      var x$3 = $uZ(x$3$2);
+      return (x$2 || x$3)
+    });
+    if ((xs$1.u.length > 0)) {
+      var start = 1;
+      var end = xs$1.u.length;
+      var z = xs$1.u[0];
+      x: {
+        var jsx$6;
+        _foldl: while (true) {
+          if ((start === end)) {
+            var jsx$6 = z;
+            break x
+          } else {
+            var temp$start = ((1 + start) | 0);
+            var arg1$11 = z;
+            var idx = start;
+            var arg2 = xs$1.u[idx];
+            var temp$z = f$1(arg1$11, arg2);
+            start = temp$start;
+            z = temp$z;
+            continue _foldl
+          }
+        }
+      }
+    } else {
+      if ((xs$1.u.length === 0)) {
+        throw new $c_jl_UnsupportedOperationException().init___T("empty.reduceLeft")
+      };
+      var elem$1$2 = false;
+      elem$1$2 = true;
+      var elem$1$3 = null;
+      elem$1$3 = 0;
+      var i$3 = 0;
+      var len$3 = xs$1.u.length;
+      while ((i$3 < len$3)) {
+        var idx$1 = i$3;
+        var arg1$12 = xs$1.u[idx$1];
+        if (elem$1$2) {
+          elem$1$3 = arg1$12;
+          elem$1$2 = false
+        } else {
+          var arg1$13 = elem$1$3;
+          elem$1$3 = f$1(arg1$13, arg1$12)
+        };
+        i$3 = ((1 + i$3) | 0)
+      };
+      var jsx$6 = elem$1$3
+    };
+    return $uZ(jsx$6)
+  }
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.$$js$exported$prop$elementSearch__Lknockout_KoObservable__O = (function(x$1) {
+  this.elementSearch$1 = x$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.$$js$exported$prop$elementSearch__O = (function() {
+  return this.elementSearch$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.searchResults__Lknockout_KoObservableArray = (function() {
+  return this.searchResults$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.elementSearch$und$eq__Lknockout_KoObservable__V = (function(x$1) {
+  this.elementSearch$1 = x$1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.searchResults$und$eq__Lknockout_KoObservableArray__V = (function(x$1) {
+  this.searchResults$1 = x$1
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype, "elementSearch", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$elementSearch__Lknockout_KoObservable__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$elementSearch__O()
+  }),
+  "enumerable": true
+});
+Object.defineProperty($c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype, "searchResults", {
+  "set": (function(arg$1) {
+    var prep0 = arg$1;
+    this.$$js$exported$prop$searchResults__Lknockout_KoObservableArray__O(prep0)
+  }),
+  "get": (function() {
+    return this.$$js$exported$prop$searchResults__O()
+  }),
+  "enumerable": true
+});
+var $d_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1 = new $TypeData().initClass({
+  Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1: 0
+}, false, "mondello.electron.components.pages.compose.ProjectsBrowser$$anon$1", {
+  Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1: 1,
+  O: 1,
+  Lmondello_electron_components_common_SearchableList: 1
+});
+$c_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1.prototype.$classData = $d_Lmondello_electron_components_pages_compose_ProjectsBrowser$$anon$1;
 /** @constructor */
 function $c_Lmondello_electron_components_pages_containers_ContainerFooter$() {
   $c_Lknockout_KoComponent.call(this);
@@ -20837,6 +21441,51 @@ var $d_Lmondello_config_Settings$$anonfun$loadSettings$2 = new $TypeData().initC
   Ljava_io_Serializable: 1
 });
 $c_Lmondello_config_Settings$$anonfun$loadSettings$2.prototype.$classData = $d_Lmondello_config_Settings$$anonfun$loadSettings$2;
+/** @constructor */
+function $c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1() {
+  $c_sr_AbstractFunction1.call(this);
+  this.foundProject$1$f = null
+}
+$c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1.prototype = new $h_sr_AbstractFunction1();
+$c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1.prototype.constructor = $c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1;
+/** @constructor */
+function $h_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1() {
+  /*<skip>*/
+}
+$h_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1.prototype = $c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1.prototype;
+$c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1.prototype.apply__O__O = (function(v1) {
+  this.apply__T__V($as_T(v1))
+});
+$c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1.prototype.apply__T__V = (function(projectFile) {
+  var this$1 = $m_Lmondello_models_Project$().load__T__s_concurrent_Future(projectFile);
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
+    return (function(project$2) {
+      var project = $as_Lmondello_models_Project(project$2);
+      if ((((0, $m_Lmondello_electron_components_pages_Compose$().selectedProject$2)() !== null) && ($as_Lmondello_models_Project((0, $m_Lmondello_electron_components_pages_Compose$().selectedProject$2)()).file$1 === project.file$1))) {
+        arg$outer.foundProject$1$f.elem$1 = true;
+        (0, $m_Lmondello_electron_components_pages_Compose$().selectedProject$2)(project)
+      };
+      $m_Lmondello_electron_components_pages_Compose$().projects$2.push(project)
+    })
+  })(this));
+  var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
+  $s_s_concurrent_Future$class__foreach__s_concurrent_Future__F1__s_concurrent_ExecutionContext__V(this$1, f, executor)
+});
+$c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1.prototype.init___sr_BooleanRef = (function(foundProject$1) {
+  this.foundProject$1$f = foundProject$1;
+  return this
+});
+var $d_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1 = new $TypeData().initClass({
+  Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1: 0
+}, false, "mondello.electron.components.pages.Compose$$anonfun$reloadProjects$1", {
+  Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1: 1,
+  sr_AbstractFunction1: 1,
+  O: 1,
+  F1: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1.prototype.$classData = $d_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1;
 /** @constructor */
 function $c_Lmondello_electron_components_pages_logs_ContainerLogs$$anonfun$searchLog$1() {
   $c_sr_AbstractFunction1.call(this)

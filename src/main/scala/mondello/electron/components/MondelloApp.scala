@@ -48,6 +48,7 @@ object MondelloApp extends KoComponent("mondello-app") {
     "Machines" -> Machines(dockerMachine),
     "Images" -> Images,
     "Containers" -> Containers,
+    "Compose" -> Compose,
     "Toolbar" -> Toolbar
     )
 
