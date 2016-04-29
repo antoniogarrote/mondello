@@ -3,7 +3,7 @@ package mondello.electron.components.pages
 import knockout.tags.KoText
 import knockout._
 import mondello.config.Settings
-import mondello.electron.components.pages.compose.ProjectsBrowser
+import mondello.electron.components.pages.compose.{ProjectsBrowser, SelectedProject}
 import mondello.models.Project
 import mondello.proxies.DockerCompose
 
@@ -22,7 +22,8 @@ object Compose extends KoComponent("docker-compose") {
   val selectedProject:KoObservable[Project] = Ko.observable(null)
 
   nestedComponents += (
-    "ProjectsBrowser" -> ProjectsBrowser
+    "ProjectsBrowser" -> ProjectsBrowser,
+    "SelectedProject" -> SelectedProject
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
@@ -33,12 +34,9 @@ object Compose extends KoComponent("docker-compose") {
     div(`class`:="window-content",
       div(`class`:="pane-group",
         ProjectsBrowser.tag(`class`:="pane pane-sm sidebar",
-        KoText.all.params:=s"loadingProjects: loadingProjects, selectedProject: selectedProject, projects: projects")
-        /*
-
-        SelectedImage.tag(`class`:="pane padded-more",
-          KoText.all.params:="selectedImage: selectedImage")
-       */
+        KoText.all.params:=s"loadingProjects: loadingProjects, selectedProject: selectedProject, projects: projects"),
+        SelectedProject.tag(`class`:="pane padded-more",
+          KoText.all.params:="selectedProject: selectedProject")
       )
       /*
       ,

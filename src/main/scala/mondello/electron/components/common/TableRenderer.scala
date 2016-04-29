@@ -5,7 +5,7 @@ import scalatags.Text.attrs
 
 trait TableRenderer {
   def makeTable(tableName:String, base:String, attributesMapping:Seq[Tuple2[String,String]]): Frag = {
-    div(`class`:="first-section",
+    div(
       h4(tableName),
       table(`class`:="table-striped",
         thead(
@@ -24,8 +24,44 @@ trait TableRenderer {
     )
   }
 
+  def makeArrayMapTable(tableName:String, base:String, attributesMapping:Seq[Tuple2[String,String]]): Frag = {
+    div(
+      h4(tableName),
+      table(`class`:="table-striped",
+        thead(
+          tr(
+            for((property, _)<- attributesMapping) yield th(property)
+          )
+        ),
+        tbody(attrs.data.bind:=s"foreach: $base",
+          tr(
+            for((_, function) <- attributesMapping) yield td(attrs.data.bind:=s"text: $function")
+          )
+        )
+      )
+    )
+  }
+
+  def makeArrayTable(tableName:String, base:String, header:String): Frag = {
+    div(
+      h4(tableName),
+      table(`class`:="table-striped",
+        thead(
+          tr(
+            th(header)
+          )
+        ),
+        tbody(attrs.data.bind:=s"foreach: $base",
+          tr(
+            td(attrs.data.bind:="text: $data")
+          )
+        )
+      )
+    )
+  }
+
   def makeKeysTable(tableName:String, headerName:String, base:String): Frag = {
-    div(`class`:="first-section",
+    div(
       h4(tableName),
       table(`class`:="table-striped",
         thead(
@@ -43,7 +79,7 @@ trait TableRenderer {
   }
 
   def makeKeyValueTable(tableName:String, headerName:(String,String), base:String): Frag = {
-    div(`class`:="first-section",
+    div(
       h4(tableName),
       table(`class`:="table-striped",
         thead(

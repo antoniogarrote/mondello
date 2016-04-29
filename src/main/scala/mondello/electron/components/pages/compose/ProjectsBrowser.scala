@@ -23,7 +23,7 @@ object ProjectsBrowser extends KoComponent("comppose-projects") {
       project.services.map {(service) =>
         isMatch { service.from } ||
         isMatch { service.id } ||
-        isMatch { service.externaLinks.mkString("") } ||
+        isMatch { service.externalLinks.mkString("") } ||
         isMatch { service.environment.toString } ||
         isMatch { service.links.mkString("") } ||
         isMatch { service.volumes.toString } ||

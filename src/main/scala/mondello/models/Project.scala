@@ -6,6 +6,7 @@ import scala.concurrent.Future
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
+import scala.scalajs.js.JSConverters
 import scala.scalajs.js.annotation.JSExportAll
 
 @JSExportAll
@@ -37,9 +38,13 @@ class Service(val id:String, val service:js.Dynamic) {
       Map[String,String]("from" -> parts(0), "to" -> parts(1))
   }
 
+  val portsJS:js.Array[js.Dictionary[String]] = {
+    ports.map { (m) => JSConverters.JSRichGenMap[String](m).toJSDictionary }
+  }
+
   val links = extractArray(() => service.links)
 
-  val externaLinks = extractArray(() => service.external_links)
+  val externalLinks = extractArray(() => service.external_links)
 
   val linksCount = links.length
 
@@ -49,6 +54,9 @@ class Service(val id:String, val service:js.Dynamic) {
       Map[String,String]("host" -> parts(0), "container" -> parts(1))
   }
 
+  val volumesJS:js.Array[js.Dictionary[String]] = {
+    volumes.map { (m) => JSConverters.JSRichGenMap[String](m).toJSDictionary }
+  }
   val volumesCount = volumes.length
 
   val environment:js.Array[Map[String,String]] = try {
@@ -72,6 +80,10 @@ class Service(val id:String, val service:js.Dynamic) {
     }
   }
 
+  val environmentJS:js.Array[js.Dictionary[String]] = {
+    environment.map { (m) => JSConverters.JSRichGenMap[String](m).toJSDictionary }
+  }
+
   val envsCount = environment.length
 
   var selected = false
@@ -82,6 +94,8 @@ class Project(val file:String, val services:Array[Service]) {
   val filename = g.require("path").basename(file).asInstanceOf[String]
   val dirname = g.require("path").dirname(file).asInstanceOf[String]
   val servicesCount = services.length
+
+  def servicesJS:js.Array[Service] = js.JSConverters.array2JSRichGenTrav(services).toJSArray
 }
 
 object Project extends FileLoader {
