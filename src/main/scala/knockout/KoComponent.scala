@@ -16,6 +16,7 @@ abstract class KoComponent(val tagName:String) {
 
   def tag = KoComponent.mkTag(tagName)
 
+  def beforeRegister():Unit = {}
   def viewModel(params:js.Dictionary[js.Any])
 
   def template:String
@@ -34,6 +35,7 @@ abstract class KoComponent(val tagName:String) {
 
 object KoComponent {
   def apply(component:KoComponent): Unit = {
+    component.beforeRegister()
     component.nestedComponents.foreach({ case ((_: String, child: KoComponent)) =>
       child.parent = component
       KoComponent(child)

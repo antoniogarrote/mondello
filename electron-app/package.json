@@ -10,6 +10,7 @@
   "author": "Antonio Garrote",
   "license": "MIT",
   "dependencies": {
+    "js-yaml": "^3.6.0",
     "temporary": "0.0.8"
   }
 }

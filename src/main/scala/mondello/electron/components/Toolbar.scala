@@ -7,6 +7,7 @@ import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
 import mondello.models.Machine
 
 import scala.scalajs.js
+import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
@@ -41,6 +42,7 @@ object Toolbar extends KoComponent("mondello-toolbar") {
         machinesToolbar(),
         imagesToolbar(),
         containersToolbar(),
+        composeToolbar(),
         rightButtons()
       ),
       NewMachineDialog.tag(),
@@ -70,11 +72,11 @@ object Toolbar extends KoComponent("mondello-toolbar") {
         span(`class`:="icon icon-rocket"),
         raw("&nbsp; Containers")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'projects','btn-disabled':(selectedMachine() && selectedMachine().state !== 'Running')}," +
-        " click: function(){ selectPage('projects') }",
+      button(attrs.data.bind:="css: {active: page() === 'compose','btn-disabled':(selectedMachine() && selectedMachine().state !== 'Running')}," +
+        " click: function(){ selectPage('compose') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-pencil"),
-        raw("&nbsp; Projects")
+        raw("&nbsp; Compose")
       )
     )
   }
@@ -106,6 +108,16 @@ object Toolbar extends KoComponent("mondello-toolbar") {
       button(`class`:="btn btn-default",
         span(`class`:="icon icon-megaphone"), attrs.data.bind:="click: displayLogs, css:{pressed: $parent.displayContainerLogs()}",
         raw("&nbsp; Logs")
+      )
+    )
+  }
+
+  def composeToolbar(): Frag = {
+    span(attrs.data.bind:="if: page()=='compose'",
+      button(`class`:="btn btn-default",
+        span(`class`:="icon icon-plus"),title:="Loads a new Docker Compose project from a YAML file",
+        attrs.data.bind:="click: loadComposeFile",
+        raw("&nbsp; Load Project")
       )
     )
   }
@@ -150,5 +162,37 @@ object Toolbar extends KoComponent("mondello-toolbar") {
     println("* Display logs")
     val oldValue = displayContainerLogs()
     displayContainerLogs(!oldValue)
+  }
+
+  def loadComposeFile() = {
+    val result:js.UndefOr[js.Array[String]] = g.require("remote").dialog.showOpenDialog(
+      js.Dictionary("title" -> "Select a Dockerfile to build", "properties" -> js.Array[String]("openFile"))
+    ).asInstanceOf[js.UndefOr[js.Array[String]]]
+    if(result.isDefined) {
+      val filenames = result.get
+      if(filenames.length > 0 ) {
+        if (filenames.head.endsWith("Dockerfile")) {
+          println(s"SELECTED: ${filenames.head}")
+        } else {
+          g.alert("You must select a Dockerfile")
+        }
+      }
+    }
+  }
+
+  def loadBuildFile() = {
+    val result:js.UndefOr[js.Array[String]] = g.require("remote").dialog.showOpenDialog(
+      js.Dictionary("title" -> "Loading Docker-Compose Project file", "properties" -> js.Array[String]("openFile"))
+    ).asInstanceOf[js.UndefOr[js.Array[String]]]
+    if(result.isDefined) {
+      val filenames = result.get
+      if(filenames.length > 0 ) {
+        if (filenames.head.endsWith("Dockerfile")) {
+          println(s"SELECTED: ${filenames.head}")
+        } else {
+          g.alert("You must select a Dockerfile")
+        }
+      }
+    }
   }
 }
