@@ -93,6 +93,17 @@ object Images extends KoComponent("docker-images") {
     startImageInternal(interactive = false, entrypoint, name,link, expose, publish, envs, command)
   }
 
+  def pullImage(image:String, tag:String):Future[Boolean] = {
+    println(s"** Pulling image $image:$tag")
+    if(docker() != null) {
+      docker().pullImage(image,tag)
+    } else {
+      val f = Future(false)
+      f.failed
+      f
+    }
+  }
+
   protected def startImageInternal(interactive:Boolean, entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
     if(selectedImage() != null) {
       MondelloApp.showModal(s"Starting image ${this.selectedImage().repository}:${this.selectedImage().tag}")

@@ -1,6 +1,8 @@
 package mondello.electron.components.pages.images.dialogs
 
 import knockout.{Ko, KoComponent, KoObservable}
+import mondello.electron.components.MondelloApp
+import mondello.electron.components.pages.Images
 
 import scala.scalajs.js.{Any, Dictionary}
 import scala.scalajs.js.Dynamic.{global => g}
@@ -8,9 +10,12 @@ import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
+
 
 @JSExportAll
-object PullImageDialog extends KoComponent("pull-image-dialog") {
+object
+PullImageDialog extends KoComponent("pull-image-dialog") {
 
   val imageName:KoObservable[String] = Ko.observable("")
   val imageTag:KoObservable[String] = Ko.observable("latest")
@@ -66,6 +71,22 @@ object PullImageDialog extends KoComponent("pull-image-dialog") {
   }
 
   def commitPullImage() = {
-    hide()
+    if(imageName() != "") {
+      MondelloApp.showModal(s"Pulling image $imageName():$imageTag()")
+      val f = Images.pullImage(imageName(), imageTag())
+      f.onSuccess {
+        case _ =>
+          MondelloApp.closeModal()
+          hide()
+          Images.reloadImages()
+      }
+
+      f.onFailure {
+        case e:Throwable =>
+          g.alert(s"Error pulling image: ${e.getMessage}")
+      }
+    } else {
+      g.alert("Please, provide a name for the image")
+    }
   }
 }

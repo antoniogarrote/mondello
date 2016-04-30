@@ -36,7 +36,8 @@ class DockerMachine(env: Environment)(implicit ec:ExecutionContext, consoleProce
     val driverCmd = s"--driver=$driver"
     val labelsCmd = labels.map((label) => s"--engine-label=$label")
     val envCmd = env.map((e) => s"--engine-env=$e")
-    consoleProcess.execute("create", (List(name, driverCmd) ++ labelsCmd ++ envCmd).toArray).map((_) => true)
+    val args = List(name, driverCmd) ++ labelsCmd ++ envCmd
+    consoleProcess.execute("create", (List(name, driverCmd) ++ labelsCmd ++ envCmd).toArray).map { case (_) => true }
   }
 
   def remove(name:String): Future[Boolean] = consoleProcess.execute("rm", Array("-f", name)).map((_) => true)

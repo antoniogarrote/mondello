@@ -4038,16 +4038,16 @@ $c_Lmondello_proxies_Docker.prototype.startImage__T__T__sci_Map__s_concurrent_Fu
   var thiz = $as_T(jsx$1);
   var this$4 = new $c_sci_StringOps().init___T($as_T(thiz.split(",").join("\n")));
   var this$9 = $s_sci_StringLike$class__lines__sci_StringLike__sc_Iterator(this$4);
-  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$11$2) {
-    var x$11 = $as_T(x$11$2);
-    var thiz$1 = $as_T(x$11.split("\n").join(""));
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$12$2) {
+    var x$12 = $as_T(x$12$2);
+    var thiz$1 = $as_T(x$12.split("\n").join(""));
     return $as_T(thiz$1.split("\r").join(""))
   }));
   var this$10 = new $c_sc_Iterator$$anon$11().init___sc_Iterator__F1(this$9, f);
   var f$1 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
-    return (function(x$12$2) {
-      var x$12 = $as_T(x$12$2);
-      return arg$outer.makeCmdLineArg__T__T__T("env", x$12)
+    return (function(x$13$2) {
+      var x$13 = $as_T(x$13$2);
+      return arg$outer.makeCmdLineArg__T__T__T("env", x$13)
     })
   })(this));
   var envsArg = new $c_sc_Iterator$$anon$11().init___sc_Iterator__F1(this$10, f$1);
@@ -4073,8 +4073,8 @@ $c_Lmondello_proxies_Docker.prototype.startImage__T__T__sci_Map__s_concurrent_Fu
   var result = $newArrayObject($d_T.getArrayOf(), [len]);
   $s_sc_TraversableOnce$class__copyToArray__sc_TraversableOnce__O__I__V(args, result, 0);
   var this$19 = jsx$6.execute__T__AT__Lmondello_config_Environment__s_concurrent_Future("run", result, this.currentEnv$1);
-  var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$13$2) {
-    $asArrayOf_T(x$13$2, 1);
+  var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$14$2) {
+    $asArrayOf_T(x$14$2, 1);
     return true
   }));
   var executor = this.mondello$proxies$Docker$$ec$f;
@@ -4122,6 +4122,28 @@ $c_Lmondello_proxies_Docker.prototype.containers__s_concurrent_Future = (functio
   var executor = this.mondello$proxies$Docker$$ec$f;
   return $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$5, f, executor)
 });
+$c_Lmondello_proxies_Docker.prototype.pullImage__T__T__s_concurrent_Future = (function(image, tag) {
+  var imageName = (((tag !== null) && (tag !== "")) ? new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([image, tag])) : image);
+  var jsx$1 = this.mondello$proxies$Docker$$consoleProcess$f;
+  var xs = new $c_sjs_js_WrappedArray().init___sjs_js_Array([imageName]);
+  var len = $uI(xs.array$6.length);
+  var array = $newArrayObject($d_T.getArrayOf(), [len]);
+  var elem$1 = 0;
+  elem$1 = 0;
+  var this$4 = new $c_sc_IndexedSeqLike$Elements().init___sc_IndexedSeqLike__I__I(xs, 0, $uI(xs.array$6.length));
+  while (this$4.hasNext__Z()) {
+    var arg1 = this$4.next__O();
+    array.u[elem$1] = arg1;
+    elem$1 = ((1 + elem$1) | 0)
+  };
+  var this$5 = jsx$1.executeInteractive__T__AT__Lmondello_config_Environment__s_concurrent_Future("pull", array, this.currentEnv$1);
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$11$2) {
+    $asArrayOf_T(x$11$2, 1);
+    return true
+  }));
+  var executor = this.mondello$proxies$Docker$$ec$f;
+  return $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$5, f, executor)
+});
 $c_Lmondello_proxies_Docker.prototype.startImageInteractive__T__T__sci_Map__s_concurrent_Future = (function(id, command, opts) {
   var entrypointArg = this.makeCmdLineArg__T__T__T("entrypoint", $as_T(opts.apply__O__O("entrypoint")));
   var nameArg = this.makeCmdLineArg__T__T__T("name", $as_T(opts.apply__O__O("name")));
@@ -4144,16 +4166,16 @@ $c_Lmondello_proxies_Docker.prototype.startImageInteractive__T__T__sci_Map__s_co
   var thiz = $as_T(jsx$1);
   var this$4 = new $c_sci_StringOps().init___T($as_T(thiz.split(",").join("\n")));
   var this$9 = $s_sci_StringLike$class__lines__sci_StringLike__sc_Iterator(this$4);
-  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$11$2) {
-    var x$11 = $as_T(x$11$2);
-    var thiz$1 = $as_T(x$11.split("\n").join(""));
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$12$2) {
+    var x$12 = $as_T(x$12$2);
+    var thiz$1 = $as_T(x$12.split("\n").join(""));
     return $as_T(thiz$1.split("\r").join(""))
   }));
   var this$10 = new $c_sc_Iterator$$anon$11().init___sc_Iterator__F1(this$9, f);
   var f$1 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
-    return (function(x$12$2) {
-      var x$12 = $as_T(x$12$2);
-      return arg$outer.makeCmdLineArg__T__T__T("env", x$12)
+    return (function(x$13$2) {
+      var x$13 = $as_T(x$13$2);
+      return arg$outer.makeCmdLineArg__T__T__T("env", x$13)
     })
   })(this));
   var envsArg = new $c_sc_Iterator$$anon$11().init___sc_Iterator__F1(this$10, f$1);
@@ -4183,8 +4205,8 @@ $c_Lmondello_proxies_Docker.prototype.startImageInteractive__T__T__sci_Map__s_co
   var result = $newArrayObject($d_T.getArrayOf(), [len]);
   $s_sc_TraversableOnce$class__copyToArray__sc_TraversableOnce__O__I__V(args, result, 0);
   var this$21 = jsx$6.executeInteractive__T__AT__Lmondello_config_Environment__s_concurrent_Future("run", result, this.currentEnv$1);
-  var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$13$2) {
-    $asArrayOf_T(x$13$2, 1);
+  var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$14$2) {
+    $asArrayOf_T(x$14$2, 1);
     return true
   }));
   var executor = this.mondello$proxies$Docker$$ec$f;
@@ -4432,10 +4454,10 @@ function $h_Lmondello_proxies_DockerMachine() {
 }
 $h_Lmondello_proxies_DockerMachine.prototype = $c_Lmondello_proxies_DockerMachine.prototype;
 $c_Lmondello_proxies_DockerMachine.prototype.processInspect__AT__sjs_js_Object = (function(strings) {
-  var f = (function(x$8$2, x$9$2) {
+  var f = (function(x$7$2, x$8$2) {
+    var x$7 = $as_T(x$7$2);
     var x$8 = $as_T(x$8$2);
-    var x$9 = $as_T(x$9$2);
-    return (("" + x$8) + x$9)
+    return (("" + x$7) + x$8)
   });
   if ((strings.u.length > 0)) {
     var start = 1;
@@ -4545,9 +4567,9 @@ $c_Lmondello_proxies_DockerMachine.prototype.fetchInspect__Lmondello_models_Mach
     };
     var this$5 = jsx$1.execute__T__AT__Lmondello_config_Environment__s_concurrent_Future("inspect", array, this.currentEnv$1);
     var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
-      return (function(x$7$2) {
-        var x$7 = $asArrayOf_T(x$7$2, 1);
-        return arg$outer.processInspect__AT__sjs_js_Object(x$7)
+      return (function(x$6$2) {
+        var x$6 = $asArrayOf_T(x$6$2, 1);
+        return arg$outer.processInspect__AT__sjs_js_Object(x$6)
       })
     })(this));
     var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
@@ -4579,8 +4601,8 @@ $c_Lmondello_proxies_DockerMachine.prototype.remove__T__s_concurrent_Future = (f
     elem$1 = ((1 + elem$1) | 0)
   };
   var this$5 = jsx$1.execute__T__AT__Lmondello_config_Environment__s_concurrent_Future("rm", array, this.currentEnv$1);
-  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$5$2) {
-    $asArrayOf_T(x$5$2, 1);
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$4$2) {
+    $asArrayOf_T(x$4$2, 1);
     return true
   }));
   var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
@@ -4605,9 +4627,9 @@ $c_Lmondello_proxies_DockerMachine.prototype.fetchEnv__Lmondello_models_Machine_
       };
       var this$5 = jsx$1.execute__T__AT__Lmondello_config_Environment__s_concurrent_Future("env", array, this.currentEnv$1);
       var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
-        return (function(x$6$2) {
-          var x$6 = $asArrayOf_T(x$6$2, 1);
-          return arg$outer.processEnv__AT__sci_Map(x$6)
+        return (function(x$5$2) {
+          var x$5 = $asArrayOf_T(x$5$2, 1);
+          return arg$outer.processEnv__AT__sci_Map(x$5)
         })
       })(this));
       var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
@@ -4666,9 +4688,9 @@ $c_Lmondello_proxies_DockerMachine.prototype.processEnv__AT__sci_Map = (function
         var arg1$1 = z$1;
         var index$1 = start;
         var arg2 = xs.u[index$1];
-        var x0$1 = $as_sci_Map(arg1$1);
+        var x0$2 = $as_sci_Map(arg1$1);
         var x1$1 = $as_T2(arg2);
-        var x1 = new $c_T2().init___O__O(x0$1, x1$1);
+        var x1 = new $c_T2().init___O__O(x0$2, x1$1);
         matchEnd6: {
           var temp$z;
           var acc = $as_sci_Map(x1.$$und1$f);
@@ -4769,7 +4791,6 @@ $c_Lmondello_proxies_DockerMachine.prototype.newMachine__T__T__sci_List__sci_Lis
     var jsx$2 = b$1.result__O()
   };
   var envCmd = $as_sci_List(jsx$2);
-  var jsx$5 = this.consoleProcess$1;
   $m_sci_List$();
   var xs = new $c_sjs_js_WrappedArray().init___sjs_js_Array([name, driverCmd]);
   var this$8 = $m_sci_List$();
@@ -4778,13 +4799,23 @@ $c_Lmondello_proxies_DockerMachine.prototype.newMachine__T__T__sci_List__sci_Lis
   var this$9 = $m_sci_List$();
   var jsx$3 = $as_sci_List(jsx$4.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(labelsCmd, this$9.ReusableCBFInstance$2));
   var this$10 = $m_sci_List$();
-  var this$12 = jsx$5.execute__T__AT__Lmondello_config_Environment__s_concurrent_Future("create", $asArrayOf_T($as_sc_TraversableOnce(jsx$3.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(envCmd, this$10.ReusableCBFInstance$2)).toArray__s_reflect_ClassTag__O(new $c_s_reflect_ClassTag$ClassClassTag().init___jl_Class($d_T.getClassOf())), 1), this.currentEnv$1);
-  var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$4$2) {
-    $asArrayOf_T(x$4$2, 1);
+  $as_sci_List(jsx$3.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(envCmd, this$10.ReusableCBFInstance$2));
+  var jsx$7 = this.consoleProcess$1;
+  $m_sci_List$();
+  var xs$1 = new $c_sjs_js_WrappedArray().init___sjs_js_Array([name, driverCmd]);
+  var this$12 = $m_sci_List$();
+  var cbf$1 = this$12.ReusableCBFInstance$2;
+  var jsx$6 = $as_sci_List($s_sc_TraversableLike$class__to__sc_TraversableLike__scg_CanBuildFrom__O(xs$1, cbf$1));
+  var this$13 = $m_sci_List$();
+  var jsx$5 = $as_sci_List(jsx$6.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(labelsCmd, this$13.ReusableCBFInstance$2));
+  var this$14 = $m_sci_List$();
+  var this$16 = jsx$7.execute__T__AT__Lmondello_config_Environment__s_concurrent_Future("create", $asArrayOf_T($as_sc_TraversableOnce(jsx$5.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(envCmd, this$14.ReusableCBFInstance$2)).toArray__s_reflect_ClassTag__O(new $c_s_reflect_ClassTag$ClassClassTag().init___jl_Class($d_T.getClassOf())), 1), this.currentEnv$1);
+  var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x0$1$2) {
+    $asArrayOf_T(x0$1$2, 1);
     return true
   }));
   var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
-  return $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$12, f$2, executor)
+  return $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$16, f$2, executor)
 });
 $c_Lmondello_proxies_DockerMachine.prototype.parseMachineLine__T__Lmondello_models_Machine = (function(line) {
   var x1 = $m_sjsr_RuntimeString$().split__T__T__I__AT(line, "\\s+", 0);
@@ -10721,6 +10752,9 @@ $c_Lmondello_electron_components_pages_Images$.prototype.init___ = (function() {
 $c_Lmondello_electron_components_pages_Images$.prototype.$$js$exported$prop$selectedImage__Lknockout_KoObservable__O = (function(x$1) {
   this.selectedImage$2 = x$1
 });
+$c_Lmondello_electron_components_pages_Images$.prototype.$$js$exported$meth$pullImage__T__T__O = (function(image, tag) {
+  return this.pullImage__T__T__s_concurrent_Future(image, tag)
+});
 $c_Lmondello_electron_components_pages_Images$.prototype.$$js$exported$meth$startImage__T__T__T__T__T__T__T__O = (function(entrypoint, name, link, expose, publish, envs, command) {
   return this.startImage__T__T__T__T__T__T__T__s_concurrent_Future(entrypoint, name, link, expose, publish, envs, command)
 });
@@ -10778,6 +10812,24 @@ $c_Lmondello_electron_components_pages_Images$.prototype.startImage__T__T__T__T_
   var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
   this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Start Image\n");
   return this.startImageInternal__Z__T__T__T__T__T__T__T__s_concurrent_Future(false, entrypoint, name, link, expose, publish, envs, command)
+});
+$c_Lmondello_electron_components_pages_Images$.prototype.pullImage__T__T__s_concurrent_Future = (function(image, tag) {
+  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Pulling image ", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([image, tag]));
+  var this$2 = $m_s_Console$();
+  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  if (((0, this.docker$2)() !== null)) {
+    return $as_Lmondello_proxies_Docker((0, this.docker$2)()).pullImage__T__T__s_concurrent_Future(image, tag)
+  } else {
+    $m_s_concurrent_Future$();
+    var body = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function() {
+      return false
+    }));
+    var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
+    var f = $m_s_concurrent_impl_Future$().apply__F0__s_concurrent_ExecutionContext__s_concurrent_Future(body, executor);
+    $s_s_concurrent_Future$class__failed__s_concurrent_Future__s_concurrent_Future(f);
+    return f
+  }
 });
 $c_Lmondello_electron_components_pages_Images$.prototype.startImageInternal__Z__T__T__T__T__T__T__T__s_concurrent_Future = (function(interactive, entrypoint, name, link, expose, publish, envs, command) {
   if (((0, this.selectedImage$2)() !== null)) {
@@ -10945,6 +10997,11 @@ $c_Lmondello_electron_components_pages_Images$.prototype.startImage = (function(
   var prep5 = $as_T(arg$6);
   var prep6 = $as_T(arg$7);
   return this.$$js$exported$meth$startImage__T__T__T__T__T__T__T__O(prep0, prep1, prep2, prep3, prep4, prep5, prep6)
+});
+$c_Lmondello_electron_components_pages_Images$.prototype.pullImage = (function(arg$1, arg$2) {
+  var prep0 = $as_T(arg$1);
+  var prep1 = $as_T(arg$2);
+  return this.$$js$exported$meth$pullImage__T__T__O(prep0, prep1)
 });
 var $d_Lmondello_electron_components_pages_Images$ = new $TypeData().initClass({
   Lmondello_electron_components_pages_Images$: 0
@@ -14081,6 +14138,22 @@ function $h_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$(
   /*<skip>*/
 }
 $h_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$.prototype = $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$.prototype;
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$.prototype.commitPullImage__O = (function() {
+  var x = (0, this.imageName$2)();
+  if ((!((x !== null) && $objectEquals(x, "")))) {
+    $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Pulling image ", "():", "()"])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([this.imageName$2, this.imageTag$2])));
+    var f = $m_Lmondello_electron_components_pages_Images$().pullImage__T__T__s_concurrent_Future($as_T((0, this.imageName$2)()), $as_T((0, this.imageTag$2)()));
+    var pf = new $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1().init___();
+    var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
+    $s_s_concurrent_Future$class__onSuccess__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(f, pf, executor);
+    var pf$1 = new $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2().init___();
+    var executor$1 = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
+    $s_s_concurrent_Future$class__onFailure__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(f, pf$1, executor$1);
+    return (void 0)
+  } else {
+    return $g.alert("Please, provide a name for the image")
+  }
+});
 $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$.prototype.init___ = (function() {
   $c_Lknockout_KoComponent.prototype.init___T.call(this, "pull-image-dialog");
   $n_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$ = this;
@@ -14177,7 +14250,7 @@ $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$.prototype
   return jsx$33.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$32, jsx$31, jsx$30, jsx$26, jsx$2, jsx$1.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$24, "toolbar toolbar-footer", ev$18)]))])).toString__T()
 });
 $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$.prototype.$$js$exported$meth$commitPullImage__O = (function() {
-  return this.hide__sjs_js_Dynamic()
+  return this.commitPullImage__O()
 });
 $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$.prototype.$$js$exported$prop$imageName__O = (function() {
   return this.imageName$2
@@ -24703,11 +24776,11 @@ $c_Lmondello_proxies_Docker$$anonfun$images$2$$anonfun$apply$4.prototype.apply__
       var date = $as_T(inspection.Created);
       var size$1 = ("" + inspection.VirtualSize);
       var this$25 = $m_jl_Long$();
-      var x$15 = this$25.parseLong__T__I__J(size$1, 10);
-      var x$17 = image.repository$1;
-      var x$18 = image.tag$1;
-      var x$19 = image.id$1;
-      var elem$2 = new $c_Lmondello_models_Image().init___T__T__T__T__J__sjs_js_Dynamic(x$17, x$18, x$19, date, x$15, inspection)
+      var x$16 = this$25.parseLong__T__I__J(size$1, 10);
+      var x$18 = image.repository$1;
+      var x$19 = image.tag$1;
+      var x$20 = image.id$1;
+      var elem$2 = new $c_Lmondello_models_Image().init___T__T__T__T__J__sjs_js_Dynamic(x$18, x$19, x$20, date, x$16, inspection)
     } else {
       var elem$2;
       throw new $c_s_MatchError().init___O(x0$1)
@@ -27740,6 +27813,89 @@ var $d_Lmondello_electron_components_pages_dialogs_LoginDialog$$anonfun$okLogin$
   Ljava_io_Serializable: 1
 });
 $c_Lmondello_electron_components_pages_dialogs_LoginDialog$$anonfun$okLogin$2.prototype.$classData = $d_Lmondello_electron_components_pages_dialogs_LoginDialog$$anonfun$okLogin$2;
+/** @constructor */
+function $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1() {
+  $c_sr_AbstractPartialFunction.call(this)
+}
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype = new $h_sr_AbstractPartialFunction();
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype.constructor = $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1;
+/** @constructor */
+function $h_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1() {
+  /*<skip>*/
+}
+$h_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype = $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype;
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype.init___ = (function() {
+  return this
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype.applyOrElse__Z__F1__O = (function(x1, $default) {
+  $m_Lmondello_electron_components_MondelloApp$().closeModal__sjs_js_Dynamic();
+  $m_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$().hide__sjs_js_Dynamic();
+  return $m_Lmondello_electron_components_pages_Images$().reloadImages__s_concurrent_Future()
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype.isDefinedAt__Z__Z = (function(x1) {
+  return true
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype.isDefinedAt__O__Z = (function(x) {
+  return this.isDefinedAt__Z__Z($uZ(x))
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype.applyOrElse__O__F1__O = (function(x, $default) {
+  return this.applyOrElse__Z__F1__O($uZ(x), $default)
+});
+var $d_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1 = new $TypeData().initClass({
+  Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1: 0
+}, false, "mondello.electron.components.pages.images.dialogs.PullImageDialog$$anonfun$commitPullImage$1", {
+  Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1: 1,
+  sr_AbstractPartialFunction: 1,
+  O: 1,
+  F1: 1,
+  s_PartialFunction: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1.prototype.$classData = $d_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$1;
+/** @constructor */
+function $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2() {
+  $c_sr_AbstractPartialFunction.call(this)
+}
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype = new $h_sr_AbstractPartialFunction();
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype.constructor = $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2;
+/** @constructor */
+function $h_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2() {
+  /*<skip>*/
+}
+$h_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype = $c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype;
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype.init___ = (function() {
+  return this
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype.isDefinedAt__jl_Throwable__Z = (function(x2) {
+  return (x2 !== null)
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype.applyOrElse__jl_Throwable__F1__O = (function(x2, $default) {
+  if ((x2 !== null)) {
+    var s = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Error pulling image: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([x2.getMessage__T()]));
+    return $g.alert(s)
+  } else {
+    return $default.apply__O__O(x2)
+  }
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype.isDefinedAt__O__Z = (function(x) {
+  return this.isDefinedAt__jl_Throwable__Z($as_jl_Throwable(x))
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype.applyOrElse__O__F1__O = (function(x, $default) {
+  return this.applyOrElse__jl_Throwable__F1__O($as_jl_Throwable(x), $default)
+});
+var $d_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2 = new $TypeData().initClass({
+  Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2: 0
+}, false, "mondello.electron.components.pages.images.dialogs.PullImageDialog$$anonfun$commitPullImage$2", {
+  Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2: 1,
+  sr_AbstractPartialFunction: 1,
+  O: 1,
+  F1: 1,
+  s_PartialFunction: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2.prototype.$classData = $d_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$$anonfun$commitPullImage$2;
 /** @constructor */
 function $c_Lscalatags_Text$tags2$() {
   $c_O.call(this);

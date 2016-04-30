@@ -102,6 +102,14 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     consoleProcess.executeChild("logs", Array("-f",id),cb)
   }
 
+  def pullImage(image:String, tag:String): Future[Boolean] = {
+    val imageName = if(tag != null && tag != "") {
+      s"$image:$tag"
+    } else {
+      image
+    }
+    consoleProcess.executeInteractive("pull",Array(imageName)).map((_) => true)
+  }
   protected def startImageInternal(interactive:Boolean, id: String, command: String, opts: Map[String, String], f:(List[String]) => Future[Array[String]]) = {
     val entrypointArg = makeCmdLineArg("entrypoint", opts("entrypoint"))
     val nameArg = makeCmdLineArg("name", opts("name"))
