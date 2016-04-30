@@ -3,6 +3,7 @@ package mondello.electron.components.pages
 import knockout._
 import knockout.tags.KoText
 import mondello.electron.components.MondelloApp
+import mondello.electron.components.common.DockerBackendInteraction
 import mondello.electron.components.pages.images.dialogs.{LaunchConfigurationDialog, PullImageDialog}
 import mondello.electron.components.pages.images.{ImageFooter, ImagesBrowser, SelectedImage}
 import mondello.models.Image
@@ -13,11 +14,10 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
-import scala.util.Try
 import scalatags.Text.all._
 
 @JSExportAll
-object Images extends KoComponent("docker-images") {
+object Images extends KoComponent("docker-images") with DockerBackendInteraction {
 
   var docker:KoComputed[Docker] = null
   var images:KoObservableArray[Image] = Ko.observableArray()
@@ -95,13 +95,28 @@ object Images extends KoComponent("docker-images") {
 
   def pullImage(image:String, tag:String):Future[Boolean] = {
     println(s"** Pulling image $image:$tag")
-    if(docker() != null) {
+    dockerTry(docker()) { () =>
       docker().pullImage(image,tag)
-    } else {
-      val f = Future(false)
-      f.failed
-      f
     }
+  }
+
+  def destroyImage(image:Image):Future[Boolean] = {
+    println(s"** Destroying image ${image.id}")
+    val f = dockerTry(docker()) { () =>
+      MondelloApp.showModal(s"Destroying image ${image.repository}:${image.tag}")
+      docker().destroyImage(image.id)
+    }
+    f.onSuccess {
+      case (_) =>
+        MondelloApp.closeModal()
+        reloadImages()
+    }
+    f.onFailure {
+      case e:Throwable =>
+        g.alert(s"Error destroying image: ${e.getMessage}")
+        MondelloApp.closeModal()
+    }
+    f
   }
 
   protected def startImageInternal(interactive:Boolean, entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {

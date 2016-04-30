@@ -86,6 +86,10 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     consoleProcess.execute("rm", Array("-f", id)).map((_) => true)
   }
 
+  def destroyImage(id:String):Future[Boolean] = {
+    consoleProcess.execute("rmi", Array("-f",id)).map((_) => true)
+  }
+
   def startContainerInteractive(id:String):Future[Boolean] = {
     consoleProcess.executeInteractive("start", Array("-i", "-a", id)).map((_) => true)
   }

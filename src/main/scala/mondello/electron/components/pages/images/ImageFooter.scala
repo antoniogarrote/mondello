@@ -69,10 +69,12 @@ object ImageFooter extends KoComponent("image-footer") {
 
   def destroyImage() = {
     println("** Destroy image")
+    Images.destroyImage(selectedImage())
   }
 
   def pullCurrentImage() = {
     println("** Pull Current Image")
+    Images.pullImage(selectedImage().repository, selectedImage().tag)
   }
 
   def startImageDetached() = {

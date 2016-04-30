@@ -16,7 +16,6 @@ import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
-import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 
 @JSExportAll
 object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
