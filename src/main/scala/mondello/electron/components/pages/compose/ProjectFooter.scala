@@ -1,12 +1,17 @@
 package mondello.electron.components.pages.compose
 
 import knockout.{KoComponent, KoObservable}
+import mondello.electron.components.MondelloApp
+import mondello.electron.components.pages.{Compose, Containers}
 import mondello.models.Project
 
 import scala.scalajs.js.annotation.JSExportAll
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
+import scala.scalajs.js.Dynamic.{global => g}
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
+
 
 @JSExportAll
 object ProjectFooter extends KoComponent("project-footer") {
@@ -52,11 +57,24 @@ object ProjectFooter extends KoComponent("project-footer") {
     println("* destroy project")
   }
 
-  def upDetached() = {
-    println("* up project detached")
-  }
+  def upDetached() = upInternal(detached = true)
 
-  def upAttached() = {
+  def upAttached() = upInternal(detached = false)
+
+  def upInternal(detached:Boolean) = {
     println("* up project attached")
+    MondelloApp.showModal("Starting selected services detached")
+    val f = Compose.upSelectedServices(detached)
+    f.onSuccess {
+      case _:Boolean =>
+        MondelloApp.closeModal()
+        MondelloApp.reloadSelectedMachine()
+    }
+
+    f.onFailure {
+      case e:Throwable =>
+        MondelloApp.closeModal()
+        g.alert(s"Error starting services: ${e.getMessage}")
+    }
   }
 }

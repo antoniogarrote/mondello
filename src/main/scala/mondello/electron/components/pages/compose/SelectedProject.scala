@@ -4,19 +4,24 @@ import knockout.{KoComponent, KoObservable}
 import mondello.electron.components.common.TableRenderer
 import mondello.models.{Project, Service}
 
+import scala.collection.mutable
 import scala.scalajs.js.{Any, Dictionary}
 import scala.scalajs.js.annotation.JSExportAll
 import scalatags.Text.all._
 import scalatags.Text.attrs
+import scala.scalajs.js.Dynamic.{global => g}
 
 
 @JSExportAll
 object SelectedProject extends KoComponent("selected-project") with TableRenderer {
 
   var selectedProject:KoObservable[Project] = null
+  var selectedServices:mutable.Map[String,Service] = null
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     selectedProject = params("selectedProject").asInstanceOf[KoObservable[Project]]
+    selectedServices = params("selectedServices").asInstanceOf[mutable.Map[String,Service]]
+    selectedProject.subscribe( (_:Project) => selectedServices.clear())
   }
 
   override def template: String = {
@@ -98,12 +103,26 @@ object SelectedProject extends KoComponent("selected-project") with TableRendere
 
   def selectAllServices()= {
     println("* select all services")
+    val oldValue = g.$("#select-all-input").prop("checked").asInstanceOf[Boolean]
+    g.$("#services-selection th input").prop("checked",oldValue)
+    if(oldValue) {
+      for(service <- selectedProject().services)
+        selectedServices.update(service.id, service)
+    } else {
+      for(service <- selectedProject().services)
+        selectedServices.remove(service.id)
+    }
+    true
   }
 
   def selectService():KoCallback[Service] = koCallback { (service) =>
-    println("* SELECTING SERVICE ")
-    println(service)
-    false
+    println(s"* Selecting service ${service.id} ")
+    if(selectedServices.contains(service.id)) {
+      selectedServices.remove(service.id)
+    } else {
+      selectedServices.update(service.id, service)
+    }
+    true
   }
 
 

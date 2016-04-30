@@ -136,4 +136,13 @@ object MondelloApp extends KoComponent("mondello-app") {
     }
   }
 
+  def reloadAll() = {
+    Machines.reloadMachines()
+  }
+
+  def reloadSelectedMachine() = {
+    Images.reloadImages()
+    Containers.reloadContainers()
+  }
+
 }
