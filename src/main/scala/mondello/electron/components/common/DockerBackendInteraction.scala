@@ -6,9 +6,9 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 
 trait DockerBackendInteraction {
 
-  def dockerTry(docker:Docker)(f:() => Future[Boolean]): Future[Boolean] = {
+  def dockerTry(docker:Docker)(f: => Future[Boolean]): Future[Boolean] = {
     if(docker != null) {
-      f()
+      f
     } else {
       val f = Future(false)
       f.failed

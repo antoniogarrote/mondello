@@ -254,12 +254,14 @@
 }
 
 #build-image-path {
-  width: 491px;
+  width: 485px;
+  margin-right: 10px;
 }
 
 #build-image-path-btn {
   height: 31px;
   float: right;
+  margin-left: -10px;
 }
 /*
  Adjustments

@@ -95,14 +95,21 @@ object Images extends KoComponent("docker-images") with DockerBackendInteraction
 
   def pullImage(image:String, tag:String):Future[Boolean] = {
     println(s"** Pulling image $image:$tag")
-    dockerTry(docker()) { () =>
+    dockerTry(docker()) {
       docker().pullImage(image,tag)
+    }
+  }
+
+  def buildImage(dirname:String, tag:String, args:String, rm:Boolean):Future[Boolean] = {
+    println(s"** Building image at path $dirname")
+    dockerTry(docker()) {
+      docker().buildimage(dirname, tag, args, rm)
     }
   }
 
   def destroyImage(image:Image):Future[Boolean] = {
     println(s"** Destroying image ${image.id}")
-    val f = dockerTry(docker()) { () =>
+    val f = dockerTry(docker()) {
       MondelloApp.showModal(s"Destroying image ${image.repository}:${image.tag}")
       docker().destroyImage(image.id)
     }

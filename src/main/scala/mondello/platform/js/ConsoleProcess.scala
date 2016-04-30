@@ -23,7 +23,7 @@ object Implicits {
 
       val commandLine = commandString(environment.cmdPath, command, commandArgs)
 
-      println(s"* Running command '$command'")
+      println(s"* Running command '$command' ${commandArgs.mkString(",")}")
       var output = ""
       var err: String = null
 
@@ -84,14 +84,14 @@ object Implicits {
 
     override def executeChild(command: String, commandArgs: Array[String], cb: (String) => Unit)(implicit environment: Environment): Any = {
       val spawnArgsArray = (List(command) ++ commandArgs).toArray
-      val spawnArgs:js.Array[String] =  (new JSConverters.JSRichGenTraversableOnce[String](spawnArgsArray)).toJSArray
+      val spawnArgs:js.Array[String] =  new JSConverters.JSRichGenTraversableOnce[String](spawnArgsArray).toJSArray
       val child = g.require("child_process").spawn(environment.cmdPath, spawnArgs, js.Dictionary("shell" -> true))
       val jscb:scalajs.js.Function1[js.Any,Unit] = {(data:js.Any) => cb(data.toString) }
       val closecb:scalajs.js.Function1[js.Any,Unit] = {(_:js.Any) => cb(null) }
 
-      child.stdout.on("data", jscb);
-      child.stderr.on("data", jscb);
-      child.on("close", closecb);
+      child.stdout.on("data", jscb)
+      child.stderr.on("data", jscb)
+      child.on("close", closecb)
 
       child
     }

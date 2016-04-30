@@ -1,16 +1,22 @@
 package mondello.electron.components.pages.images.dialogs
 
 import knockout.{Ko, KoComponent, KoObservable}
+import mondello.electron.components.MondelloApp
+import mondello.electron.components.pages.Images
 
+import scala.scalajs.js
 import scala.scalajs.js.{Any, Dictionary}
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
+
 @JSExportAll
 object BuildImageDialog extends KoComponent("build-image-dialog") {
 
+  val dirname:KoObservable[String] = Ko.observable("")
   val buildArgs:KoObservable[String] = Ko.observable("")
   val imageTag:KoObservable[String] = Ko.observable("latest")
   val removeContainers:KoObservable[Boolean] = Ko.observable(true)
@@ -24,6 +30,14 @@ object BuildImageDialog extends KoComponent("build-image-dialog") {
       ),
       div(`class`:="window-content",
         form(`class`:="padded-less",
+          div(`class`:="form-group",
+            label("Dockerfile"),
+            input(id:="build-image-path",`class`:="form-control", attrs.data.bind:="value: dirname"),
+            button(id:="build-image-path-btn",`class`:="btn btn-form btn-default pull-right",
+              attrs.data.bind:="click: openSelectDockerfile",
+              span(`class`:="icon icon-drive")
+            )
+          ),
           div(`class`:="form-group",
             label("Tag"),
             input(id:="new-machine-name", `class`:="form-control",attrs.data.bind:="value: imageTag")
@@ -73,7 +87,48 @@ object BuildImageDialog extends KoComponent("build-image-dialog") {
     hide()
   }
 
+  def openSelectDockerfile() = {
+    println("* Opening dockerfile")
+    val options = js.Dictionary(
+      "title" -> "Select Dockerfile to build",
+      "properties" -> js.Array("openFile")
+    )
+    var filenames = g.require("remote").dialog.showOpenDialog(options).asInstanceOf[js.UndefOr[js.Array[String]] ]
+    if(filenames.isDefined) {
+      var filename = filenames.get(0)
+      println(s"* Selected $filename")
+      val sep = g.require("path").sep.asInstanceOf[String]
+      val parts = filename.split(sep)
+      val last = parts.last
+      val projectDir = parts.dropRight(1).mkString(sep)
+      println(s"* Last: $last")
+      println(s"* Project dir: $projectDir")
+      if(last == "Dockerfile") {
+        dirname(projectDir)
+      } else {
+        g.alert("You must select a Dockerfile")
+      }
+    }
+    false
+  }
+
   def commitBuildImage() = {
-    hide()
+    MondelloApp.showModal("Building Dockerfile")
+    if(dirname != null && dirname() != "") {
+      val f = Images.buildImage(dirname(), imageTag(), buildArgs(), removeContainers())
+      f.onSuccess {
+        case _ =>
+          hide()
+          MondelloApp.closeModal()
+          Images.reloadImages()
+      }
+      f.onFailure {
+        case e:Throwable =>
+          g.alert(s"Error building image: ${e.getMessage}")
+          MondelloApp.closeModal()
+      }
+    } else {
+      g.alert("You must select a Dockerfile to build")
+    }
   }
 }

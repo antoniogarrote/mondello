@@ -14,7 +14,7 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
   def containers:Future[List[Container]] = {
     val formatArg = "--format=\"{{.ID}}\\t{{.Image}}\\t{{.Command}}\\t{{.CreatedAt}}\\t{{.RunningFor}}\\t{{.Ports}}\\t{{.Status}}\\t{{.Size}}\\t{{.Names}}\\t{{.Labels}}\""
     consoleProcess.execute("ps",Array[String]("-a",formatArg)).map { (lines:Array[String]) =>
-      lines.map(parseContainerLine(_)).toList
+      lines.filter(_ != "").map(parseContainerLine(_)).toList
     }
   }
 
@@ -36,13 +36,17 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
   }
 
   def inspect(imageIds:List[String]): Future[List[js.Dynamic]] = {
-    consoleProcess.execute("inspect", imageIds.toArray).map { (lines) =>
-      val parsedInspect = js.JSON.parse(lines.mkString("")).asInstanceOf[js.Array[js.Dynamic]]
-      val resultInspect = mutable.Buffer[js.Dynamic]()
-      for(inspect <- parsedInspect){
-        resultInspect.append(inspect)
+    if(imageIds.nonEmpty) {
+      consoleProcess.execute("inspect", imageIds.toArray).map { (lines) =>
+        val parsedInspect = js.JSON.parse(lines.mkString("")).asInstanceOf[js.Array[js.Dynamic]]
+        val resultInspect = mutable.Buffer[js.Dynamic]()
+        for (inspect <- parsedInspect) {
+          resultInspect.append(inspect)
+        }
+        resultInspect.toList
       }
-      resultInspect.toList
+    } else {
+      Future[List[js.Dynamic]](List[js.Dynamic]())
     }
   }
 
@@ -114,6 +118,15 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     }
     consoleProcess.executeInteractive("pull",Array(imageName)).map((_) => true)
   }
+
+  def buildimage(dirname:String, tag:String, args:String, rm:Boolean): Future[Boolean] = {
+    val tagArg = makeCmdLineArg("tag", tag)
+    val buildArg = makeCmdLineArg("build-arg", args)
+    val rmArg = makeCmdLineArg("rm", rm.toString)
+
+    consoleProcess.executeInteractive("build", Array(tagArg, buildArg, rmArg, dirname)).map((_) => true)
+  }
+
   protected def startImageInternal(interactive:Boolean, id: String, command: String, opts: Map[String, String], f:(List[String]) => Future[Array[String]]) = {
     val entrypointArg = makeCmdLineArg("entrypoint", opts("entrypoint"))
     val nameArg = makeCmdLineArg("name", opts("name"))

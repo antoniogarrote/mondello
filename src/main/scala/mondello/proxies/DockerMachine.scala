@@ -48,7 +48,7 @@ class DockerMachine(env: Environment)(implicit ec:ExecutionContext, consoleProce
         new Machine(name, active, driver, state, null, null, null, null)
       case Array(name, active, driver, state, url) =>
         new Machine(name, active, driver, state, url, null, null, null)
-      case Array(name, active, driver, state, url, swarm) =>
+      case Array(name, active, driver, state, url, swarm, _*) =>
         new Machine(name, active, driver, state, url, swarm, null, null)
       case parts => throw new Exception(s"Unknown docker-machine line format: size ${parts.length}")
     }
