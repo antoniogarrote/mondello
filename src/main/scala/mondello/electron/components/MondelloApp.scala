@@ -14,6 +14,7 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js.Dynamic.{global => g}
 import mondello.platform.js.Implicits.ConsoleProcess
 
+import scala.concurrent.Future
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
@@ -111,6 +112,28 @@ object MondelloApp extends KoComponent("mondello-app") {
 
   def closeModal() = {
     g.$("#modal").hide()
+  }
+
+  // Helper functions
+
+  def login(username:String, index:String, password:String): Future[Boolean] = {
+    if(docker() != null) {
+      docker().login(index, username, password)
+    } else {
+      val f = Future[Boolean](false)
+      f.failed
+      f
+    }
+  }
+
+  def logout(index:String): Future[Boolean] = {
+    if(docker() != null) {
+      docker().logout(index)
+    } else {
+      val f = Future[Boolean](false)
+      f.failed
+      f
+    }
   }
 
 }

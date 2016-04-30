@@ -236,6 +236,10 @@
   min-width: 50%;
 }
 
+#login-credentials-body td {
+  text-align: center;
+}
+
 #login-dialog form {
   max-width: 50%;
   min-width: 50%;

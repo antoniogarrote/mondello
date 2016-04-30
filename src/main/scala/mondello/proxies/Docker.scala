@@ -56,6 +56,18 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     result.future
   }
 
+  def login(service:String, username:String, password:String):Future[Boolean] = {
+    consoleProcess.execute("login", Array(s"--password=$password", s"--username=$username", service)).map {
+      (_) => true
+    }
+  }
+
+  def logout(service:String) = {
+    consoleProcess.execute("logout", Array(service)).map {
+      (_) => true
+    }
+  }
+
   // Callbacks
 
   def startImageInteractive(id: String, command: String, opts: Map[String, String]):Future[Boolean] = {

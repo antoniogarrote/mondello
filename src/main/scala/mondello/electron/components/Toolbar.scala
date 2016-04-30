@@ -16,6 +16,8 @@ import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
+
 @JSExportAll
 object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
 
@@ -67,19 +69,19 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
         span(`class`:="icon icon-drive"),
         raw("&nbsp; Machines")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'images','btn-disabled':(selectedMachine() && selectedMachine().state !== 'Running')},"+
+      button(attrs.data.bind:="css: {active: page() === 'images','btn-disabled':(!selectedMachine() || selectedMachine().state !== 'Running')},"+
         " click: function(){ selectPage('images') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-box"),
         raw("&nbsp; Images")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'containers','btn-disabled':(selectedMachine() && selectedMachine().state !== 'Running')}," +
+      button(attrs.data.bind:="css: {active: page() === 'containers','btn-disabled':(!selectedMachine() || selectedMachine().state !== 'Running')}," +
         " click: function(){ selectPage('containers') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-rocket"),
         raw("&nbsp; Containers")
       ),
-      button(attrs.data.bind:="css: {active: page() === 'compose','btn-disabled':(selectedMachine() && selectedMachine().state !== 'Running')}," +
+      button(attrs.data.bind:="css: {active: page() === 'compose','btn-disabled':(!selectedMachine() || selectedMachine().state !== 'Running')}," +
         " click: function(){ selectPage('compose') }",
         `class`:="btn btn-default",
         span(`class`:="icon icon-pencil"),
@@ -137,7 +139,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
         raw("&nbsp; Settings")
       ),
       button(`class`:="btn btn-default pull-right",
-        attrs.data.bind:="click: displayLogin",
+        attrs.data.bind:="click: displayLogin, css:{'btn-disabled':(!selectedMachine() || selectedMachine().state !== 'Running')}",
         span(`class`:="icon icon-users"),
         raw("&nbsp; Credentials")
       )
