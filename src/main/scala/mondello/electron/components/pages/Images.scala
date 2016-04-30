@@ -85,12 +85,12 @@ object Images extends KoComponent("docker-images") with DockerBackendInteraction
 
   def startImageInteractive(entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
     println("** Start Image Interactive")
-    startImageInternal(interactive = true, entrypoint, name,link, expose, publish, envs, command)
+    startImageInternal(interactive = true, neverFail=false, entrypoint, name,link, expose, publish, envs, command)
   }
 
   def startImage(entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
     println("** Start Image")
-    startImageInternal(interactive = false, entrypoint, name,link, expose, publish, envs, command)
+    startImageInternal(interactive = false, neverFail=true, entrypoint, name,link, expose, publish, envs, command)
   }
 
   def pullImage(image:String, tag:String):Future[Boolean] = {
@@ -126,7 +126,7 @@ object Images extends KoComponent("docker-images") with DockerBackendInteraction
     f
   }
 
-  protected def startImageInternal(interactive:Boolean, entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
+  protected def startImageInternal(interactive:Boolean, neverFail:Boolean=false, entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
     if(selectedImage() != null) {
       MondelloApp.showModal(s"Starting image ${this.selectedImage().repository}:${this.selectedImage().tag}")
       val id = selectedImage().id
@@ -151,8 +151,13 @@ object Images extends KoComponent("docker-images") with DockerBackendInteraction
 
       f.onFailure {
         case e =>
-          g.alert(e.getMessage)
-          MondelloApp.closeModal()
+          if(neverFail) {
+            g.alert(s"The process returned an error, run it interactive for more info:\n\n${e.getMessage.substring(0,500)}${if(e.getMessage.length >500){"..."}}")
+            MondelloApp.closeModal()
+          } else {
+            g.alert(e.getMessage)
+            MondelloApp.closeModal()
+          }
       }
 
       f

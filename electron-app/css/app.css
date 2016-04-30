@@ -124,6 +124,7 @@
   height: 100%;
   width: 6px;
   display: inline-block;
+  margin: 1px;
 
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
@@ -263,6 +264,13 @@
   float: right;
   margin-left: -10px;
 }
+
+.list-group-with-elems {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #ddd;
+}
+
 /*
  Adjustments
 */

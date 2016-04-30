@@ -3,6 +3,7 @@ package mondello.electron.components.pages
 import knockout._
 import knockout.tags.KoText
 import mondello.electron.components.MondelloApp
+import mondello.electron.components.common.DockerBackendInteraction
 import mondello.electron.components.pages.containers.{ContainerFooter, ContainersBrowser, SelectedContainer}
 import mondello.electron.components.pages.logs.ContainerLogs
 import mondello.models.Container
@@ -17,7 +18,7 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js
 
 @JSExportAll
-object Containers extends KoComponent("docker-containers"){
+object Containers extends KoComponent("docker-containers") with DockerBackendInteraction {
 
   var docker:KoComputed[Docker] = null
   var containers:KoObservableArray[Container] = Ko.observableArray()
@@ -111,6 +112,12 @@ object Containers extends KoComponent("docker-containers"){
 
   def logContainer(container:Container, cb:(String) => Unit): js.Any = {
     docker().logsChild(container.id, cb)
+  }
+
+  def destroyContainer(container:Container) = {
+    dockerTry(docker()) {
+      docker().destroyContainer(container.id)
+    }
   }
 
   protected def runContainerInternal(container:Container, cf:()=>Future[Boolean]) = {

@@ -39,7 +39,7 @@ object ContainersBrowser extends KoComponent("containers-browser") {
   }
 
   override def template: String = {
-    ul(`class`:="list-group",
+    ul(`class`:="list-group",attrs.data.bind:="css:{'list-group-with-elems':!loadingContainers()}",
       li(`class`:="list-group-header",
         input(id:="containerSearchBox",`class`:="form-control", `type`:="text", placeholder:="Containers Search",
           attrs.data.bind:="textInput: searchList.elementSearch"

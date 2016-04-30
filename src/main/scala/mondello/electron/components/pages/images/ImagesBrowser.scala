@@ -34,7 +34,7 @@ object ImagesBrowser extends KoComponent("images-browser") {
   }
 
   override def template: String = {
-    ul(`class`:="list-group",
+    ul(`class`:="list-group",attrs.data.bind:="css:{'list-group-with-elems':!loadingImages()}",
       li(`class`:="list-group-header",
         input(id:="imageSearchBox",`class`:="form-control", `type`:="text", placeholder:="Images Search",
           attrs.data.bind:="textInput: searchList.elementSearch"

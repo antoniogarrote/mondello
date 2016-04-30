@@ -18,7 +18,7 @@ object Implicits {
       "export PATH=\"" + pathExport + "\"" + s"; $cmdPath $command $commandArgsStr"
     }
 
-    def execute(command: String, commandArgs: Array[String] = Array[String]())(implicit environment: Environment): Future[Array[String]] = {
+    def execute(command: String, commandArgs: Array[String] = Array[String](), neverFail:Boolean = false)(implicit environment: Environment): Future[Array[String]] = {
       val result = Promise[Array[String]]()
 
       val commandLine = commandString(environment.cmdPath, command, commandArgs)
@@ -35,10 +35,17 @@ object Implicits {
       })
 
       child.on("close", { (code: js.Object, signal: js.Object) =>
-        if (err == null)
-          result.success(output.split("\n"))
-        else
-          result.failure(new Exception(err))
+        if(neverFail) {
+          if (err == null)
+            result.success(output.split("\n"))
+          else
+            result.failure(new Exception(output))
+        } else {
+          if (err == null)
+            result.success(output.split("\n"))
+          else
+            result.failure(new Exception(err))
+        }
       })
 
       result.future

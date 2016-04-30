@@ -1,9 +1,12 @@
 package mondello.electron.components.pages.containers
 
 import knockout.{KoComponent, KoObservable}
+import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.Containers
 import mondello.models.Container
 
+import scala.scalajs.js.Dynamic.{global => g}
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
@@ -64,6 +67,21 @@ object ContainerFooter extends KoComponent("container-footer") {
 
   def destroyContainer() = {
     println("* Destroy container")
+    if(selectedContainer() != null) {
+      MondelloApp.showModal(s"Destroying container ${selectedContainer().names}")
+      val f = Containers.destroyContainer(selectedContainer())
+      f.onSuccess {
+        case _ =>
+          MondelloApp.closeModal()
+          Containers.reloadContainers()
+      }
+
+      f.onFailure {
+        case e:Throwable =>
+          g.alert(s"Error destroying container ${e.getMessage}")
+          MondelloApp.closeModal()
+      }
+    }
   }
 
   def stopContainer() = {

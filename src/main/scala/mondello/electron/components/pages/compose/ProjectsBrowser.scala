@@ -41,7 +41,7 @@ object ProjectsBrowser extends KoComponent("comppose-projects") {
   }
 
   override def template: String = {
-    ul(`class`:="list-group",
+    ul(`class`:="list-group",attrs.data.bind:="css:{'list-group-with-elems':!loadingProjects()}",
       li(`class`:="list-group-header",
         input(id:="projectSearchBox",`class`:="form-control", `type`:="text", placeholder:="Projects Search",
           attrs.data.bind:="textInput: searchList.elementSearch"

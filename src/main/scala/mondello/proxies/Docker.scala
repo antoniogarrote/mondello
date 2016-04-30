@@ -79,7 +79,7 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
   }
 
   def startImage(id: String, command: String, opts: Map[String, String]):Future[Boolean] = {
-    startImageInternal(interactive = false, id, command,opts, (args) => consoleProcess.execute("run", args.toArray))
+    startImageInternal(interactive = false, id, command,opts, (args) => consoleProcess.execute("run", args.toArray,neverFail = true))
   }
 
   def stopContainer(id:String):Future[Boolean] = {
@@ -137,6 +137,8 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
 
     val interactiveArgs = if(interactive) List("--interactive=true", "--tty") else List[String]()
     val args =  interactiveArgs ++ List(entrypointArg, nameArg, linkArg, exposeArg, publishArg) ++ envsArg ++ List(id, command)
+    println("*** STARGIN IMAGE WITH ARGS")
+    println(args)
     f(args).map((_) => true)
   }
   protected def makeCmdLineArg(name:String, value:String): String = {
