@@ -16700,6 +16700,10 @@ $c_Lmondello_electron_components_Toolbar$.prototype.commonButtons__Lscalatags_ge
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$showNewMachine__O = (function() {
   return this.showNewMachine__sjs_js_Function1()
 });
+$c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$reload__O = (function() {
+  $m_Lmondello_electron_components_MondelloApp$();
+  return $m_Lmondello_electron_components_pages_Machines$().reloadMachines__s_concurrent_Future()
+});
 $c_Lmondello_electron_components_Toolbar$.prototype.displaySettings__V = (function() {
   (0, this.showSettings$2)(true)
 });
@@ -16707,27 +16711,45 @@ $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$pullImage
   return this.pullImage__sjs_js_Dynamic()
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.template__T = (function() {
-  var jsx$8 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().header__Lscalatags_generic_TypedTag());
+  var jsx$17 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().header__Lscalatags_generic_TypedTag());
   var this$1 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$7 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "toolbar toolbar-header", ev);
-  var jsx$6 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().h1__Lscalatags_generic_TypedTag());
+  var jsx$16 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "toolbar toolbar-header", ev);
+  var jsx$15 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().h1__Lscalatags_generic_TypedTag());
   var this$2 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$1 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$5 = jsx$6.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "title", ev$1), ($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Mondello"))]));
-  var jsx$4 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
+  var jsx$14 = jsx$15.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "title", ev$1), ($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Mondello"))]));
+  var jsx$13 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag());
   var this$4 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
   var ev$2 = $m_Lscalatags_Text$all$().stringAttr$1;
-  var jsx$3 = jsx$4.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$4, "toolbar-actions", ev$2), this.commonButtons__Lscalatags_generic_Frag(), this.machinesToolbar__Lscalatags_generic_Frag(), this.imagesToolbar__Lscalatags_generic_Frag(), this.containersToolbar__Lscalatags_generic_Frag(), this.composeToolbar__Lscalatags_generic_Frag(), this.rightButtons__Lscalatags_generic_Frag()]));
-  var this$5 = $m_Lmondello_electron_components_pages_machines_dialogs_NewMachineDialog$();
-  var tagName = this$5.tagName$1;
+  var jsx$12 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$4, "toolbar-actions", ev$2);
+  var jsx$11 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$5 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$3 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$10 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "span-toolbar-actions", ev$3);
+  var jsx$9 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag());
+  var this$6 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$4 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$8 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$6, "btn btn-default", ev$4);
+  var this$7 = $m_Lscalatags_Text$all$().title__Lscalatags_generic_Attr();
+  var ev$5 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$7 = new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$7, "Reload Docker information", ev$5);
+  var jsx$6 = $as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().span__Lscalatags_generic_TypedTag());
+  var this$8 = $m_Lscalatags_Text$all$().$class__Lscalatags_generic_Attr();
+  var ev$6 = $m_Lscalatags_Text$all$().stringAttr$1;
+  var jsx$5 = jsx$6.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$8, "icon icon-arrows-ccw", ev$6)]));
+  var jsx$4 = $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: reload", $m_Lscalatags_Text$all$().stringAttr$1);
+  var this$9 = $m_Lscalatags_Text$all$();
+  var jsx$3 = jsx$13.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$12, jsx$11.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$10, jsx$9.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$8, jsx$7, jsx$5, jsx$4, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp; Reload")]))])), this.commonButtons__Lscalatags_generic_Frag(), this.machinesToolbar__Lscalatags_generic_Frag(), this.imagesToolbar__Lscalatags_generic_Frag(), this.containersToolbar__Lscalatags_generic_Frag(), this.composeToolbar__Lscalatags_generic_Frag(), this.rightButtons__Lscalatags_generic_Frag()]));
+  var this$11 = $m_Lmondello_electron_components_pages_machines_dialogs_NewMachineDialog$();
+  var tagName = this$11.tagName$1;
   var jsx$2 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName, $m_sci_Nil$(), false).apply__sc_Seq__Lscalatags_Text$TypedTag($m_sci_Nil$());
-  var this$7 = $m_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$();
-  var tagName$1 = this$7.tagName$1;
+  var this$13 = $m_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$();
+  var tagName$1 = this$13.tagName$1;
   var jsx$1 = new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$1, $m_sci_Nil$(), false).apply__sc_Seq__Lscalatags_Text$TypedTag($m_sci_Nil$());
-  var this$9 = $m_Lmondello_electron_components_pages_images_dialogs_BuildImageDialog$();
-  var tagName$2 = this$9.tagName$1;
-  return jsx$8.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$7, jsx$5, jsx$3, jsx$2, jsx$1, new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$2, $m_sci_Nil$(), false).apply__sc_Seq__Lscalatags_Text$TypedTag($m_sci_Nil$())])).toString__T()
+  var this$15 = $m_Lmondello_electron_components_pages_images_dialogs_BuildImageDialog$();
+  var tagName$2 = this$15.tagName$1;
+  return jsx$17.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$16, jsx$14, jsx$3, jsx$2, jsx$1, new $c_Lscalatags_Text$TypedTag().init___T__sci_List__Z(tagName$2, $m_sci_Nil$(), false).apply__sc_Seq__Lscalatags_Text$TypedTag($m_sci_Nil$())])).toString__T()
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$imagesToolbar__O = (function() {
   return this.imagesToolbar__Lscalatags_generic_Frag()
@@ -17072,6 +17094,9 @@ $c_Lmondello_electron_components_Toolbar$.prototype.displaySettings = (function(
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.showNewMachine = (function() {
   return this.$$js$exported$meth$showNewMachine__O()
+});
+$c_Lmondello_electron_components_Toolbar$.prototype.reload = (function() {
+  return this.$$js$exported$meth$reload__O()
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.pullImage = (function() {
   return this.$$js$exported$meth$pullImage__O()

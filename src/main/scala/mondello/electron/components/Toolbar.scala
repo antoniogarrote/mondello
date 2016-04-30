@@ -46,6 +46,12 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
     header(`class`:="toolbar toolbar-header",
       h1(`class`:="title", "Mondello"),
       div(`class`:="toolbar-actions",
+        span(`class`:="span-toolbar-actions",
+          button(`class`:="btn btn-default",title:="Reload Docker information",
+            span(`class`:="icon icon-arrows-ccw"), attrs.data.bind:="click: reload",
+            raw("&nbsp; Reload")
+          )
+        ),
         commonButtons(),
         machinesToolbar(),
         imagesToolbar(),
@@ -160,6 +166,8 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
       ()
     }
   }
+
+  def reload() = MondelloApp.reloadAll()
 
   def pullImage() = {
     println("* Donwload image dialog")
