@@ -32,6 +32,16 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
     bufferSize = params("bufferSize").asInstanceOf[KoObservable[Integer]]
     Toolbar.displayContainerLogs = displayContainerLogs
     containers = params("containers").asInstanceOf[KoObservableArray[Container]]
+    displayContainerLogs.subscribe((displaying:Boolean) =>
+        if (displaying) {
+          println("DISPLAING")
+          for(id <- childrenRegistry.keys) {
+            g.setTimeout({ () =>
+              g.$(s"#container-log-$id").prop("checked",true)
+            },50)
+          }
+        }
+    )
   }
 
   override def template: String = {
