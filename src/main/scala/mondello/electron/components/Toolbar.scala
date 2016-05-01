@@ -148,6 +148,11 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   def rightButtons():Frag = {
     span(`class`:="span-toolbar-actions",
       button(`class`:="btn btn-default pull-right",
+        attrs.data.bind:="click: navigateToCode",
+        title:="See source code in Github",
+        span(`class`:="icon icon-github")
+      ),
+      button(`class`:="btn btn-default pull-right",
         title:="Mondello settings",
         attrs.data.bind:="click: displaySettings",
         span(`class`:="icon icon-cog"),
@@ -223,5 +228,9 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
         }
       }
     }
+  }
+
+  def navigateToCode() = {
+    g.require("electron").shell.openExternal("https://github.com/antoniogarrote/mondello")
   }
 }
