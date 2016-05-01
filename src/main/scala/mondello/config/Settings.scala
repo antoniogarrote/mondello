@@ -1,6 +1,6 @@
 package mondello.config
 
-import io.atom.electron.IPCRenderer
+import mondello.config.Log.trace
 import mondello.electron.{Main, Messages, Renderer}
 import mondello.electron.components.common.FileLoader
 
@@ -21,14 +21,14 @@ object Settings extends FileLoader {
   var error:String = null
 
   def loadSettings():Future[Settings.type] = {
-    println(s"* Reading settings from $mondelloSettingsPath")
+    trace(s"* Reading settings from $mondelloSettingsPath")
     val p:Promise[Settings.type] = Promise()
     try {
       val fs = g.require("fs")
       loadFile(mondelloSettingsPath).map[Settings.type] { (data: String) =>
         var parsed = g.JSON.parse(data).asInstanceOf[js.Dictionary[js.Any]]
-        println("* Found settings")
-        println(data)
+        trace("* Found settings")
+        trace(data)
         dockerHome = parsed("dockerHome").asInstanceOf[String]
         driversHome = parsed("driversHome").asInstanceOf[String]
         val oldCompose = parsed("compose").asInstanceOf[js.Array[String]]
@@ -41,13 +41,13 @@ object Settings extends FileLoader {
         this
       }.onFailure {
         case e: Throwable =>
-          println("* Settings file not found, returning defaults")
+          trace("* Settings file not found, returning defaults")
           this.error = e.toString
           p.success(this)
       }
     } catch {
       case e: Throwable =>
-        println("* Settings file not found, returning defaults")
+        trace("* Settings file not found, returning defaults")
         this.error = e.toString
         p.success(this)
     }
@@ -56,36 +56,36 @@ object Settings extends FileLoader {
   }
 
   def toEnv:Environment = {
-    println("** Generating environment")
+    trace("** Generating environment")
     val dockerPath = (dockerHome ++ "/docker").replaceAllLiterally("//","/")
-    println(s"* Docker path $dockerPath")
+    trace(s"* Docker path $dockerPath")
     val dockerMachinePath = (dockerHome ++ "/docker-machine").replaceAllLiterally("//","/")
-    println(s"* Docker Machine path $dockerMachinePath")
+    trace(s"* Docker Machine path $dockerMachinePath")
     val dockerComposePath = (dockerHome ++ "/docker-compose").replaceAllLiterally("//","/")
-    println(s"* Docker Compose path $dockerComposePath")
+    trace(s"* Docker Compose path $dockerComposePath")
     Environment("", dockerMachinePath, dockerPath, dockerComposePath)
   }
 
   def saveProject(file:String) = {
-    println("* Saving project")
+    trace("* Saving project")
     compose += file
     compose = compose.distinct
     persist()
   }
 
   def removeProject(file:String) = {
-    println(s"* Removing project $file")
+    trace(s"* Removing project $file")
     compose -= file
     persist()
   }
 
   def persist() = {
-    println("* Persisting config")
+    trace("* Persisting config")
     val newState = js.Dictionary[js.Any]("dockerHome" -> dockerHome, "driversHome" -> driversHome)
     val projects = js.Array[String]()
     for(project <- compose) projects.push(project)
     newState.update("compose", projects)
-    println(this)
+    trace(this)
     saveFile(mondelloSettingsPath, g.JSON.stringify(newState).toString)
   }
 

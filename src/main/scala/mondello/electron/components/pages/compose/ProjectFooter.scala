@@ -1,7 +1,7 @@
 package mondello.electron.components.pages.compose
 
 import knockout.{KoComponent, KoObservable}
-import mondello.config.Settings
+import mondello.config.{Log, Settings}
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.{Compose, Containers}
 import mondello.models.Project
@@ -69,7 +69,7 @@ object ProjectFooter extends KoComponent("project-footer") {
   // callbacks
 
   def destroyProject() = {
-    println("* destroy project")
+    Log.trace("* destroy project")
     Settings.removeProject(selectedProject().file)
     Compose.reloadProjects()
   }
@@ -87,7 +87,7 @@ object ProjectFooter extends KoComponent("project-footer") {
   def upAttached() = upInternal(detached = false)
 
   def upInternal(detached:Boolean) = {
-    println("* up project attached")
+    Log.trace("* up project attached")
     MondelloApp.showModal("Starting selected services detached")
     val f = Compose.upSelectedServices(detached)
     f.onSuccess {

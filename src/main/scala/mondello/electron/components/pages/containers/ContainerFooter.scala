@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.containers
 
 import knockout.{KoComponent, KoObservable}
+import mondello.config.Log
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.Containers
 import mondello.models.Container
@@ -71,7 +72,7 @@ object ContainerFooter extends KoComponent("container-footer") {
   // Callbacks
 
   def destroyContainer() = {
-    println("* Destroy container")
+    Log.trace("* Destroy container")
     if(selectedContainer() != null) {
       MondelloApp.showModal(s"Destroying container ${selectedContainer().names}")
       val f = Containers.destroyContainer(selectedContainer())
@@ -90,21 +91,21 @@ object ContainerFooter extends KoComponent("container-footer") {
   }
 
   def stopContainer() = {
-    println("* Stop Container")
+    Log.trace("* Stop Container")
     Containers.stopContainer(ContainerFooter.selectedContainer())
   }
 
   def attachContainer() = {
-    println("* Attach Container")
+    Log.trace("* Attach Container")
   }
 
   def startContainerDetached() = {
-    println("* Start Container Detached")
+    Log.trace("* Start Container Detached")
     Containers.startContainer(ContainerFooter.selectedContainer())
   }
 
   def startContainerInteractive() = {
-    println("* Start Container Interactive")
+    Log.trace("* Start Container Interactive")
     Containers.startContainerInteractive(ContainerFooter.selectedContainer())
   }
 }

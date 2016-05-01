@@ -3,6 +3,7 @@ package mondello.electron
 import scala.scalajs.js
 import js.Dynamic.{global => g}
 import io.atom.electron._
+import mondello.config.Log
 import mondello.electron.components.common.FileLoader
 
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
@@ -20,11 +21,11 @@ object Main extends js.JSApp with FileLoader {
     f.onSuccess {
       case (data: String) =>
         var parsed = g.JSON.parse(data).asInstanceOf[js.Dictionary[js.Any]]
-        println("* Found settings")
-        println(data)
+        Log.trace("* Found settings")
+        Log.trace(data)
         val dockerHome = parsed("dockerHome").asInstanceOf[String]
         val driversHome = parsed("driversHome").asInstanceOf[String]
-        println("* Setting the path")
+        Log.trace("* Setting the path")
         val origPath = g.process.env.asInstanceOf[js.Dictionary[js.Any]]("PATH")
         g.process.env.asInstanceOf[js.Dictionary[js.Any]].update("PATH",origPath+":"+dockerHome+":"+driversHome)
     }
@@ -34,7 +35,7 @@ object Main extends js.JSApp with FileLoader {
 
   def main(): Unit = {
 
-    println(s"** Mondello main process, path: $mondelloSettingsPath")
+    Log.trace(s"** Mondello main process, path: $mondelloSettingsPath")
 
     val app = g.require("app").asInstanceOf[App]  // Module to control application life.
     bootstrap(app)
@@ -42,9 +43,6 @@ object Main extends js.JSApp with FileLoader {
     // Keep a global reference of the window object, if you don't, the window will
     // be closed automatically when the JavaScript object is GCed.
     var mainWindow: BrowserWindow = null
-
-    // Report crashes to our server.
-    g.require("crash-reporter").start()
 
     Messages.subscribeMondelloSettingsPath(mondelloSettingsPath)
 
@@ -69,8 +67,11 @@ object Main extends js.JSApp with FileLoader {
       // and load the index.html of the app.
       mainWindow.loadURL("file://" + g.__dirname + "/index.html")
 
-      // Open the devtools.
-      mainWindow.openDevTools()
+      if(g.process.env.asInstanceOf[js.Dictionary[String]].get("ENV").isDefined &&
+        g.process.env.asInstanceOf[js.Dictionary[String]].get("ENV").get == "development") {
+        // Open the devtools.
+        mainWindow.openDevTools()
+      }
 
       // Emitted when the window is closed.
       val _ = mainWindow.on("closed", () =>

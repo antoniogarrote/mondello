@@ -2,6 +2,7 @@ package mondello.electron.components.pages
 
 import knockout._
 import knockout.tags.KoText
+import mondello.config.Log
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.common.DockerBackendInteraction
 import mondello.electron.components.pages.images.dialogs.{LaunchConfigurationDialog, PullImageDialog}
@@ -51,7 +52,7 @@ object Images extends KoComponent("docker-images") with DockerBackendInteraction
   }
 
   def reloadImages() = {
-    println("*** Reloading Docker Images")
+    Log.trace("*** Reloading Docker Images")
     loadingImages(true)
     if(docker() == null) {
       images.removeAll()
@@ -84,31 +85,31 @@ object Images extends KoComponent("docker-images") with DockerBackendInteraction
   }
 
   def startImageInteractive(entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
-    println("** Start Image Interactive")
+    Log.trace("** Start Image Interactive")
     startImageInternal(interactive = true, neverFail=false, entrypoint, name,link, expose, publish, envs, command)
   }
 
   def startImage(entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
-    println("** Start Image")
+    Log.trace("** Start Image")
     startImageInternal(interactive = false, neverFail=true, entrypoint, name,link, expose, publish, envs, command)
   }
 
   def pullImage(image:String, tag:String):Future[Boolean] = {
-    println(s"** Pulling image $image:$tag")
+    Log.trace(s"** Pulling image $image:$tag")
     dockerTry(docker()) {
       docker().pullImage(image,tag)
     }
   }
 
   def buildImage(dirname:String, tag:String, args:String, rm:Boolean):Future[Boolean] = {
-    println(s"** Building image at path $dirname")
+    Log.trace(s"** Building image at path $dirname")
     dockerTry(docker()) {
       docker().buildimage(dirname, tag, args, rm)
     }
   }
 
   def destroyImage(image:Image):Future[Boolean] = {
-    println(s"** Destroying image ${image.id}")
+    Log.trace(s"** Destroying image ${image.id}")
     val f = dockerTry(docker()) {
       MondelloApp.showModal(s"Destroying image ${image.repository}:${image.tag}")
       docker().destroyImage(image.id)

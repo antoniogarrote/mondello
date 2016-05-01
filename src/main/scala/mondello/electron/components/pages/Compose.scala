@@ -2,7 +2,7 @@ package mondello.electron.components.pages
 
 import knockout.tags.KoText
 import knockout._
-import mondello.config.Settings
+import mondello.config.{Log, Settings}
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.common.DockerBackendInteraction
 import mondello.electron.components.pages.compose.{ProjectFooter, ProjectsBrowser, SelectedProject}
@@ -49,7 +49,7 @@ object Compose extends KoComponent("docker-compose") with DockerBackendInteracti
   }
 
   def reloadProjects() = {
-    println("* Reloading projects")
+    Log.trace("* Reloading projects")
     projects.removeAll()
     var foundProject = false
     Settings.compose.foreach { (projectFile) =>
@@ -66,7 +66,7 @@ object Compose extends KoComponent("docker-compose") with DockerBackendInteracti
 
 
   def upSelectedServices(detached:Boolean) = {
-    println("** Starting services")
+    Log.trace("** Starting services")
     val services = selectedServices.values.map(_.id)
     dockerTry(dockerCompose) {
       dockerCompose().upServices(detached, selectedProject(), services.toArray)
@@ -74,7 +74,7 @@ object Compose extends KoComponent("docker-compose") with DockerBackendInteracti
   }
 
   def stopSelectedServices() = {
-    println("** Stopping services")
+    Log.trace("** Stopping services")
     val services = selectedServices.values.map(_.id)
     dockerTry(dockerCompose) {
       dockerCompose().stopServices(selectedProject(), services.toArray)
@@ -82,7 +82,7 @@ object Compose extends KoComponent("docker-compose") with DockerBackendInteracti
   }
 
   def down() = {
-    println("** Stopping services")
+    Log.trace("** Stopping services")
     val services = selectedServices.values.map(_.id)
     dockerTry(dockerCompose) {
       dockerCompose().down(selectedProject())

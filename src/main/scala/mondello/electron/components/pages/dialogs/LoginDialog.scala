@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.dialogs
 
 import knockout.{Ko, KoComponent, KoObservable, KoObservableArray}
+import mondello.config.Log
 import mondello.electron.components.MondelloApp
 import mondello.models.Credential
 
@@ -10,7 +11,6 @@ import scala.scalajs.js.annotation.JSExportAll
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
-
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 
 @JSExportAll
@@ -92,7 +92,7 @@ object LoginDialog extends KoComponent("login") {
   // Callbacks
 
   def okLogin() = {
-    println(s"* ok login ->${username()}:${index()}<-")
+    Log.trace(s"* ok login ->${username()}:${index()}<-")
     if(username() != "" && index() != "" && password() != "") {
       MondelloApp.showModal(s"Login into index as ${username()}")
       val f = MondelloApp.login(username(), index(), password())
@@ -113,13 +113,13 @@ object LoginDialog extends KoComponent("login") {
   }
 
   def hideLogin() = {
-    println("* hide login")
+    Log.trace("* hide login")
     clear()
     showLogin(false)
   }
 
   def logout():KoCallback[Credential] = koCallback { (credential) =>
-    println(s"* logout credential $credential")
+    Log.trace(s"* logout credential $credential")
     MondelloApp.showModal(s"Logging out from ${credential.service}")
     val f = MondelloApp.logout(credential.service)
     f.onSuccess {
@@ -164,7 +164,7 @@ object LoginDialog extends KoComponent("login") {
       }
     } catch {
       case e:Throwable =>
-        println(s"** exception loading credentials $e")
+        Log.trace(s"** exception loading credentials $e")
         Array[Credential]()
     }
   }

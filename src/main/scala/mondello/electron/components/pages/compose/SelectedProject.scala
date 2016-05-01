@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.compose
 
 import knockout.{KoComponent, KoObservable}
+import mondello.config.Log
 import mondello.electron.components.common.TableRenderer
 import mondello.models.{Project, Service}
 
@@ -102,7 +103,7 @@ object SelectedProject extends KoComponent("selected-project") with TableRendere
   // callbacks
 
   def selectAllServices()= {
-    println("* select all services")
+    Log.trace("* select all services")
     val oldValue = g.$("#select-all-input").prop("checked").asInstanceOf[Boolean]
     g.$("#services-selection th input").prop("checked",oldValue)
     if(oldValue) {
@@ -116,7 +117,7 @@ object SelectedProject extends KoComponent("selected-project") with TableRendere
   }
 
   def selectService():KoCallback[Service] = koCallback { (service) =>
-    println(s"* Selecting service ${service.id} ")
+    Log.trace(s"* Selecting service ${service.id} ")
     if(selectedServices.contains(service.id)) {
       selectedServices.remove(service.id)
     } else {

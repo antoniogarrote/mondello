@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.logs
 
 import knockout.{Ko, KoComponent, KoObservable, KoObservableArray}
+import mondello.config.Log
 import mondello.electron.components.Toolbar
 import mondello.electron.components.common.ColorGenerator
 import mondello.electron.components.pages.Containers
@@ -12,7 +13,6 @@ import scala.scalajs.js.annotation.JSExportAll
 import scala.scalajs.js.{Any, Dictionary}
 import scalatags.Text.all._
 import scalatags.Text.attrs
-
 import scala.scalajs.js.Dynamic.{global => g}
 
 @JSExportAll
@@ -141,12 +141,12 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
   }
 
   def clearLog():KoCallback[js.Any] = koCallback { (_) =>
-    println("** Clearing log")
+    Log.trace("** Clearing log")
     logs.removeAll()
   }
 
   def searchLog():KoCallback[js.Any] = koCallback { (_) =>
-    println(s"** Searching log for ${searchText()}")
+    Log.trace(s"** Searching log for ${searchText()}")
     val textToSearch = searchText()
     filteredLogs.removeAll()
     val exp = """<[a-z\s/'\"=0-9]+>"""
@@ -171,13 +171,13 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
   }
 
   def cancelSearchLog():KoCallback[js.Any] = koCallback { (_) =>
-    println("** Cancel search log")
+    Log.trace("** Cancel search log")
     showFiltered(false)
     searchText("")
   }
 
   def startLoggingContainer():KoCallback[Container] = koCallback { (container) =>
-    println(s"* Start logging container: ${container.id}")
+    Log.trace(s"* Start logging container: ${container.id}")
     if(!childrenRegistry.contains(container.id)) {
       val color = nextColor()
       val child = Containers.logContainer(container, { (data) =>
@@ -199,11 +199,11 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
       childrenRegistry.update(container.id, child)
     } else {
       val child = childrenRegistry.remove(container.id).get
-      println(s"* Killing log observer child for container ${container.id}")
+      Log.trace(s"* Killing log observer child for container ${container.id}")
       try {
         child.asInstanceOf[js.Dynamic].kill()
       } catch {
-        case e:Throwable => println(s"!! Error killing log observer $e")
+        case e:Throwable => Log.trace(s"!! Error killing log observer $e")
       }
     }
     true

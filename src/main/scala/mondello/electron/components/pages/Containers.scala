@@ -2,6 +2,7 @@ package mondello.electron.components.pages
 
 import knockout._
 import knockout.tags.KoText
+import mondello.config.Log
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.common.DockerBackendInteraction
 import mondello.electron.components.pages.containers.{ContainerFooter, ContainersBrowser, SelectedContainer}
@@ -60,7 +61,7 @@ object Containers extends KoComponent("docker-containers") with DockerBackendInt
   }
 
   def reloadContainers() = {
-    println("*** Reloading Docker Containers")
+    Log.trace("*** Reloading Docker Containers")
     loadingContainers(true)
     if(docker() == null) {
       containers.removeAll()
@@ -93,19 +94,19 @@ object Containers extends KoComponent("docker-containers") with DockerBackendInt
   }
 
   def startContainerInteractive(container:Container) = {
-    println(s"** Start Container ${container.id}:${container.names} Interactive")
+    Log.trace(s"** Start Container ${container.id}:${container.names} Interactive")
     MondelloApp.showModal(s"Starting container ${container.names}")
     runContainerInternal(container,() => docker().startContainerInteractive(container.id))
   }
 
   def startContainer(container:Container) = {
-    println(s"** Start Container ${container.id}:${container.names}")
+    Log.trace(s"** Start Container ${container.id}:${container.names}")
     MondelloApp.showModal(s"Starting container ${container.names}")
     runContainerInternal(container,() => docker().startContainer(container.id))
   }
 
   def stopContainer(container:Container) = {
-    println(s"** Stop Container ${container.id}:${container.names}")
+    Log.trace(s"** Stop Container ${container.id}:${container.names}")
     MondelloApp.showModal(s"Stopping container ${container.names}")
     runContainerInternal(container,() => docker().stopContainer(container.id))
   }

@@ -1,6 +1,6 @@
 package mondello.platform.js
 
-import mondello.config.Environment
+import mondello.config.{Environment, Log}
 
 import scala.concurrent.{Future, Promise}
 import scala.scalajs.js
@@ -23,7 +23,7 @@ object Implicits {
 
       val commandLine = commandString(environment.cmdPath, command, commandArgs)
 
-      println(s"* Running command '$command' ${commandArgs.mkString(",")}")
+      Log.trace(s"* Running command '$command' ${commandArgs.mkString(",")}")
       var output = ""
       var err: String = null
 
@@ -63,7 +63,7 @@ object Implicits {
       fs.chmod(path,"777")
 
       val commandLine = commandString(environment.cmdPath, command, commandArgs)
-      println(s"* Running command interactively '$command' through file: $path")
+      Log.trace(s"* Running command interactively '$command' through file: $path")
       fs.writeFile(path, commandLine, { (err:js.Dynamic) =>
         if(err != null) {
           result.failure(new Throwable(err.toString))

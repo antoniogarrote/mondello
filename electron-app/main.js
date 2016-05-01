@@ -1145,14 +1145,9 @@ function $s_Lmondello_electron_components_common_FileLoader$class__loadYamlFile_
 }
 function $s_Lmondello_electron_components_common_FileLoader$class__saveFile__Lmondello_electron_components_common_FileLoader__T__T__V($$this, path, data) {
   var fs = $g.require("fs");
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Saving file ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([path]));
-  var this$5 = $m_s_Console$();
-  var this$6 = $as_Ljava_io_PrintStream(this$5.outVar$2.v$1);
-  this$6.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Saving file ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([path])));
   fs.writeFile(path, data, (function(e$2) {
-    var this$10 = $m_s_Console$();
-    var this$11 = $as_Ljava_io_PrintStream(this$10.outVar$2.v$1);
-    this$11.java$lang$JSConsoleBasedPrintStream$$printString__T__V((e$2 + "\n"))
+    $m_Lmondello_config_Log$().trace__O__V(e$2)
   }))
 }
 function $s_Lmondello_electron_components_common_FileLoader$class__loadFile__Lmondello_electron_components_common_FileLoader__T__s_concurrent_Future($$this, path) {
@@ -3694,6 +3689,52 @@ function $m_Lknockout_KoComponent$() {
   return $n_Lknockout_KoComponent$
 }
 /** @constructor */
+function $c_Lmondello_config_Log$() {
+  $c_O.call(this)
+}
+$c_Lmondello_config_Log$.prototype = new $h_O();
+$c_Lmondello_config_Log$.prototype.constructor = $c_Lmondello_config_Log$;
+/** @constructor */
+function $h_Lmondello_config_Log$() {
+  /*<skip>*/
+}
+$h_Lmondello_config_Log$.prototype = $c_Lmondello_config_Log$.prototype;
+$c_Lmondello_config_Log$.prototype.init___ = (function() {
+  return this
+});
+$c_Lmondello_config_Log$.prototype.trace__O__V = (function(m) {
+  if (this.isDev__Z()) {
+    var x = $objectToString(m);
+    var this$2 = $m_s_Console$();
+    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"))
+  }
+});
+$c_Lmondello_config_Log$.prototype.isDev__Z = (function() {
+  var dict = $g.process.env;
+  if (($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(dict, "ENV")) ? new $c_s_Some().init___O(dict.ENV) : $m_s_None$()).isDefined__Z()) {
+    var dict$1 = $g.process.env;
+    var x = ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(dict$1, "ENV")) ? new $c_s_Some().init___O(dict$1.ENV) : $m_s_None$()).get__O();
+    return ((x !== null) && $objectEquals(x, "development"))
+  } else {
+    return false
+  }
+});
+var $d_Lmondello_config_Log$ = new $TypeData().initClass({
+  Lmondello_config_Log$: 0
+}, false, "mondello.config.Log$", {
+  Lmondello_config_Log$: 1,
+  O: 1
+});
+$c_Lmondello_config_Log$.prototype.$classData = $d_Lmondello_config_Log$;
+var $n_Lmondello_config_Log$ = (void 0);
+function $m_Lmondello_config_Log$() {
+  if ((!$n_Lmondello_config_Log$)) {
+    $n_Lmondello_config_Log$ = new $c_Lmondello_config_Log$().init___()
+  };
+  return $n_Lmondello_config_Log$
+}
+/** @constructor */
 function $c_Lmondello_electron_Messages$() {
   $c_O.call(this);
   this.MONDELLO$undSETTINGS$undPATH$1 = null
@@ -3749,24 +3790,19 @@ $c_Lmondello_electron_Renderer$.prototype.init___ = (function() {
   return this
 });
 $c_Lmondello_electron_Renderer$.prototype.main__V = (function() {
-  var this$7 = $m_Lmondello_config_Settings$().loadSettings__s_concurrent_Future();
+  var this$1 = $m_Lmondello_config_Settings$().loadSettings__s_concurrent_Future();
   var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(settings$2) {
     var settings = $as_Lmondello_config_Settings$(settings$2);
-    var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["*** Mondello running"])).s__sc_Seq__T($m_sci_Nil$());
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
-    var this$5 = $m_s_Console$();
-    var this$6 = $as_Ljava_io_PrintStream(this$5.outVar$2.v$1);
-    this$6.java$lang$JSConsoleBasedPrintStream$$printString__T__V((settings + "\n"));
+    $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["*** Mondello running"])).s__sc_Seq__T($m_sci_Nil$()));
+    $m_Lmondello_config_Log$().trace__O__V(settings);
     $m_Lknockout_KoComponent$().apply__Lknockout_KoComponent__V($m_Lmondello_electron_components_MondelloApp$().apply__Lmondello_config_Settings$__Lmondello_electron_components_MondelloApp$(settings));
     $g.ko.applyBindings($m_Lmondello_electron_components_MondelloApp$(), $g.document.getElementById("main"))
   }));
   var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
-  var this$8 = $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$7, f, executor);
+  var this$2 = $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$1, f, executor);
   var pf = new $c_Lmondello_electron_Renderer$$anonfun$main$1().init___();
   var executor$1 = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
-  $s_s_concurrent_Future$class__onFailure__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$8, pf, executor$1)
+  $s_s_concurrent_Future$class__onFailure__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$2, pf, executor$1)
 });
 $c_Lmondello_electron_Renderer$.prototype.$$js$exported$meth$main__O = (function() {
   this.main__V()
@@ -4493,23 +4529,19 @@ $c_Lmondello_proxies_Docker.prototype.startImage__T__T__sci_Map__s_concurrent_Fu
   var jsx$2 = $as_sci_List($s_sc_TraversableLike$class__to__sc_TraversableLike__scg_CanBuildFrom__O(xs$1, cbf$1));
   var this$17 = $m_sci_List$();
   var args = $as_sci_List(jsx$3.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(jsx$2, this$17.ReusableCBFInstance$2));
-  var this$19 = $m_s_Console$();
-  var this$20 = $as_Ljava_io_PrintStream(this$19.outVar$2.v$1);
-  this$20.java$lang$JSConsoleBasedPrintStream$$printString__T__V("*** STARGIN IMAGE WITH ARGS\n");
-  var this$22 = $m_s_Console$();
-  var this$23 = $as_Ljava_io_PrintStream(this$22.outVar$2.v$1);
-  this$23.java$lang$JSConsoleBasedPrintStream$$printString__T__V((args + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V("*** STARGIN IMAGE WITH ARGS");
+  $m_Lmondello_config_Log$().trace__O__V(args);
   var jsx$6 = this.mondello$proxies$Docker$$consoleProcess$f;
   var len = $s_sc_LinearSeqOptimized$class__length__sc_LinearSeqOptimized__I(args);
   var result = $newArrayObject($d_T.getArrayOf(), [len]);
   $s_sc_TraversableOnce$class__copyToArray__sc_TraversableOnce__O__I__V(args, result, 0);
-  var this$25 = jsx$6.execute__T__AT__Z__Lmondello_config_Environment__s_concurrent_Future("run", result, true, this.currentEnv$1);
+  var this$19 = jsx$6.execute__T__AT__Z__Lmondello_config_Environment__s_concurrent_Future("run", result, true, this.currentEnv$1);
   var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$17$2) {
     $asArrayOf_T(x$17$2, 1);
     return true
   }));
   var executor = this.mondello$proxies$Docker$$ec$f;
-  return $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$25, f$2, executor)
+  return $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$19, f$2, executor)
 });
 $c_Lmondello_proxies_Docker.prototype.makeCmdLineArg__T__T__T = (function(name, value) {
   return (((value !== null) && (value !== "")) ? new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["--", "=", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([name, value])) : "")
@@ -4631,23 +4663,19 @@ $c_Lmondello_proxies_Docker.prototype.startImageInteractive__T__T__sci_Map__s_co
   var jsx$2 = $as_sci_List($s_sc_TraversableLike$class__to__sc_TraversableLike__scg_CanBuildFrom__O(xs$2, cbf$2));
   var this$19 = $m_sci_List$();
   var args = $as_sci_List(jsx$3.$$plus$plus__sc_GenTraversableOnce__scg_CanBuildFrom__O(jsx$2, this$19.ReusableCBFInstance$2));
-  var this$21 = $m_s_Console$();
-  var this$22 = $as_Ljava_io_PrintStream(this$21.outVar$2.v$1);
-  this$22.java$lang$JSConsoleBasedPrintStream$$printString__T__V("*** STARGIN IMAGE WITH ARGS\n");
-  var this$24 = $m_s_Console$();
-  var this$25 = $as_Ljava_io_PrintStream(this$24.outVar$2.v$1);
-  this$25.java$lang$JSConsoleBasedPrintStream$$printString__T__V((args + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V("*** STARGIN IMAGE WITH ARGS");
+  $m_Lmondello_config_Log$().trace__O__V(args);
   var jsx$6 = this.mondello$proxies$Docker$$consoleProcess$f;
   var len = $s_sc_LinearSeqOptimized$class__length__sc_LinearSeqOptimized__I(args);
   var result = $newArrayObject($d_T.getArrayOf(), [len]);
   $s_sc_TraversableOnce$class__copyToArray__sc_TraversableOnce__O__I__V(args, result, 0);
-  var this$27 = jsx$6.executeInteractive__T__AT__Lmondello_config_Environment__s_concurrent_Future("run", result, this.currentEnv$1);
+  var this$21 = jsx$6.executeInteractive__T__AT__Lmondello_config_Environment__s_concurrent_Future("run", result, this.currentEnv$1);
   var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$17$2) {
     $asArrayOf_T(x$17$2, 1);
     return true
   }));
   var executor = this.mondello$proxies$Docker$$ec$f;
-  return $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$27, f$2, executor)
+  return $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$21, f$2, executor)
 });
 $c_Lmondello_proxies_Docker.prototype.destroyContainer__T__s_concurrent_Future = (function(id) {
   var jsx$1 = this.mondello$proxies$Docker$$consoleProcess$f;
@@ -10223,10 +10251,7 @@ $c_Lmondello_config_Settings$.prototype.init___ = (function() {
   return this
 });
 $c_Lmondello_config_Settings$.prototype.removeProject__T__V = (function(file) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Removing project ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([file]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Removing project ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([file])));
   this.compose$1.$$minus$eq__O__scm_ListBuffer(file);
   this.persist__V()
 });
@@ -10234,60 +10259,45 @@ $c_Lmondello_config_Settings$.prototype.toString__T = (function() {
   return new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["SETTINGS: home:", ", drivers:", ", compose:", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([this.dockerHome$1, this.driversHome$1, this.compose$1]))
 });
 $c_Lmondello_config_Settings$.prototype.toEnv__Lmondello_config_Environment = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Generating environment\n");
-  var this$6 = new $c_sci_StringOps().init___T(this.dockerHome$1);
+  $m_Lmondello_config_Log$().trace__O__V("** Generating environment");
+  var this$3 = new $c_sci_StringOps().init___T(this.dockerHome$1);
   var that = new $c_sci_StringOps().init___T("/docker");
   var bf = $m_s_Predef$().StringCanBuildFrom$2;
-  var this$8 = new $c_sci_StringOps().init___T($as_T($s_sc_TraversableLike$class__$$plus$plus__sc_TraversableLike__sc_GenTraversableOnce__scg_CanBuildFrom__O(this$6, that, bf)));
-  var dockerPath = $s_sci_StringLike$class__replaceAllLiterally__sci_StringLike__T__T__T(this$8, "//", "/");
-  var x$2 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Docker path ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([dockerPath]));
-  var this$10 = $m_s_Console$();
-  var this$11 = $as_Ljava_io_PrintStream(this$10.outVar$2.v$1);
-  this$11.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$2 + "\n"));
-  var this$14 = new $c_sci_StringOps().init___T(this.dockerHome$1);
+  var this$5 = new $c_sci_StringOps().init___T($as_T($s_sc_TraversableLike$class__$$plus$plus__sc_TraversableLike__sc_GenTraversableOnce__scg_CanBuildFrom__O(this$3, that, bf)));
+  var dockerPath = $s_sci_StringLike$class__replaceAllLiterally__sci_StringLike__T__T__T(this$5, "//", "/");
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Docker path ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([dockerPath])));
+  var this$8 = new $c_sci_StringOps().init___T(this.dockerHome$1);
   var that$1 = new $c_sci_StringOps().init___T("/docker-machine");
   var bf$1 = $m_s_Predef$().StringCanBuildFrom$2;
-  var this$16 = new $c_sci_StringOps().init___T($as_T($s_sc_TraversableLike$class__$$plus$plus__sc_TraversableLike__sc_GenTraversableOnce__scg_CanBuildFrom__O(this$14, that$1, bf$1)));
-  var dockerMachinePath = $s_sci_StringLike$class__replaceAllLiterally__sci_StringLike__T__T__T(this$16, "//", "/");
-  var x$5 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Docker Machine path ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([dockerMachinePath]));
-  var this$18 = $m_s_Console$();
-  var this$19 = $as_Ljava_io_PrintStream(this$18.outVar$2.v$1);
-  this$19.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$5 + "\n"));
-  var this$22 = new $c_sci_StringOps().init___T(this.dockerHome$1);
+  var this$10 = new $c_sci_StringOps().init___T($as_T($s_sc_TraversableLike$class__$$plus$plus__sc_TraversableLike__sc_GenTraversableOnce__scg_CanBuildFrom__O(this$8, that$1, bf$1)));
+  var dockerMachinePath = $s_sci_StringLike$class__replaceAllLiterally__sci_StringLike__T__T__T(this$10, "//", "/");
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Docker Machine path ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([dockerMachinePath])));
+  var this$13 = new $c_sci_StringOps().init___T(this.dockerHome$1);
   var that$2 = new $c_sci_StringOps().init___T("/docker-compose");
   var bf$2 = $m_s_Predef$().StringCanBuildFrom$2;
-  var this$24 = new $c_sci_StringOps().init___T($as_T($s_sc_TraversableLike$class__$$plus$plus__sc_TraversableLike__sc_GenTraversableOnce__scg_CanBuildFrom__O(this$22, that$2, bf$2)));
-  var dockerComposePath = $s_sci_StringLike$class__replaceAllLiterally__sci_StringLike__T__T__T(this$24, "//", "/");
-  var x$8 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Docker Compose path ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([dockerComposePath]));
-  var this$26 = $m_s_Console$();
-  var this$27 = $as_Ljava_io_PrintStream(this$26.outVar$2.v$1);
-  this$27.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$8 + "\n"));
+  var this$15 = new $c_sci_StringOps().init___T($as_T($s_sc_TraversableLike$class__$$plus$plus__sc_TraversableLike__sc_GenTraversableOnce__scg_CanBuildFrom__O(this$13, that$2, bf$2)));
+  var dockerComposePath = $s_sci_StringLike$class__replaceAllLiterally__sci_StringLike__T__T__T(this$15, "//", "/");
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Docker Compose path ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([dockerComposePath])));
   return new $c_Lmondello_config_Environment().init___T__T__T__T("", dockerMachinePath, dockerPath, dockerComposePath)
 });
 $c_Lmondello_config_Settings$.prototype.saveProject__T__V = (function(file) {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Saving project\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Saving project");
   this.compose$1.$$plus$eq__O__scm_ListBuffer(file);
-  var this$4 = this.compose$1;
-  this.compose$1 = $as_scm_ListBuffer($s_sc_SeqLike$class__distinct__sc_SeqLike__O(this$4));
+  var this$1 = this.compose$1;
+  this.compose$1 = $as_scm_ListBuffer($s_sc_SeqLike$class__distinct__sc_SeqLike__O(this$1));
   this.persist__V()
 });
 $c_Lmondello_config_Settings$.prototype.persist__V = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Persisting config\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Persisting config");
   var jsx$2 = $m_sjs_js_Dictionary$();
   var y = this.dockerHome$1;
   var jsx$1 = new $c_T2().init___O__O("dockerHome", y);
   var y$1 = this.driversHome$1;
   var newState = jsx$2.apply__sc_Seq__sjs_js_Dictionary(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$1, new $c_T2().init___O__O("driversHome", y$1)]));
   var projects = [];
-  var this$10 = this.compose$1;
-  var this$11 = this$10.scala$collection$mutable$ListBuffer$$start$6;
-  var these = this$11;
+  var this$7 = this.compose$1;
+  var this$8 = this$7.scala$collection$mutable$ListBuffer$$start$6;
+  var these = this$8;
   while ((!these.isEmpty__Z())) {
     var arg1 = these.head__O();
     var project = $as_T(arg1);
@@ -10295,35 +10305,28 @@ $c_Lmondello_config_Settings$.prototype.persist__V = (function() {
     these = $as_sci_List(these.tail__O())
   };
   newState.compose = projects;
-  var this$13 = $m_s_Console$();
-  var this$14 = $as_Ljava_io_PrintStream(this$13.outVar$2.v$1);
-  this$14.java$lang$JSConsoleBasedPrintStream$$printString__T__V((this + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(this);
   var path = this.mondelloSettingsPath$1;
   var data = $objectToString($g.JSON.stringify(newState));
   $s_Lmondello_electron_components_common_FileLoader$class__saveFile__Lmondello_electron_components_common_FileLoader__T__T__V(this, path, data)
 });
 $c_Lmondello_config_Settings$.prototype.loadSettings__s_concurrent_Future = (function() {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Reading settings from ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([this.mondelloSettingsPath$1]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Reading settings from ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([this.mondelloSettingsPath$1])));
   var p = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
   try {
     $g.require("fs");
     var path = this.mondelloSettingsPath$1;
-    var this$8 = $s_Lmondello_electron_components_common_FileLoader$class__loadFile__Lmondello_electron_components_common_FileLoader__T__s_concurrent_Future(this, path);
+    var this$5 = $s_Lmondello_electron_components_common_FileLoader$class__loadFile__Lmondello_electron_components_common_FileLoader__T__s_concurrent_Future(this, path);
     var f = new $c_Lmondello_config_Settings$$anonfun$loadSettings$2().init___s_concurrent_Promise(p);
     var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
-    var this$9 = $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$8, f, executor);
+    var this$6 = $s_s_concurrent_Future$class__map__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this$5, f, executor);
     var pf = new $c_Lmondello_config_Settings$$anonfun$loadSettings$1().init___s_concurrent_Promise(p);
     var executor$1 = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
-    $s_s_concurrent_Future$class__onFailure__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$9, pf, executor$1)
+    $s_s_concurrent_Future$class__onFailure__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$6, pf, executor$1)
   } catch (e) {
     var e$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e);
     if ((e$2 !== null)) {
-      var this$11 = $m_s_Console$();
-      var this$12 = $as_Ljava_io_PrintStream(this$11.outVar$2.v$1);
-      this$12.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Settings file not found, returning defaults\n");
+      $m_Lmondello_config_Log$().trace__O__V("* Settings file not found, returning defaults");
       this.error$1 = e$2.toString__T();
       $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(p, this)
     } else {
@@ -10797,9 +10800,7 @@ $c_Lmondello_electron_components_pages_Machines$.prototype.$$js$exported$meth$st
   return this.stopMachine__Lmondello_models_Machine__F1__s_concurrent_Future(machine, cb)
 });
 $c_Lmondello_electron_components_pages_Machines$.prototype.reloadMachines__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("*** Reloading Docker Machines\n");
+  $m_Lmondello_config_Log$().trace__O__V("*** Reloading Docker Machines");
   var f = this.dockerMachine$2.all__s_concurrent_Future();
   var pf = new $c_Lmondello_electron_components_pages_Machines$$anonfun$reloadMachines$1().init___();
   var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().queue$1;
@@ -11074,9 +11075,7 @@ function $h_Lmondello_electron_components_pages_compose_ProjectFooter$() {
 }
 $h_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype = $c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype;
 $c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.destroyProject__V = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* destroy project\n");
+  $m_Lmondello_config_Log$().trace__O__V("* destroy project");
   $m_Lmondello_config_Settings$().removeProject__T__V($as_Lmondello_models_Project((0, this.selectedProject$2)()).file$1);
   $m_Lmondello_electron_components_pages_Compose$().reloadProjects__V()
 });
@@ -11177,9 +11176,7 @@ $c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.template
   return jsx$39.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$38, jsx$37.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$36, jsx$29, jsx$22, jsx$15, jsx$8, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp;")]))])).toString__T()
 });
 $c_Lmondello_electron_components_pages_compose_ProjectFooter$.prototype.upInternal__Z__V = (function(detached) {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* up project attached\n");
+  $m_Lmondello_config_Log$().trace__O__V("* up project attached");
   $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic("Starting selected services detached");
   var f = $m_Lmondello_electron_components_pages_Compose$().upSelectedServices__Z__s_concurrent_Future(detached);
   var pf = new $c_Lmondello_electron_components_pages_compose_ProjectFooter$$anonfun$upInternal$1().init___();
@@ -11767,9 +11764,7 @@ $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.ini
   return this
 });
 $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.startContainerInteractive__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Start Container Interactive\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Start Container Interactive");
   return $m_Lmondello_electron_components_pages_Containers$().startContainerInteractive__Lmondello_models_Container__s_concurrent_Future($as_Lmondello_models_Container((0, $m_Lmondello_electron_components_pages_containers_ContainerFooter$().selectedContainer$2)()))
 });
 $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.$$js$exported$meth$startContainerInteractive__O = (function() {
@@ -11782,9 +11777,7 @@ $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.$$j
   return this.stopContainer__s_concurrent_Future()
 });
 $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.startContainerDetached__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Start Container Detached\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Start Container Detached");
   return $m_Lmondello_electron_components_pages_Containers$().startContainer__Lmondello_models_Container__s_concurrent_Future($as_Lmondello_models_Container((0, $m_Lmondello_electron_components_pages_containers_ContainerFooter$().selectedContainer$2)()))
 });
 $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.template__T = (function() {
@@ -11868,14 +11861,10 @@ $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.tem
   return jsx$38.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$37, jsx$36.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$35, jsx$28, jsx$21, jsx$14, jsx$7, jsx$6.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$5, jsx$4, jsx$3, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("&nbsp;"), ($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("Start Interactive"))]))]))])).toString__T()
 });
 $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.$$js$exported$meth$attachContainer__O = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Attach Container\n")
+  $m_Lmondello_config_Log$().trace__O__V("* Attach Container")
 });
 $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.destroyContainer__V = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Destroy container\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Destroy container");
   if (((0, this.selectedContainer$2)() !== null)) {
     $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Destroying container ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lmondello_models_Container((0, this.selectedContainer$2)()).names$1])));
     var f = $m_Lmondello_electron_components_pages_Containers$().destroyContainer__Lmondello_models_Container__s_concurrent_Future($as_Lmondello_models_Container((0, this.selectedContainer$2)()));
@@ -11912,9 +11901,7 @@ $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.$$j
   return this.template__T()
 });
 $c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype.stopContainer__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Stop Container\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Stop Container");
   return $m_Lmondello_electron_components_pages_Containers$().stopContainer__Lmondello_models_Container__s_concurrent_Future($as_Lmondello_models_Container((0, $m_Lmondello_electron_components_pages_containers_ContainerFooter$().selectedContainer$2)()))
 });
 Object.defineProperty($c_Lmondello_electron_components_pages_containers_ContainerFooter$.prototype, "selectedContainer", {
@@ -12523,9 +12510,7 @@ $c_Lmondello_electron_components_pages_dialogs_LoginDialog$.prototype.template__
   return jsx$63.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$62, jsx$61, jsx$60, jsx$56, jsx$2, jsx$1.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$39, "toolbar toolbar-footer", ev$31)]))])).toString__T()
 });
 $c_Lmondello_electron_components_pages_dialogs_LoginDialog$.prototype.hideLogin__V = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* hide login\n");
+  $m_Lmondello_config_Log$().trace__O__V("* hide login");
   this.clear__V();
   (0, this.showLogin$2)(false)
 });
@@ -12533,12 +12518,9 @@ $c_Lmondello_electron_components_pages_dialogs_LoginDialog$.prototype.$$js$expor
   return this.showLogin$2
 });
 $c_Lmondello_electron_components_pages_dialogs_LoginDialog$.prototype.okLogin__O = (function() {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* ok login ->", ":", "<-"])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([(0, this.username$2)(), (0, this.index$2)()]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
-  var x$1 = (0, this.username$2)();
-  if ((!((x$1 !== null) && $objectEquals(x$1, "")))) {
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* ok login ->", ":", "<-"])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([(0, this.username$2)(), (0, this.index$2)()])));
+  var x = (0, this.username$2)();
+  if ((!((x !== null) && $objectEquals(x, "")))) {
     var x$3 = (0, this.index$2)();
     var jsx$2 = (!((x$3 !== null) && $objectEquals(x$3, "")))
   } else {
@@ -12673,18 +12655,15 @@ $c_Lmondello_electron_components_pages_dialogs_LoginDialog$.prototype.loadCreden
   } catch (e) {
     var e$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e);
     if ((e$2 !== null)) {
-      var x$2 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** exception loading credentials ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([e$2]));
-      var this$46 = $m_s_Console$();
-      var this$47 = $as_Ljava_io_PrintStream(this$46.outVar$2.v$1);
-      this$47.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$2 + "\n"));
+      $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** exception loading credentials ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([e$2])));
       var xs$1 = $m_sci_Nil$();
       var len$5 = $s_sc_LinearSeqOptimized$class__length__sc_LinearSeqOptimized__I(xs$1);
       var array$3 = $newArrayObject($d_Lmondello_models_Credential.getArrayOf(), [len$5]);
       var elem$1$1 = 0;
       elem$1$1 = 0;
-      var this$51 = new $c_sc_LinearSeqLike$$anon$1().init___sc_LinearSeqLike(xs$1);
-      while (this$51.hasNext__Z()) {
-        var arg1$3 = this$51.next__O();
+      var this$48 = new $c_sc_LinearSeqLike$$anon$1().init___sc_LinearSeqLike(xs$1);
+      while (this$48.hasNext__Z()) {
+        var arg1$3 = this$48.next__O();
         array$3.u[elem$1$1] = arg1$3;
         elem$1$1 = ((1 + elem$1$1) | 0)
       };
@@ -12989,9 +12968,7 @@ $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.$$js$export
   return this.destroyImage__s_concurrent_Future()
 });
 $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.launchConfiguration__sjs_js_Dynamic = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Launch Configuration\n");
+  $m_Lmondello_config_Log$().trace__O__V("** Launch Configuration");
   return $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().show__sjs_js_Dynamic()
 });
 $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.template__T = (function() {
@@ -13081,26 +13058,15 @@ $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.$$js$export
   return this.selectedImage$2
 });
 $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.destroyImage__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Destroy image\n");
+  $m_Lmondello_config_Log$().trace__O__V("** Destroy image");
   return $m_Lmondello_electron_components_pages_Images$().destroyImage__Lmondello_models_Image__s_concurrent_Future($as_Lmondello_models_Image((0, this.selectedImage$2)()))
 });
 $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.$$js$exported$meth$launchConfiguration__O = (function() {
   return this.launchConfiguration__sjs_js_Dynamic()
 });
 $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.startImageDetached__O = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Start Image Detached\n");
-  if ((this.selectedImage$2 !== null)) {
-    var this$5 = $m_s_Console$();
-    var this$6 = $as_Ljava_io_PrintStream(this$5.outVar$2.v$1);
-    this$6.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Start Image Interactive\n");
-    return $m_Lmondello_electron_components_pages_Images$().startImage__T__T__T__T__T__T__T__s_concurrent_Future($as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().entryPoint$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().name$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().link$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().expose$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().publish$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().envVars$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().command$2)()))
-  } else {
-    return (void 0)
-  }
+  $m_Lmondello_config_Log$().trace__O__V("** Start Image Detached");
+  return ((this.selectedImage$2 !== null) ? ($m_Lmondello_config_Log$().trace__O__V("** Start Image Interactive"), $m_Lmondello_electron_components_pages_Images$().startImage__T__T__T__T__T__T__T__s_concurrent_Future($as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().entryPoint$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().name$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().link$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().expose$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().publish$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().envVars$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().command$2)()))) : (void 0))
 });
 $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.viewModel__sjs_js_Dictionary__V = (function(params) {
   if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(params, "selectedImage"))) {
@@ -13115,19 +13081,10 @@ $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.$$js$export
   this.viewModel__sjs_js_Dictionary__V(params)
 });
 $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.startImageInteractive__O = (function() {
-  if ((this.selectedImage$2 !== null)) {
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Start Image Interactive\n");
-    return $m_Lmondello_electron_components_pages_Images$().startImageInteractive__T__T__T__T__T__T__T__s_concurrent_Future($as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().entryPoint$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().name$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().link$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().expose$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().publish$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().envVars$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().command$2)()))
-  } else {
-    return (void 0)
-  }
+  return ((this.selectedImage$2 !== null) ? ($m_Lmondello_config_Log$().trace__O__V("** Start Image Interactive"), $m_Lmondello_electron_components_pages_Images$().startImageInteractive__T__T__T__T__T__T__T__s_concurrent_Future($as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().entryPoint$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().name$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().link$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().expose$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().publish$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().envVars$2)()), $as_T((0, $m_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$().command$2)()))) : (void 0))
 });
 $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.pullCurrentImage__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Pull Current Image\n");
+  $m_Lmondello_config_Log$().trace__O__V("** Pull Current Image");
   return $m_Lmondello_electron_components_pages_Images$().pullImage__T__T__s_concurrent_Future($as_Lmondello_models_Image((0, this.selectedImage$2)()).repository$1, $as_Lmondello_models_Image((0, this.selectedImage$2)()).tag$1)
 });
 $c_Lmondello_electron_components_pages_images_ImageFooter$.prototype.$$js$exported$meth$startImageDetached__O = (function() {
@@ -13683,9 +13640,7 @@ $c_Lmondello_electron_components_pages_images_dialogs_BuildImageDialog$.prototyp
   /*<skip>*/
 });
 $c_Lmondello_electron_components_pages_images_dialogs_BuildImageDialog$.prototype.openSelectDockerfile__Z = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Opening dockerfile\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Opening dockerfile");
   var jsx$2 = $m_sjs_js_Dictionary$();
   var jsx$1 = new $c_T2().init___O__O("title", "Select Dockerfile to build");
   var y = ["openFile"];
@@ -13700,18 +13655,15 @@ $c_Lmondello_electron_components_pages_images_dialogs_BuildImageDialog$.prototyp
     };
     var jsx$3 = jsx$4[0];
     var filename = $as_T(jsx$3);
-    var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Selected ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([filename]));
-    var this$18 = $m_s_Console$();
-    var this$19 = $as_Ljava_io_PrintStream(this$18.outVar$2.v$1);
-    this$19.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+    $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Selected ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([filename])));
     var sep = $as_T($g.require("path").sep);
     var parts = $m_sjsr_RuntimeString$().split__T__T__I__AT(filename, sep, 0);
-    var this$25 = new $c_scm_ArrayOps$ofRef().init___AO(parts);
-    var last = $as_T($s_sc_IndexedSeqOptimized$class__last__sc_IndexedSeqOptimized__O(this$25));
+    var this$19 = new $c_scm_ArrayOps$ofRef().init___AO(parts);
+    var last = $as_T($s_sc_IndexedSeqOptimized$class__last__sc_IndexedSeqOptimized__O(this$19));
     var until = (((-1) + parts.u.length) | 0);
-    var x$1 = ((until > 0) ? until : 0);
+    var x = ((until > 0) ? until : 0);
     var y$1 = parts.u.length;
-    var hi = ((x$1 < y$1) ? x$1 : y$1);
+    var hi = ((x < y$1) ? x : y$1);
     var elems = ((hi > 0) ? hi : 0);
     var jsx$5 = $m_s_reflect_ClassTag$();
     var schematic = $objectGetClass(parts);
@@ -13744,16 +13696,10 @@ $c_Lmondello_electron_components_pages_images_dialogs_BuildImageDialog$.prototyp
       i$1 = ((1 + i$1) | 0)
     };
     b$1.append__T__scm_StringBuilder("");
-    var this$46 = b$1.underlying$5;
-    var projectDir = this$46.content$1;
-    var x$2 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Last: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([last]));
-    var this$48 = $m_s_Console$();
-    var this$49 = $as_Ljava_io_PrintStream(this$48.outVar$2.v$1);
-    this$49.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$2 + "\n"));
-    var x$3 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Project dir: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([projectDir]));
-    var this$51 = $m_s_Console$();
-    var this$52 = $as_Ljava_io_PrintStream(this$51.outVar$2.v$1);
-    this$52.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$3 + "\n"));
+    var this$40 = b$1.underlying$5;
+    var projectDir = this$40.content$1;
+    $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Last: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([last])));
+    $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Project dir: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([projectDir])));
     if ((last === "Dockerfile")) {
       (0, this.dirname$2)(projectDir)
     } else {
@@ -14028,9 +13974,7 @@ $c_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$
   return this.submitLaunchConfig__sjs_js_Dynamic()
 });
 $c_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$.prototype.submitLaunchConfig__sjs_js_Dynamic = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Submit launch config\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Submit launch config");
   return this.hide__sjs_js_Dynamic()
 });
 $c_Lmondello_electron_components_pages_images_dialogs_LaunchConfigurationDialog$.prototype.$$js$exported$prop$template__O = (function() {
@@ -15341,6 +15285,7 @@ $c_Lmondello_platform_js_Implicits$ConsoleProcess$.prototype.execute$default$2__
 $c_Lmondello_platform_js_Implicits$ConsoleProcess$.prototype.execute__T__AT__Z__Lmondello_config_Environment__s_concurrent_Future = (function(command, commandArgs, neverFail, environment) {
   var result = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
   var commandLine = this.commandString__T__T__sc_Seq__T(environment.cmdPath$1, command, $m_s_Predef$().wrapRefArray__AO__scm_WrappedArray(commandArgs));
+  var jsx$2 = $m_Lmondello_config_Log$();
   var jsx$1 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Running command '", "' ", ""]));
   var b = new $c_scm_StringBuilder().init___();
   var elem$1 = false;
@@ -15362,10 +15307,7 @@ $c_Lmondello_platform_js_Implicits$ConsoleProcess$.prototype.execute__T__AT__Z__
   };
   b.append__T__scm_StringBuilder("");
   var this$6 = b.underlying$5;
-  var x = jsx$1.s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([command, this$6.content$1]));
-  var this$8 = $m_s_Console$();
-  var this$9 = $as_Ljava_io_PrintStream(this$8.outVar$2.v$1);
-  this$9.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  jsx$2.trace__O__V(jsx$1.s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([command, this$6.content$1])));
   var output = new $c_sr_ObjectRef().init___O("");
   var err = new $c_sr_ObjectRef().init___O(null);
   var child = $g.require("child_process").exec(commandLine, (function(output$1, err$1) {
@@ -15413,10 +15355,7 @@ $c_Lmondello_platform_js_Implicits$ConsoleProcess$.prototype.executeInteractive_
   fs.renameSync(oldPath, path);
   fs.chmod(path, "777");
   var commandLine = this.commandString__T__T__sc_Seq__T(environment.cmdPath$1, command, $m_s_Predef$().wrapRefArray__AO__scm_WrappedArray(commandArgs));
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Running command interactively '", "' through file: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([command, path]));
-  var this$13 = $m_s_Console$();
-  var this$14 = $as_Ljava_io_PrintStream(this$13.outVar$2.v$1);
-  this$14.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Running command interactively '", "' through file: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([command, path])));
   fs.writeFile(path, commandLine, (function(f) {
     return (function(arg1) {
       return f.apply__O__O(arg1)
@@ -17072,14 +17011,10 @@ $c_Lmondello_electron_Main$.prototype.init___ = (function() {
   return this
 });
 $c_Lmondello_electron_Main$.prototype.main__V = (function() {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Mondello main process, path: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([this.mondelloSettingsPath$1]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Mondello main process, path: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([this.mondelloSettingsPath$1])));
   var app = $g.require("app");
   this.bootstrap__Lio_atom_electron_App__sr_Null$(app);
   var mainWindow = new $c_sr_ObjectRef().init___O(null);
-  $g.require("crash-reporter").start();
   $m_Lmondello_electron_Messages$().subscribeMondelloSettingsPath__T__V(this.mondelloSettingsPath$1);
   app.on("window-all-closed", (function(app$1) {
     return (function() {
@@ -17474,9 +17409,7 @@ $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$viewModel
   this.viewModel__sjs_js_Dictionary__V(params)
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.pullImage__sjs_js_Dynamic = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Donwload image dialog\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Donwload image dialog");
   return $m_Lmondello_electron_components_pages_images_dialogs_PullImageDialog$().show__sjs_js_Dynamic()
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$prop$showSettings__Lknockout_KoObservable__O = (function(x$1) {
@@ -17511,9 +17444,7 @@ $c_Lmondello_electron_components_Toolbar$.prototype.selectPage__T__V = (function
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.showNewMachine__sjs_js_Function1 = (function() {
   return (function(evt$2) {
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* show new machine dialog\n");
+    $m_Lmondello_config_Log$().trace__O__V("* show new machine dialog");
     $m_Lmondello_electron_components_Toolbar$().newMachineDialog$2.show__sjs_js_Dynamic()
   })
 });
@@ -17536,9 +17467,7 @@ $c_Lmondello_electron_components_Toolbar$.prototype.machinesToolbar__Lscalatags_
   return jsx$7.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$6, jsx$5, jsx$4.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$3, jsx$2, jsx$1.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$4, "icon icon-plus", ev$3)])), $m_Lscalatags_Text$attrs$().data__Lscalatags_generic_GlobalAttrs$data$().selectDynamic__T__Lscalatags_generic_GlobalAttrs$DataAttribute("bind").$$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("click: showNewMachine()", $m_Lscalatags_Text$all$().stringAttr$1), ($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag().init___T("New Machine"))]))]))
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.buildImage__sjs_js_Dynamic = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Build image dialog\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Build image dialog");
   return $m_Lmondello_electron_components_pages_images_dialogs_BuildImageDialog$().show__sjs_js_Dynamic()
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$meth$displayLogs__O = (function() {
@@ -17578,9 +17507,7 @@ $c_Lmondello_electron_components_Toolbar$.prototype.$$js$exported$prop$selectedM
   return this.selectedMachine$2
 });
 $c_Lmondello_electron_components_Toolbar$.prototype.displayLogs__V = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Display logs\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Display logs");
   var oldValue = $uZ((0, this.displayContainerLogs$2)());
   (0, this.displayContainerLogs$2)((!oldValue))
 });
@@ -17601,12 +17528,10 @@ $c_Lmondello_electron_components_Toolbar$.prototype.loadBuildFile__O = (function
       var jsx$4 = $m_sjsr_RuntimeString$();
       var this$15 = new $c_sjs_js_ArrayOps().init___sjs_js_Array(filenames);
       if (jsx$4.endsWith__T__T__Z($as_T($s_sc_IndexedSeqOptimized$class__head__sc_IndexedSeqOptimized__O(this$15)), "Dockerfile")) {
+        var jsx$6 = $m_Lmondello_config_Log$();
         var jsx$5 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["SELECTED: ", ""]));
         var this$17 = new $c_sjs_js_ArrayOps().init___sjs_js_Array(filenames);
-        var x = jsx$5.s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$s_sc_IndexedSeqOptimized$class__head__sc_IndexedSeqOptimized__O(this$17)]));
-        var this$19 = $m_s_Console$();
-        var this$20 = $as_Ljava_io_PrintStream(this$19.outVar$2.v$1);
-        this$20.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+        jsx$6.trace__O__V(jsx$5.s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$s_sc_IndexedSeqOptimized$class__head__sc_IndexedSeqOptimized__O(this$17)])));
         return (void 0)
       } else {
         return $g.alert("You must select a Dockerfile")
@@ -17760,16 +17685,14 @@ function $h_Lmondello_electron_components_pages_Compose$() {
 }
 $h_Lmondello_electron_components_pages_Compose$.prototype = $c_Lmondello_electron_components_pages_Compose$.prototype;
 $c_Lmondello_electron_components_pages_Compose$.prototype.stopSelectedServices__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Stopping services\n");
+  $m_Lmondello_config_Log$().trace__O__V("** Stopping services");
   var jsx$2 = this.selectedServices$2.values__sc_Iterable();
   var jsx$1 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$2$2) {
     var x$2 = $as_Lmondello_models_Service(x$2$2);
     return x$2.id$1
   }));
-  var this$4 = $m_sc_Iterable$();
-  var services = $as_sc_Iterable(jsx$2.map__F1__scg_CanBuildFrom__O(jsx$1, this$4.ReusableCBFInstance$2));
+  var this$1 = $m_sc_Iterable$();
+  var services = $as_sc_Iterable(jsx$2.map__F1__scg_CanBuildFrom__O(jsx$1, this$1.ReusableCBFInstance$2));
   var docker = this.dockerCompose$2;
   if ((docker !== null)) {
     return $as_Lmondello_proxies_DockerCompose((0, $m_Lmondello_electron_components_pages_Compose$().dockerCompose$2)()).stopServices__Lmondello_models_Project__AT__s_concurrent_Future($as_Lmondello_models_Project((0, $m_Lmondello_electron_components_pages_Compose$().selectedProject$2)()), $asArrayOf_T(services.toArray__s_reflect_ClassTag__O(new $c_s_reflect_ClassTag$ClassClassTag().init___jl_Class($d_T.getClassOf())), 1))
@@ -17803,16 +17726,14 @@ $c_Lmondello_electron_components_pages_Compose$.prototype.init___ = (function() 
   return this
 });
 $c_Lmondello_electron_components_pages_Compose$.prototype.down__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Stopping services\n");
+  $m_Lmondello_config_Log$().trace__O__V("** Stopping services");
   var jsx$2 = this.selectedServices$2.values__sc_Iterable();
   var jsx$1 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$3$2) {
     var x$3 = $as_Lmondello_models_Service(x$3$2);
     return x$3.id$1
   }));
-  var this$4 = $m_sc_Iterable$();
-  $as_sc_Iterable(jsx$2.map__F1__scg_CanBuildFrom__O(jsx$1, this$4.ReusableCBFInstance$2));
+  var this$1 = $m_sc_Iterable$();
+  $as_sc_Iterable(jsx$2.map__F1__scg_CanBuildFrom__O(jsx$1, this$1.ReusableCBFInstance$2));
   var docker = this.dockerCompose$2;
   if ((docker !== null)) {
     return $as_Lmondello_proxies_DockerCompose((0, $m_Lmondello_electron_components_pages_Compose$().dockerCompose$2)()).down__Lmondello_models_Project__s_concurrent_Future($as_Lmondello_models_Project((0, $m_Lmondello_electron_components_pages_Compose$().selectedProject$2)()))
@@ -17899,15 +17820,13 @@ $c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$sel
   return this.selectedServices$2
 });
 $c_Lmondello_electron_components_pages_Compose$.prototype.reloadProjects__V = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Reloading projects\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Reloading projects");
   this.projects$2.removeAll();
   var foundProject = new $c_sr_BooleanRef().init___Z(false);
-  var this$5 = $m_Lmondello_config_Settings$().compose$1;
+  var this$2 = $m_Lmondello_config_Settings$().compose$1;
   var f = new $c_Lmondello_electron_components_pages_Compose$$anonfun$reloadProjects$1().init___sr_BooleanRef(foundProject);
-  var this$6 = this$5.scala$collection$mutable$ListBuffer$$start$6;
-  var these = this$6;
+  var this$3 = this$2.scala$collection$mutable$ListBuffer$$start$6;
+  var these = this$3;
   while ((!these.isEmpty__Z())) {
     var v1 = these.head__O();
     f.apply__T__V($as_T(v1));
@@ -17921,16 +17840,14 @@ $c_Lmondello_electron_components_pages_Compose$.prototype.$$js$exported$prop$doc
   return this.dockerCompose$2
 });
 $c_Lmondello_electron_components_pages_Compose$.prototype.upSelectedServices__Z__s_concurrent_Future = (function(detached) {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Starting services\n");
+  $m_Lmondello_config_Log$().trace__O__V("** Starting services");
   var jsx$2 = this.selectedServices$2.values__sc_Iterable();
   var jsx$1 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$1$2) {
     var x$1 = $as_Lmondello_models_Service(x$1$2);
     return x$1.id$1
   }));
-  var this$4 = $m_sc_Iterable$();
-  var services = $as_sc_Iterable(jsx$2.map__F1__scg_CanBuildFrom__O(jsx$1, this$4.ReusableCBFInstance$2));
+  var this$1 = $m_sc_Iterable$();
+  var services = $as_sc_Iterable(jsx$2.map__F1__scg_CanBuildFrom__O(jsx$1, this$1.ReusableCBFInstance$2));
   var docker = this.dockerCompose$2;
   if ((docker !== null)) {
     return $as_Lmondello_proxies_DockerCompose((0, $m_Lmondello_electron_components_pages_Compose$().dockerCompose$2)()).upServices__Z__Lmondello_models_Project__AT__s_concurrent_Future(detached, $as_Lmondello_models_Project((0, $m_Lmondello_electron_components_pages_Compose$().selectedProject$2)()), $asArrayOf_T(services.toArray__s_reflect_ClassTag__O(new $c_s_reflect_ClassTag$ClassClassTag().init___jl_Class($d_T.getClassOf())), 1))
@@ -18080,10 +17997,7 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$meth$
   return this.reloadContainers__s_concurrent_Future()
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.startContainer__Lmondello_models_Container__s_concurrent_Future = (function(container) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Start Container ", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1, container.names$1]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Start Container ", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1, container.names$1])));
   $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Starting container ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.names$1])));
   if ((container !== null)) {
     var f = $as_Lmondello_proxies_Docker((0, $m_Lmondello_electron_components_pages_Containers$().docker$2)()).startContainer__T__s_concurrent_Future(container.id$1);
@@ -18095,9 +18009,9 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.startContainer__Lmo
     $s_s_concurrent_Future$class__onFailure__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(f, pf$1, executor$1);
     return f
   } else {
-    var this$5 = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
-    var this$6 = $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$5, true);
-    return this$6
+    var this$2 = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
+    var this$3 = $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$2, true);
+    return this$3
   }
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$prop$displayContainerLogs__Lknockout_KoObservable__O = (function(x$1) {
@@ -18164,10 +18078,7 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.template__T = (func
   return jsx$18.apply__sc_Seq__Lscalatags_Text$TypedTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$17, jsx$16, jsx$8, jsx$5, jsx$4, jsx$3, jsx$1, new $c_Lscalatags_Text$RawFrag().init___T("<!-- /ko -->")])).toString__T()
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.startContainerInteractive__Lmondello_models_Container__s_concurrent_Future = (function(container) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Start Container ", ":", " Interactive"])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1, container.names$1]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Start Container ", ":", " Interactive"])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1, container.names$1])));
   $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Starting container ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.names$1])));
   if ((container !== null)) {
     var f = $as_Lmondello_proxies_Docker((0, $m_Lmondello_electron_components_pages_Containers$().docker$2)()).startContainerInteractive__T__s_concurrent_Future(container.id$1);
@@ -18179,16 +18090,13 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.startContainerInter
     $s_s_concurrent_Future$class__onFailure__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(f, pf$1, executor$1);
     return f
   } else {
-    var this$5 = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
-    var this$6 = $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$5, true);
-    return this$6
+    var this$2 = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
+    var this$3 = $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$2, true);
+    return this$3
   }
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.stopContainer__Lmondello_models_Container__s_concurrent_Future = (function(container) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Stop Container ", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1, container.names$1]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Stop Container ", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1, container.names$1])));
   $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Stopping container ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.names$1])));
   if ((container !== null)) {
     var f = $as_Lmondello_proxies_Docker((0, $m_Lmondello_electron_components_pages_Containers$().docker$2)()).stopContainer__T__s_concurrent_Future(container.id$1);
@@ -18200,9 +18108,9 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.stopContainer__Lmon
     $s_s_concurrent_Future$class__onFailure__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(f, pf$1, executor$1);
     return f
   } else {
-    var this$5 = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
-    var this$6 = $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$5, true);
-    return this$6
+    var this$2 = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
+    var this$3 = $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$2, true);
+    return this$3
   }
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$prop$displayContainerLogs__O = (function() {
@@ -18240,9 +18148,7 @@ $c_Lmondello_electron_components_pages_Containers$.prototype.$$js$exported$prop$
   this.selectedContainer$2 = x$1
 });
 $c_Lmondello_electron_components_pages_Containers$.prototype.reloadContainers__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("*** Reloading Docker Containers\n");
+  $m_Lmondello_config_Log$().trace__O__V("*** Reloading Docker Containers");
   (0, this.loadingContainers$2)(true);
   if (((0, this.docker$2)() === null)) {
     this.containers$2.removeAll();
@@ -18435,10 +18341,7 @@ $c_Lmondello_electron_components_pages_Images$.prototype.$$js$exported$prop$sele
   this.selectedImage$2 = x$1
 });
 $c_Lmondello_electron_components_pages_Images$.prototype.buildImage__T__T__T__Z__s_concurrent_Future = (function(dirname, tag, args, rm) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Building image at path ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([dirname]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Building image at path ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([dirname])));
   var docker = (0, this.docker$2)();
   if ((docker !== null)) {
     return $as_Lmondello_proxies_Docker((0, $m_Lmondello_electron_components_pages_Images$().docker$2)()).buildimage__T__T__T__Z__s_concurrent_Future(dirname, tag, args, rm)
@@ -18509,16 +18412,11 @@ $c_Lmondello_electron_components_pages_Images$.prototype.$$js$exported$prop$sele
   return this.selectedImage$2
 });
 $c_Lmondello_electron_components_pages_Images$.prototype.startImage__T__T__T__T__T__T__T__s_concurrent_Future = (function(entrypoint, name, link, expose, publish, envs, command) {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Start Image\n");
+  $m_Lmondello_config_Log$().trace__O__V("** Start Image");
   return this.startImageInternal__Z__Z__T__T__T__T__T__T__T__s_concurrent_Future(false, true, entrypoint, name, link, expose, publish, envs, command)
 });
 $c_Lmondello_electron_components_pages_Images$.prototype.pullImage__T__T__s_concurrent_Future = (function(image, tag) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Pulling image ", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([image, tag]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Pulling image ", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([image, tag])));
   var docker = (0, this.docker$2)();
   if ((docker !== null)) {
     return $as_Lmondello_proxies_Docker((0, $m_Lmondello_electron_components_pages_Images$().docker$2)()).pullImage__T__T__s_concurrent_Future(image, tag)
@@ -18555,10 +18453,7 @@ $c_Lmondello_electron_components_pages_Images$.prototype.$$js$exported$prop$imag
   this.images$2 = x$1
 });
 $c_Lmondello_electron_components_pages_Images$.prototype.destroyImage__Lmondello_models_Image__s_concurrent_Future = (function(image) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Destroying image ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([image.id$1]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Destroying image ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([image.id$1])));
   var docker = (0, this.docker$2)();
   if ((docker !== null)) {
     $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Destroying image ", ":", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([image.repository$1, image.tag$1])));
@@ -18588,9 +18483,7 @@ $c_Lmondello_electron_components_pages_Images$.prototype.$$js$exported$prop$dock
   return this.docker$2
 });
 $c_Lmondello_electron_components_pages_Images$.prototype.reloadImages__s_concurrent_Future = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("*** Reloading Docker Images\n");
+  $m_Lmondello_config_Log$().trace__O__V("*** Reloading Docker Images");
   (0, this.loadingImages$2)(true);
   if (((0, this.docker$2)() === null)) {
     this.images$2.removeAll();
@@ -18647,9 +18540,7 @@ $c_Lmondello_electron_components_pages_Images$.prototype.startImageInternal__Z__
   }
 });
 $c_Lmondello_electron_components_pages_Images$.prototype.startImageInteractive__T__T__T__T__T__T__T__s_concurrent_Future = (function(entrypoint, name, link, expose, publish, envs, command) {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Start Image Interactive\n");
+  $m_Lmondello_config_Log$().trace__O__V("** Start Image Interactive");
   return this.startImageInternal__Z__Z__T__T__T__T__T__T__T__s_concurrent_Future(true, false, entrypoint, name, link, expose, publish, envs, command)
 });
 $c_Lmondello_electron_components_pages_Images$.prototype.$$js$exported$prop$images__O = (function() {
@@ -18867,10 +18758,7 @@ $c_Lmondello_electron_components_pages_compose_SelectedProject$.prototype.volume
 $c_Lmondello_electron_components_pages_compose_SelectedProject$.prototype.selectService__sjs_js_Function2 = (function() {
   return this.koCallback__F1__sjs_js_Function2(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(service$2) {
     var service = $as_Lmondello_models_Service(service$2);
-    var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Selecting service ", " "])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([service.id$1]));
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+    $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Selecting service ", " "])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([service.id$1])));
     if ($m_Lmondello_electron_components_pages_compose_SelectedProject$().selectedServices$2.contains__O__Z(service.id$1)) {
       $m_Lmondello_electron_components_pages_compose_SelectedProject$().selectedServices$2.remove__O__s_Option(service.id$1)
     } else {
@@ -18933,9 +18821,7 @@ $c_Lmondello_electron_components_pages_compose_SelectedProject$.prototype.$$js$e
   return this.template__T()
 });
 $c_Lmondello_electron_components_pages_compose_SelectedProject$.prototype.selectAllServices__Z = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* select all services\n");
+  $m_Lmondello_config_Log$().trace__O__V("* select all services");
   var oldValue = $uZ($g.$("#select-all-input").prop("checked"));
   $g.$("#services-selection th input").prop("checked", oldValue);
   if (oldValue) {
@@ -19444,9 +19330,7 @@ $c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.lockLogs__s
 });
 $c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.clearLog__sjs_js_Function2 = (function() {
   return this.koCallback__F1__sjs_js_Function2(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$3$2) {
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Clearing log\n");
+    $m_Lmondello_config_Log$().trace__O__V("** Clearing log");
     return $m_Lmondello_electron_components_pages_logs_ContainerLogs$().logs$2.removeAll()
   })))
 });
@@ -19523,9 +19407,7 @@ $c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.$$js$export
 });
 $c_Lmondello_electron_components_pages_logs_ContainerLogs$.prototype.cancelSearchLog__sjs_js_Function2 = (function() {
   return this.koCallback__F1__sjs_js_Function2(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$5$2) {
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Cancel search log\n");
+    $m_Lmondello_config_Log$().trace__O__V("** Cancel search log");
     (0, $m_Lmondello_electron_components_pages_logs_ContainerLogs$().showFiltered$2)(false);
     (0, $m_Lmondello_electron_components_pages_logs_ContainerLogs$().searchText$2)("");
     var value = (void 0);
@@ -24243,12 +24125,8 @@ $c_Lmondello_config_Settings$$anonfun$loadSettings$2.prototype.init___s_concurre
 });
 $c_Lmondello_config_Settings$$anonfun$loadSettings$2.prototype.apply__T__Lmondello_config_Settings$ = (function(data) {
   var parsed = $g.JSON.parse(data);
-  var this$5 = $m_s_Console$();
-  var this$6 = $as_Ljava_io_PrintStream(this$5.outVar$2.v$1);
-  this$6.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Found settings\n");
-  var this$8 = $m_s_Console$();
-  var this$9 = $as_Ljava_io_PrintStream(this$8.outVar$2.v$1);
-  this$9.java$lang$JSConsoleBasedPrintStream$$printString__T__V((data + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V("* Found settings");
+  $m_Lmondello_config_Log$().trace__O__V(data);
   var jsx$2 = $m_Lmondello_config_Settings$();
   if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(parsed, "dockerHome"))) {
     var jsx$1 = parsed.dockerHome
@@ -24284,9 +24162,9 @@ $c_Lmondello_config_Settings$$anonfun$loadSettings$2.prototype.apply__T__Lmondel
     i = ((1 + i) | 0)
   };
   $m_Lmondello_config_Settings$().compose$1 = $as_scm_ListBuffer(elem$1);
-  var this$18 = this.p$1$2;
+  var this$12 = this.p$1$2;
   var value = $m_Lmondello_config_Settings$();
-  $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$18, value);
+  $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$12, value);
   return $m_Lmondello_config_Settings$()
 });
 var $d_Lmondello_config_Settings$$anonfun$loadSettings$2 = new $TypeData().initClass({
@@ -24363,10 +24241,7 @@ $c_Lmondello_electron_components_pages_dialogs_LoginDialog$$anonfun$logout$1.pro
   return this.apply__Lmondello_models_Credential__sjs_js_Any($as_Lmondello_models_Credential(v1))
 });
 $c_Lmondello_electron_components_pages_dialogs_LoginDialog$$anonfun$logout$1.prototype.apply__Lmondello_models_Credential__sjs_js_Any = (function(credential) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* logout credential ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([credential]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* logout credential ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([credential])));
   $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Logging out from ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([credential.service$1])));
   var f = $m_Lmondello_electron_components_MondelloApp$().logout__T__s_concurrent_Future(credential.service$1);
   var pf = new $c_Lmondello_electron_components_pages_dialogs_LoginDialog$$anonfun$logout$1$$anonfun$apply$1().init___Lmondello_electron_components_pages_dialogs_LoginDialog$$anonfun$logout$1(this);
@@ -24532,10 +24407,7 @@ $c_Lmondello_electron_components_pages_logs_ContainerLogs$$anonfun$searchLog$1.p
   return this.apply__sjs_js_Any__sjs_js_Any(v1)
 });
 $c_Lmondello_electron_components_pages_logs_ContainerLogs$$anonfun$searchLog$1.prototype.apply__sjs_js_Any__sjs_js_Any = (function(x$4) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Searching log for ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([(0, $m_Lmondello_electron_components_pages_logs_ContainerLogs$().searchText$2)()]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["** Searching log for ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([(0, $m_Lmondello_electron_components_pages_logs_ContainerLogs$().searchText$2)()])));
   var textToSearch = $as_T((0, $m_Lmondello_electron_components_pages_logs_ContainerLogs$().searchText$2)());
   $m_Lmondello_electron_components_pages_logs_ContainerLogs$().filteredLogs$2.removeAll();
   var array = (0, $m_Lmondello_electron_components_pages_logs_ContainerLogs$().logs$2)();
@@ -24601,30 +24473,21 @@ $c_Lmondello_electron_components_pages_logs_ContainerLogs$$anonfun$startLoggingC
   return this.apply__Lmondello_models_Container__sjs_js_Any($as_Lmondello_models_Container(v1))
 });
 $c_Lmondello_electron_components_pages_logs_ContainerLogs$$anonfun$startLoggingContainer$1.prototype.apply__Lmondello_models_Container__sjs_js_Any = (function(container) {
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Start logging container: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1]));
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Start logging container: ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1])));
   if ((!$m_Lmondello_electron_components_pages_logs_ContainerLogs$().childrenRegistry$2.contains__O__Z(container.id$1))) {
-    var this$4 = $m_Lmondello_electron_components_pages_logs_ContainerLogs$();
-    var color = $s_Lmondello_electron_components_common_ColorGenerator$class__nextColor__Lmondello_electron_components_common_ColorGenerator__T(this$4);
+    var this$1 = $m_Lmondello_electron_components_pages_logs_ContainerLogs$();
+    var color = $s_Lmondello_electron_components_common_ColorGenerator$class__nextColor__Lmondello_electron_components_common_ColorGenerator__T(this$1);
     var child = $m_Lmondello_electron_components_pages_Containers$().logContainer__Lmondello_models_Container__F1__sjs_js_Any(container, new $c_Lmondello_electron_components_pages_logs_ContainerLogs$$anonfun$startLoggingContainer$1$$anonfun$4().init___Lmondello_electron_components_pages_logs_ContainerLogs$$anonfun$startLoggingContainer$1__T__Lmondello_models_Container(this, color, container));
     $m_Lmondello_electron_components_pages_logs_ContainerLogs$().childrenRegistry$2.update__O__O__V(container.id$1, child)
   } else {
     var child$2 = $m_Lmondello_electron_components_pages_logs_ContainerLogs$().childrenRegistry$2.remove__O__s_Option(container.id$1).get__O();
-    var x$1 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Killing log observer child for container ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1]));
-    var this$6 = $m_s_Console$();
-    var this$7 = $as_Ljava_io_PrintStream(this$6.outVar$2.v$1);
-    this$7.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$1 + "\n"));
+    $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Killing log observer child for container ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([container.id$1])));
     try {
       child$2.kill()
     } catch (e) {
       var e$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e);
       if ((e$2 !== null)) {
-        var x$2 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["!! Error killing log observer ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([e$2]));
-        var this$9 = $m_s_Console$();
-        var this$10 = $as_Ljava_io_PrintStream(this$9.outVar$2.v$1);
-        this$10.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$2 + "\n"))
+        $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["!! Error killing log observer ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([e$2])))
       } else {
         throw e
       }
@@ -24739,9 +24602,7 @@ $c_Lmondello_electron_components_pages_machines_MachineFooter$$anonfun$destroyMa
   this.apply__sjs_js_Any__V(v1)
 });
 $c_Lmondello_electron_components_pages_machines_MachineFooter$$anonfun$destroyMachine$1.prototype.apply__sjs_js_Any__V = (function(event) {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("** Destroying machine clicked\n");
+  $m_Lmondello_config_Log$().trace__O__V("** Destroying machine clicked");
   $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Destroying Docker machine ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()).name$1])));
   $m_Lmondello_electron_components_pages_Machines$().removeMachine__Lmondello_models_Machine__F1__s_concurrent_Future($as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$1$2) {
     $uZ(x$1$2);
@@ -24777,14 +24638,9 @@ $c_Lmondello_electron_components_pages_machines_MachineFooter$$anonfun$startMach
   this.apply__sjs_js_Any__V(v1)
 });
 $c_Lmondello_electron_components_pages_machines_MachineFooter$$anonfun$startMachine$1.prototype.apply__sjs_js_Any__V = (function(event) {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Start machine clicked\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Start machine clicked");
   $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Starting Docker machine '", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()).name$1])));
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Starting machine ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()).name$1]));
-  var this$5 = $m_s_Console$();
-  var this$6 = $as_Ljava_io_PrintStream(this$5.outVar$2.v$1);
-  this$6.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Starting machine ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()).name$1])));
   $m_Lmondello_electron_components_pages_Machines$().startMachine__Lmondello_models_Machine__F1__s_concurrent_Future($as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$3$2) {
     $uZ(x$3$2);
     $m_Lmondello_electron_components_MondelloApp$().closeModal__sjs_js_Dynamic()
@@ -24819,14 +24675,9 @@ $c_Lmondello_electron_components_pages_machines_MachineFooter$$anonfun$stopMachi
   this.apply__sjs_js_Any__V(v1)
 });
 $c_Lmondello_electron_components_pages_machines_MachineFooter$$anonfun$stopMachine$1.prototype.apply__sjs_js_Any__V = (function(event) {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Stop machine clicked\n");
+  $m_Lmondello_config_Log$().trace__O__V("* Stop machine clicked");
   $m_Lmondello_electron_components_MondelloApp$().showModal__T__sjs_js_Dynamic(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Stopping Docker machine '", "'"])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()).name$1])));
-  var x = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Stopping machine ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()).name$1]));
-  var this$5 = $m_s_Console$();
-  var this$6 = $as_Ljava_io_PrintStream(this$5.outVar$2.v$1);
-  this$6.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  $m_Lmondello_config_Log$().trace__O__V(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["* Stopping machine ", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()).name$1])));
   $m_Lmondello_electron_components_pages_Machines$().stopMachine__Lmondello_models_Machine__F1__s_concurrent_Future($as_Lmondello_models_Machine((0, $m_Lmondello_electron_components_pages_machines_MachineFooter$().selectedMachine$2)()), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(x$2$2) {
     $uZ(x$2$2);
     $m_Lmondello_electron_components_MondelloApp$().closeModal__sjs_js_Dynamic()
@@ -28661,13 +28512,11 @@ $c_Lmondello_config_Settings$$anonfun$loadSettings$1.prototype.init___s_concurre
 });
 $c_Lmondello_config_Settings$$anonfun$loadSettings$1.prototype.applyOrElse__jl_Throwable__F1__O = (function(x1, $default) {
   if ((x1 !== null)) {
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Settings file not found, returning defaults\n");
+    $m_Lmondello_config_Log$().trace__O__V("* Settings file not found, returning defaults");
     $m_Lmondello_config_Settings$().error$1 = x1.toString__T();
-    var this$4 = this.p$1$2;
+    var this$1 = this.p$1$2;
     var value = $m_Lmondello_config_Settings$();
-    return $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$4, value)
+    return $s_s_concurrent_Promise$class__success__s_concurrent_Promise__O__s_concurrent_Promise(this$1, value)
   } else {
     return $default.apply__O__O(x1)
   }
@@ -28710,12 +28559,8 @@ $c_Lmondello_electron_Main$$anonfun$bootstrap$1.prototype.isDefinedAt__T__Z = (f
 $c_Lmondello_electron_Main$$anonfun$bootstrap$1.prototype.applyOrElse__T__F1__O = (function(x1, $default) {
   if ((x1 !== null)) {
     var parsed = $g.JSON.parse(x1);
-    var this$5 = $m_s_Console$();
-    var this$6 = $as_Ljava_io_PrintStream(this$5.outVar$2.v$1);
-    this$6.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Found settings\n");
-    var this$8 = $m_s_Console$();
-    var this$9 = $as_Ljava_io_PrintStream(this$8.outVar$2.v$1);
-    this$9.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x1 + "\n"));
+    $m_Lmondello_config_Log$().trace__O__V("* Found settings");
+    $m_Lmondello_config_Log$().trace__O__V(x1);
     if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(parsed, "dockerHome"))) {
       var jsx$1 = parsed.dockerHome
     } else {
@@ -28730,9 +28575,7 @@ $c_Lmondello_electron_Main$$anonfun$bootstrap$1.prototype.applyOrElse__T__F1__O 
       throw new $c_ju_NoSuchElementException().init___T("key not found: driversHome")
     };
     var driversHome = $as_T(jsx$2);
-    var this$15 = $m_s_Console$();
-    var this$16 = $as_Ljava_io_PrintStream(this$15.outVar$2.v$1);
-    this$16.java$lang$JSConsoleBasedPrintStream$$printString__T__V("* Setting the path\n");
+    $m_Lmondello_config_Log$().trace__O__V("* Setting the path");
     var dict = $g.process.env;
     if ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(dict, "PATH"))) {
       var origPath = dict.PATH
@@ -31247,7 +31090,17 @@ $c_Lmondello_electron_Main$$anonfun$main$2.prototype.init___sr_ObjectRef = (func
 $c_Lmondello_electron_Main$$anonfun$main$2.prototype.apply$mcV$sp__V = (function() {
   this.mainWindow$1$f.elem$1 = $m_Lio_atom_electron_BrowserWindow$().apply__I__I__Z__T__I__I__Z__T__Lio_atom_electron_BrowserWindow(1200, 800, ($m_Lio_atom_electron_BrowserWindow$(), true), ($m_Lio_atom_electron_BrowserWindow$(), null), ($m_Lio_atom_electron_BrowserWindow$(), 500), ($m_Lio_atom_electron_BrowserWindow$(), 200), ($m_Lio_atom_electron_BrowserWindow$(), true), ($m_Lio_atom_electron_BrowserWindow$(), "hidden"));
   this.mainWindow$1$f.elem$1.loadURL((("file://" + $g.__dirname) + "/index.html"));
-  this.mainWindow$1$f.elem$1.openDevTools();
+  var dict = $g.process.env;
+  if (($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(dict, "ENV")) ? new $c_s_Some().init___O(dict.ENV) : $m_s_None$()).isDefined__Z()) {
+    var dict$1 = $g.process.env;
+    var x = ($uZ($m_sjs_js_WrappedDictionary$Cache$().safeHasOwnProperty$1.call(dict$1, "ENV")) ? new $c_s_Some().init___O(dict$1.ENV) : $m_s_None$()).get__O();
+    var jsx$1 = ((x !== null) && $objectEquals(x, "development"))
+  } else {
+    var jsx$1 = false
+  };
+  if (jsx$1) {
+    this.mainWindow$1$f.elem$1.openDevTools()
+  };
   this.mainWindow$1$f.elem$1.on("closed", (function(arg$outer) {
     return (function() {
       arg$outer.mainWindow$1$f.elem$1 = null

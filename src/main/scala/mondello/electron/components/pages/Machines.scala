@@ -2,6 +2,7 @@ package mondello.electron.components.pages
 
 import knockout.tags.KoText.all._
 import knockout.{KoComponent, KoObservable, KoObservableArray}
+import mondello.config.Log
 import mondello.electron.components.pages.machines.{MachineFooter, MachinesBrowser}
 import mondello.models.Machine
 import mondello.proxies.DockerMachine
@@ -61,7 +62,7 @@ object Machines extends KoComponent("docker-machines") {
   }
 
   def reloadMachines() = {
-    println("*** Reloading Docker Machines")
+    Log.trace("*** Reloading Docker Machines")
     val f = dockerMachine.all
     f.onSuccess {
       case machines =>

@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.images.dialogs
 
 import knockout.{Ko, KoComponent, KoObservable}
+import mondello.config.Log
 
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scala.scalajs.js.{Any, Dictionary}
@@ -79,7 +80,7 @@ object LaunchConfigurationDialog extends KoComponent("launch-configuration-dialo
   // callbacks
 
   def submitLaunchConfig() = {
-    println("* Submit launch config")
+    Log.trace("* Submit launch config")
     hide()
   }
 }

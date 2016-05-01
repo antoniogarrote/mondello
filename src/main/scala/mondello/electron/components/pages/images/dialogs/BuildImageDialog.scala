@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.images.dialogs
 
 import knockout.{Ko, KoComponent, KoObservable}
+import mondello.config.Log
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.Images
 
@@ -10,7 +11,6 @@ import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scalatags.Text.all._
 import scalatags.Text.attrs
-
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 
 @JSExportAll
@@ -88,7 +88,7 @@ object BuildImageDialog extends KoComponent("build-image-dialog") {
   }
 
   def openSelectDockerfile() = {
-    println("* Opening dockerfile")
+    Log.trace("* Opening dockerfile")
     val options = js.Dictionary(
       "title" -> "Select Dockerfile to build",
       "properties" -> js.Array("openFile")
@@ -96,13 +96,13 @@ object BuildImageDialog extends KoComponent("build-image-dialog") {
     var filenames = g.require("remote").dialog.showOpenDialog(options).asInstanceOf[js.UndefOr[js.Array[String]] ]
     if(filenames.isDefined) {
       var filename = filenames.get(0)
-      println(s"* Selected $filename")
+      Log.trace(s"* Selected $filename")
       val sep = g.require("path").sep.asInstanceOf[String]
       val parts = filename.split(sep)
       val last = parts.last
       val projectDir = parts.dropRight(1).mkString(sep)
-      println(s"* Last: $last")
-      println(s"* Project dir: $projectDir")
+      Log.trace(s"* Last: $last")
+      Log.trace(s"* Project dir: $projectDir")
       if(last == "Dockerfile") {
         dirname(projectDir)
       } else {

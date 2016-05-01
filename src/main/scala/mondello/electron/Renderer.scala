@@ -1,7 +1,7 @@
 package mondello.electron
 
 import knockout.{Ko, KoComponent}
-import mondello.config.Settings
+import mondello.config.{Log, Settings}
 import mondello.electron.components.MondelloApp
 import org.scalajs.dom
 
@@ -17,8 +17,8 @@ object Renderer {
   @JSExport
   def main(): Unit = {
     Settings.loadSettings().map { (settings) =>
-      println(s"*** Mondello running")
-      println(settings)
+      Log.trace(s"*** Mondello running")
+      Log.trace(settings)
       // Register components
       KoComponent(MondelloApp(settings))
 

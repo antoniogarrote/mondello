@@ -1,6 +1,6 @@
 package mondello.proxies
 
-import mondello.config.Environment
+import mondello.config.{Environment, Log}
 import mondello.models.{Container, Image}
 
 import scala.collection.mutable
@@ -137,8 +137,8 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
 
     val interactiveArgs = if(interactive) List("--interactive=true", "--tty") else List[String]()
     val args =  interactiveArgs ++ List(entrypointArg, nameArg, linkArg, exposeArg, publishArg) ++ envsArg ++ List(id, command)
-    println("*** STARGIN IMAGE WITH ARGS")
-    println(args)
+    Log.trace("*** STARGIN IMAGE WITH ARGS")
+    Log.trace(args)
     f(args).map((_) => true)
   }
   protected def makeCmdLineArg(name:String, value:String): String = {

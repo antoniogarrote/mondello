@@ -1,5 +1,7 @@
 package mondello.electron.components.common
 
+import mondello.config.Log
+
 import scala.concurrent.{Future, Promise}
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
@@ -30,8 +32,8 @@ trait FileLoader {
 
   def saveFile(path:String, data:String):Unit = {
     val fs = g.require("fs")
-    println(s"* Saving file $path")
-    fs.writeFile(path, data, {(e:js.Dynamic)=> println(e)})
+    Log.trace(s"* Saving file $path")
+    fs.writeFile(path, data, {(e:js.Dynamic)=> Log.trace(e)})
     ()
   }
 }

@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.machines
 
 import knockout.{KoComponent, KoObservable}
+import mondello.config.Log
 import mondello.electron.Renderer
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.Machines
@@ -54,7 +55,7 @@ object MachineFooter extends KoComponent("machine-footer") {
 
   def destroyMachine():js.Function1[js.Any,Unit] = {
     (event:js.Any) => {
-      println("** Destroying machine clicked")
+      Log.trace("** Destroying machine clicked")
       MondelloApp.showModal(s"Destroying Docker machine ${this.selectedMachine().name}")
       Machines.removeMachine(this.selectedMachine(), (_) => MondelloApp.closeModal())
       ()
@@ -63,18 +64,18 @@ object MachineFooter extends KoComponent("machine-footer") {
 
   def stopMachine():js.Function1[js.Any,Unit] = {
     (event:js.Any) => {
-      println("* Stop machine clicked")
+      Log.trace("* Stop machine clicked")
       MondelloApp.showModal(s"Stopping Docker machine '${this.selectedMachine().name}'")
-      println(s"* Stopping machine ${this.selectedMachine().name}")
+      Log.trace(s"* Stopping machine ${this.selectedMachine().name}")
       Machines.stopMachine(this.selectedMachine(), (_) => MondelloApp.closeModal())
       ()
     }
   }
 
   def startMachine():js.Function1[js.Any,Unit] = (event:js.Any) => {
-    println("* Start machine clicked")
+    Log.trace("* Start machine clicked")
     MondelloApp.showModal(s"Starting Docker machine '${this.selectedMachine().name}")
-    println(s"* Starting machine ${this.selectedMachine().name}")
+    Log.trace(s"* Starting machine ${this.selectedMachine().name}")
     Machines.startMachine(this.selectedMachine(), (_) => MondelloApp.closeModal())
     ()
   }

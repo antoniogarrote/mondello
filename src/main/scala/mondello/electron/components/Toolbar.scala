@@ -1,7 +1,7 @@
 package mondello.electron.components
 
 import knockout.{KoComponent, KoObservable}
-import mondello.config.Settings
+import mondello.config.{Log, Settings}
 import mondello.electron.components.common.FileLoader
 import mondello.electron.components.pages.Compose
 import mondello.electron.components.pages.images.dialogs.{BuildImageDialog, PullImageDialog}
@@ -172,7 +172,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
 
   def showNewMachine():js.Function1[js.Any,Unit] = {
     (evt:js.Any) => {
-      println("* show new machine dialog")
+      Log.trace("* show new machine dialog")
       newMachineDialog.show()
       ()
     }
@@ -181,17 +181,17 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   def reload() = MondelloApp.reloadAll()
 
   def pullImage() = {
-    println("* Donwload image dialog")
+    Log.trace("* Donwload image dialog")
     PullImageDialog.show()
   }
 
   def buildImage() = {
-    println("* Build image dialog")
+    Log.trace("* Build image dialog")
     BuildImageDialog.show()
   }
 
   def displayLogs() = {
-    println("* Display logs")
+    Log.trace("* Display logs")
     val oldValue = displayContainerLogs()
     displayContainerLogs(!oldValue)
   }
@@ -217,7 +217,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
       val filenames = result.get
       if(filenames.length > 0 ) {
         if (filenames.head.endsWith("Dockerfile")) {
-          println(s"SELECTED: ${filenames.head}")
+          Log.trace(s"SELECTED: ${filenames.head}")
         } else {
           g.alert("You must select a Dockerfile")
         }

@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.images
 
 import knockout.{KoComponent, KoObservable}
+import mondello.config.Log
 import mondello.electron.components.pages.images.dialogs.{LaunchConfigurationDialog, PullImageDialog}
 import mondello.models.Image
 import mondello.electron.components.pages.Images
@@ -73,19 +74,19 @@ object ImageFooter extends KoComponent("image-footer") {
   // Callbacks
 
   def destroyImage() = {
-    println("** Destroy image")
+    Log.trace("** Destroy image")
     Images.destroyImage(selectedImage())
   }
 
   def pullCurrentImage() = {
-    println("** Pull Current Image")
+    Log.trace("** Pull Current Image")
     Images.pullImage(selectedImage().repository, selectedImage().tag)
   }
 
   def startImageDetached() = {
-    println("** Start Image Detached")
+    Log.trace("** Start Image Detached")
     if(selectedImage != null) {
-      println("** Start Image Interactive")
+      Log.trace("** Start Image Interactive")
       Images.startImage(
         LaunchConfigurationDialog.entryPoint(),
         LaunchConfigurationDialog.name(),
@@ -100,7 +101,7 @@ object ImageFooter extends KoComponent("image-footer") {
 
   def startImageInteractive() = {
     if(selectedImage != null) {
-      println("** Start Image Interactive")
+      Log.trace("** Start Image Interactive")
       Images.startImageInteractive(
         LaunchConfigurationDialog.entryPoint(),
         LaunchConfigurationDialog.name(),
@@ -114,7 +115,7 @@ object ImageFooter extends KoComponent("image-footer") {
   }
 
   def launchConfiguration() = {
-    println("** Launch Configuration")
+    Log.trace("** Launch Configuration")
     LaunchConfigurationDialog.show()
   }
 }
