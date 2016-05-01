@@ -2,8 +2,11 @@
 
 ## About
 
-Mondello is a graphical client for Docker, Docker Machine, Docker Compose for OSX.
-Mondello has been released under the MIT license.
+Mondello is a free graphical client for Docker, Docker Machine, Docker Compose for OSX.
+
+![Mondello screenshot](http://antoniogarrote.github.io/mondello/images/screenshot1.png)
+
+Read more [here](http://antoniogarrote.github.io/mondello/).
 
 ## License
 
