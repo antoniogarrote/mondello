@@ -150,11 +150,18 @@ trait BrowserWindow extends js.Object with EventEmitter {
 
 object BrowserWindow {
 
-  val browserWindow = g.require("browser-window").asInstanceOf[js.Dynamic]
+  val browserWindow = g.require("browser-window")
 
-  def apply(width: Int = 800, height: Int = 600, show: Boolean = true, icon: String = null): BrowserWindow = {
+  def apply(width: Int = 800,
+            height: Int = 600,
+            show: Boolean = true,
+            icon: String = null,
+            minWidth: Int = 500,
+            minHeight: Int = 200,
+            acceptFirstMouse: Boolean = true,
+           titleBarStyle: String="hidden"): BrowserWindow = {
     js.Dynamic.newInstance(browserWindow)(
-      js.Dynamic.literal(width = width, height = height, show = show, icon = icon)
+      js.Dynamic.literal(width = width, height = height, show = show, icon = icon, minHeight=minHeight, minWidth=minWidth, acceptFirstMouse=acceptFirstMouse, titleBarStyle=titleBarStyle)
     ).asInstanceOf[BrowserWindow]
   }
 

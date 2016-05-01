@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mondello</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/photon.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <!-- Javascript -->
+    <script type='text/javascript' src='bower_components/knockout/dist/knockout.debug.js'></script>
+    <script type='text/javascript' src='lib/jquery.scrollTo.js'></script>
+    <!-- scalajs output -->
+    <script type="text/javascript" src="../target/scala-2.11/mondello-jsdeps.js"
+            onload="window.$ = window.jQuery = module.exports;" ></script>
+    <script type="text/javascript" src="../target/scala-2.11/mondello-fastopt.js"></script>
+</head>
+<body>
+
+<mondello-app></mondello-app>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      scrollToFactory($);
+      mondello.electron.Renderer().main();
+   });
+</script>
+
+</body>
+
+<div id="modal" class="reveal" data-reveal aria-hidden="true" role="dialog" style="cursor:wait; display:none">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+    <h4 style="cursor:wait" id="modal-title"></h4>
+    <button id="modal-close-btn" style="cursor:wait" id="modal-close" class="close-button" data-close aria-label="Close modal" type="button">
+        <span style="cursor:wait" aria-hidden="true">&times;</span>
+    </button>
+</div>
+<script type="text/javascript">
+       $(document).ready(function(){
+           $("#modal-close-btn").click(function(){
+               $("#modal").hide();
+           });
+       });
+      </script>
+</html>

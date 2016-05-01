@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.compose
 
 import knockout.{KoComponent, KoObservable}
+import mondello.config.Settings
 import mondello.electron.components.MondelloApp
 import mondello.electron.components.pages.{Compose, Containers}
 import mondello.models.Project
@@ -26,25 +27,39 @@ object ProjectFooter extends KoComponent("project-footer") {
     footer(`class`:="toolbar toolbar-footer",
       div(`class`:="toolbar-actions",
         button(
-          `class`:="btn btn-large btn-default",
+          `class`:="btn btn-large btn-default",title:="Removes the project from the projects list",
           attrs.data.bind:="click: destroyProject, css: {'btn-disabled':!selectedProject()}",
           span(`class`:="icon icon-trash"),
           raw("&nbsp;"),
           "Remove Project"
         ),
         button(
-          `class`:="btn btn-large btn-default pull-right",
+          `class`:="btn btn-large btn-default pull-right",title:="Builds, (re)creates, starts the selected services in the background",
           attrs.data.bind:="click: upDetached, css: {'btn-disabled': !selectedProject()}",
           span(`class`:="icon icon-up"),
           raw("&nbsp;"),
           "Up Detach."
         ),
         button(
-          `class`:="btn btn-large btn-default pull-right",
+          `class`:="btn btn-large btn-default pull-right",title:="Builds, (re)creates, starts, and attaches to containers for the selected services",
           attrs.data.bind:="click: upAttached, css: {'btn-disabled': !selectedProject()}",
           span(`class`:="icon icon-publish"),
           raw("&nbsp;"),
           "Up Attach"
+        ),
+        button(
+          `class`:="btn btn-large btn-default pull-right",title:="Stops the selected services",
+          attrs.data.bind:="click: stop, css: {'btn-disabled': !selectedProject()}",
+          span(`class`:="icon icon-stop"),
+          raw("&nbsp;"),
+          "Stop"
+        ),
+        button(
+          `class`:="btn btn-large btn-default pull-right",title:="Stops all services and removes images and containers",
+          attrs.data.bind:="click: down, css: {'btn-disabled': !selectedProject()}",
+          span(`class`:="icon icon-cancel-squared"),
+          raw("&nbsp;"),
+          "Down"
         ),
         raw("&nbsp;")
       )
@@ -55,6 +70,16 @@ object ProjectFooter extends KoComponent("project-footer") {
 
   def destroyProject() = {
     println("* destroy project")
+    Settings.removeProject(selectedProject().file)
+    Compose.reloadProjects()
+  }
+
+  def stop() = {
+    Compose.stopSelectedServices()
+  }
+
+  def down() = {
+    Compose.down()
   }
 
   def upDetached() = upInternal(detached = true)

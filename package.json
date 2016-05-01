@@ -1,10 +1,12 @@
 {
   "name": "mondello",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Docker utilities on OSX",
   "author": "Antonio Garrote",
   "license": "MIT",
   "dependencies": {
+    "electron-builder": "^3.14.0",
+    "electron-packager": "^7.0.1",
     "js-yaml": "^3.6.0",
     "temporary": "0.0.8"
   }

@@ -26,6 +26,7 @@ object ContainerFooter extends KoComponent("container-footer") {
       div(`class`:="toolbar-actions",
         button(
           `class`:="btn btn-large btn-default",
+          title:="Destroys the selected container",
           attrs.data.bind:="click: destroyContainer, css: {'btn-disabled':!selectedContainer()}",
           span(`class`:="icon icon-trash"),
           raw("&nbsp;"),
@@ -33,6 +34,7 @@ object ContainerFooter extends KoComponent("container-footer") {
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",
+          title:="Stops the selected container",
           attrs.data.bind:="click: stopContainer, css: {'btn-disabled': !selectedContainer() || !selectedContainer().running}",
           span(`class`:="icon icon-stop"),
           raw("&nbsp;"),
@@ -40,6 +42,7 @@ object ContainerFooter extends KoComponent("container-footer") {
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",
+          title:="Attaches to a running container",
           attrs.data.bind:="click: attachContainer, css: {'btn-disabled': !selectedContainer() || !selectedContainer().running}",
           span(`class`:="icon icon-flash"),
           raw("&nbsp;"),
@@ -47,6 +50,7 @@ object ContainerFooter extends KoComponent("container-footer") {
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",
+          title:="Starts a container in the background",
           attrs.data.bind:="click: startContainerDetached, css: {'btn-disabled': !selectedContainer() || selectedContainer().running}",
           span(`class`:="icon icon-play"),
           raw("&nbsp;"),
@@ -54,6 +58,7 @@ object ContainerFooter extends KoComponent("container-footer") {
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",
+          title:="Starts a container attached",
           attrs.data.bind:="click: startContainerInteractive, css: {'btn-disabled': !selectedContainer() || selectedContainer().running}",
           span(`class`:="icon icon-monitor"),
           raw("&nbsp;"),

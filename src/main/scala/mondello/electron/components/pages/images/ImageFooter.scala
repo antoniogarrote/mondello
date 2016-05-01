@@ -28,6 +28,7 @@ object ImageFooter extends KoComponent("image-footer") {
       div(`class`:="toolbar-actions",
         button(
           `class`:="btn btn-large btn-default",
+          title:="Destroys the selected Docker image",
           attrs.data.bind:="click: destroyImage, css: {'btn-disabled':!selectedImage()}",
           span(`class`:="icon icon-trash"),
           raw("&nbsp;"),
@@ -35,6 +36,7 @@ object ImageFooter extends KoComponent("image-footer") {
         ),
         button(
           `class`:="btn btn-large btn-default",
+          title:="Pulls changes for the selected image from the Docker index",
           attrs.data.bind:="click: pullCurrentImage, css: {'btn-disabled': !selectedImage()}",
           span(`class`:="icon icon-cloud"),
           raw("&nbsp;"),
@@ -42,6 +44,7 @@ object ImageFooter extends KoComponent("image-footer") {
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",
+          title:="Starts a container for the selected image and run configuration in the background",
           attrs.data.bind:="click: startImageDetached, css: {'btn-disabled': !selectedImage()}",
           span(`class`:="icon icon-play"),
           raw("&nbsp;"),
@@ -49,6 +52,7 @@ object ImageFooter extends KoComponent("image-footer") {
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",
+          title:="Starts a container for the selected image and run configuration attached",
           attrs.data.bind:="click: startImageInteractive, css: {'btn-disabled': !selectedImage()}",
           span(`class`:="icon icon-monitor"),
           raw("&nbsp;"),
@@ -56,6 +60,7 @@ object ImageFooter extends KoComponent("image-footer") {
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",
+          title:="Container launch settings",
           attrs.data.bind:="click: launchConfiguration, css: {'btn-disabled': !selectedImage()}",
           span(`class`:="icon icon-tools"),
           raw("&nbsp;"),

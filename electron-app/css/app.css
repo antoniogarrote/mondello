@@ -275,6 +275,10 @@
  Adjustments
 */
 
+#console {
+  margin-bottom: 20px;
+}
+
 .span-toolbar-actions .btn {
   margin-left: 4px;
   margin-right: 4px;

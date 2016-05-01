@@ -73,6 +73,12 @@ object Settings extends FileLoader {
     persist()
   }
 
+  def removeProject(file:String) = {
+    println(s"* Removing project $file")
+    compose -= file
+    persist()
+  }
+
   def persist() = {
     println("* Persisting config")
     val newState = js.Dictionary[js.Any]("dockerHome" -> dockerHome, "driversHome" -> driversHome)

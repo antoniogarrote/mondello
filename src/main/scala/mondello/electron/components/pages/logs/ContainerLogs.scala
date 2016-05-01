@@ -26,6 +26,7 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
   val filteredLogs:KoObservableArray[String] = Ko.observableArray()
   val searchText:KoObservable[String] = Ko.observable("")
   val showFiltered:KoObservable[Boolean] = Ko.observable(false)
+  val tailLogs:KoObservable[Boolean] = Ko.observable(false)
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     displayContainerLogs = params("displayContainerLogs").asInstanceOf[KoObservable[Boolean]]
@@ -34,7 +35,6 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
     containers = params("containers").asInstanceOf[KoObservableArray[Container]]
     displayContainerLogs.subscribe((displaying:Boolean) =>
         if (displaying) {
-          println("DISPLAING")
           for(id <- childrenRegistry.keys) {
             g.setTimeout({ () =>
               g.$(s"#container-log-$id").prop("checked",true)
@@ -42,6 +42,16 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
           }
         }
     )
+
+    containers.subscribe { (newContainers: js.Array[Container]) =>
+      val newIds = newContainers.map(_.id)
+      val oldIds = childrenRegistry.keys
+      val killedIds = oldIds.toSet.diff(newIds.toSet)
+      for (id <- killedIds) {
+        val child = childrenRegistry.remove(id)
+        child.asInstanceOf[js.Dynamic].kill()
+      }
+    }
   }
 
   override def template: String = {
@@ -89,7 +99,7 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
       div(`class`:="toolbar-actions",
         button(
           `class`:="btn btn-large btn-default",
-          attrs.data.bind:="click: clearLog()",
+          attrs.data.bind:="click: clearLog(), css: {'btn-disabled':tailLogs()}",
           span(`class`:="icon icon-trash"),
           raw("&nbsp;"),
           "Clear"
@@ -99,28 +109,43 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
         ),
         button(
           `class`:="btn btn-large btn-default",
-          attrs.data.bind:="click: searchLog()",
+          attrs.data.bind:="click: searchLog(), css: {'btn-disabled':tailLogs()}",
           span(`class`:="icon icon-search"),
           raw("&nbsp;"),
           "Search"
         ),
         button(
           `class`:="btn btn-large btn-default",
-          attrs.data.bind:="click: cancelSearchLog()",
+          attrs.data.bind:="click: cancelSearchLog(), css: {'btn-disabled':tailLogs()}",
           span(`class`:="icon icon-cancel-circled"),
           raw("&nbsp;"),
           "Cancel"
+        ),
+        button(
+          `class`:="btn btn-large btn-default pull-right",
+          attrs.data.bind:="click: lockLogs(), css:{pressed: tailLogs()}",
+          span(`class`:="icon icon-bell"),
+          raw("&nbsp;"),
+          "Tail"
         )
       )
     ).toString()
   }
 
-  def clearLog():KoCallback[js.Any] = koCallback({(_) =>
+  def lockLogs():KoCallback[js.Any] = koCallback{ (_) =>
+    tailLogs(!tailLogs())
+    if(tailLogs()) {
+      tail()
+    }
+    true
+  }
+
+  def clearLog():KoCallback[js.Any] = koCallback { (_) =>
     println("** Clearing log")
     logs.removeAll()
-  })
+  }
 
-  def searchLog():KoCallback[js.Any] = koCallback({(_) =>
+  def searchLog():KoCallback[js.Any] = koCallback { (_) =>
     println(s"** Searching log for ${searchText()}")
     val textToSearch = searchText()
     filteredLogs.removeAll()
@@ -143,15 +168,15 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
         e.css("color","white")
       }
     }
-  })
+  }
 
-  def cancelSearchLog():KoCallback[js.Any] = koCallback({(_) =>
+  def cancelSearchLog():KoCallback[js.Any] = koCallback { (_) =>
     println("** Cancel search log")
     showFiltered(false)
     searchText("")
-  })
+  }
 
-  def startLoggingContainer():KoCallback[Container] = koCallback({ (container) =>
+  def startLoggingContainer():KoCallback[Container] = koCallback { (container) =>
     println(s"* Start logging container: ${container.id}")
     if(!childrenRegistry.contains(container.id)) {
       val color = nextColor()
@@ -159,7 +184,7 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
         if(data == null){
           // the process died
           childrenRegistry.remove(container.id)
-        }else {
+        } else {
           // got some more data
           val tokenized = tokenizeData(data, color)
           val html = "<br/><span style='color:" + color + "'>=====" + container.id + " / " + container.names + "</span><br/>"
@@ -167,6 +192,7 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
           for(line <- totalLines) {
             logs.push(line)
             if (logs().length > bufferSize()) logs.shift()
+            if(tailLogs()) tail()
           }
         }
       })
@@ -181,7 +207,7 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
       }
     }
     true
-  })
+  }
 
   protected def tokenizeData(data:String, color:String):Array[String] = {
     data.split("\n").map { (line) =>
@@ -194,5 +220,9 @@ object ContainerLogs extends KoComponent("container-logs") with ColorGenerator {
       }.mkString("&nbsp;")
       s"<span style='color:$color'class='token-line'>$tokenizedLine</span><br/>"
     }
+  }
+
+  protected def tail() = {
+    g.$("#console").scrollTop(g.$("#console").asInstanceOf[js.Array[js.Dynamic]](0).scrollHeight)
   }
 }

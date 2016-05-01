@@ -27,18 +27,21 @@ object MachineFooter extends KoComponent("machine-footer") {
       div(`class`:="toolbar-actions",
         button(
           `class`:="btn btn-large btn-default",
+          title:="Destroys the selected Docker machine",
           attrs.data.bind:="click: destroyMachine(), css: {'btn-disabled':!selectedMachine()}",
           span(`class`:="icon icon-trash"),
           "Destroy Machine"
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",
+          title:="Stops the selected Docker machine",
           attrs.data.bind:="click: stopMachine(), css: {'btn-disabled': (selectedMachine() == null || selectedMachine().state == 'Stopped')}",
           span(`class`:="icon icon-stop"),
           "Stop"
         ),
         button(
           `class`:="btn btn-large btn-default pull-right",
+          title:="Starts the selected Docker machine",
           attrs.data.bind:="click: startMachine(), css: {'btn-disabled': (selectedMachine() == null || selectedMachine().state == 'Running')}",
           span(`class`:="icon icon-play"),
           "Start"

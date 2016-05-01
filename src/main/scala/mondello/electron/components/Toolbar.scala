@@ -70,24 +70,28 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   def commonButtons():Frag = {
     div(`class`:="btn-group",
       button(attrs.data.bind:="css: {active: page() == 'machines'}, click: function(){ selectPage('machines') }",
+        title:="Docker machines management",
         `class`:="btn btn-default",
         span(`class`:="icon icon-drive"),
         raw("&nbsp; Machines")
       ),
       button(attrs.data.bind:="css: {active: page() === 'images','btn-disabled':(!selectedMachine() || selectedMachine().state !== 'Running')},"+
         " click: function(){ selectPage('images') }",
+        title:="Docker images management",
         `class`:="btn btn-default",
         span(`class`:="icon icon-box"),
         raw("&nbsp; Images")
       ),
       button(attrs.data.bind:="css: {active: page() === 'containers','btn-disabled':(!selectedMachine() || selectedMachine().state !== 'Running')}," +
         " click: function(){ selectPage('containers') }",
+        title:="Docker containers management",
         `class`:="btn btn-default",
         span(`class`:="icon icon-rocket"),
         raw("&nbsp; Containers")
       ),
       button(attrs.data.bind:="css: {active: page() === 'compose','btn-disabled':(!selectedMachine() || selectedMachine().state !== 'Running')}," +
         " click: function(){ selectPage('compose') }",
+        title:="Docker compose projects management",
         `class`:="btn btn-default",
         span(`class`:="icon icon-pencil"),
         raw("&nbsp; Compose")
@@ -98,6 +102,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   def machinesToolbar():Frag = {
     span(`class`:="span-toolbar-actions",attrs.data.bind:="if: page()=='machines'",
       button(`class`:="btn btn-default",
+        title:="Creates a new Docker machine",
         span(`class`:="icon icon-plus"), attrs.data.bind:="click: showNewMachine()",
         "New Machine"
       )
@@ -107,10 +112,12 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   def imagesToolbar():Frag = {
     span(`class`:="span-toolbar-actions",attrs.data.bind:="if: page()=='images'",
       button(`class`:="btn btn-default",
+        title:="Pulls a new Docker image from an index",
         span(`class`:="icon icon-cloud"), attrs.data.bind:="click: pullImage",
         raw("&nbsp; Pull New")
       ),
       button(`class`:="btn btn-default",
+        title:="Builds a new Docker image from a Dockerfile",
         span(`class`:="icon icon-doc-text"), attrs.data.bind:="click: buildImage",
         raw("&nbsp; Build New")
       )
@@ -120,6 +127,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   def containersToolbar(): Frag = {
     span(`class`:="span-toolbar-actions",attrs.data.bind:="if: page()=='containers'",
       button(`class`:="btn btn-default",
+        title:="Show logs for running containers",
         span(`class`:="icon icon-megaphone"), attrs.data.bind:="click: displayLogs, css:{pressed: $parent.displayContainerLogs()}",
         raw("&nbsp; Logs")
       )
@@ -129,6 +137,7 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   def composeToolbar(): Frag = {
     span(`class`:="span-toolbar-actions",attrs.data.bind:="if: page()=='compose'",
       button(`class`:="btn btn-default",
+        title:="Loads a new Docker compose Project from a YAML file",
         span(`class`:="icon icon-plus"),title:="Loads a new Docker Compose project from a YAML file",
         attrs.data.bind:="click: loadComposeFile",
         raw("&nbsp; Load Project")
@@ -139,11 +148,13 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   def rightButtons():Frag = {
     span(`class`:="span-toolbar-actions",
       button(`class`:="btn btn-default pull-right",
+        title:="Mondello settings",
         attrs.data.bind:="click: displaySettings",
         span(`class`:="icon icon-cog"),
         raw("&nbsp; Settings")
       ),
       button(`class`:="btn btn-default pull-right",
+        title:="Docker index credentials management",
         attrs.data.bind:="click: displayLogin, css:{'btn-disabled':(!selectedMachine() || selectedMachine().state !== 'Running')}",
         span(`class`:="icon icon-users"),
         raw("&nbsp; Credentials")

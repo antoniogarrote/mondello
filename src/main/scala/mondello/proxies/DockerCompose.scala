@@ -17,4 +17,12 @@ class DockerCompose(machineName:String, env:Environment)(implicit ec:ExecutionCo
     }
   }
 
+  def stopServices(project:Project, services:Array[String]): Future[Boolean] = {
+    consoleProcess.executeInteractive(s"-f ${project.file} stop", services).map((_) => true)
+  }
+
+  def down(project:Project): Future[Boolean] = {
+    consoleProcess.executeInteractive(s"-f ${project.file} down", Array[String]("--rmi all -v --remove-orphans")).map((_) => true)
+  }
+
 }

@@ -73,4 +73,20 @@ object Compose extends KoComponent("docker-compose") with DockerBackendInteracti
     }
   }
 
+  def stopSelectedServices() = {
+    println("** Stopping services")
+    val services = selectedServices.values.map(_.id)
+    dockerTry(dockerCompose) {
+      dockerCompose().stopServices(selectedProject(), services.toArray)
+    }
+  }
+
+  def down() = {
+    println("** Stopping services")
+    val services = selectedServices.values.map(_.id)
+    dockerTry(dockerCompose) {
+      dockerCompose().down(selectedProject())
+    }
+  }
+
 }
