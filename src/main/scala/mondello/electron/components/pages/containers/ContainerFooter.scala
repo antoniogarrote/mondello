@@ -97,6 +97,7 @@ object ContainerFooter extends KoComponent("container-footer") {
 
   def attachContainer() = {
     Log.trace("* Attach Container")
+    Containers.attachContainer(ContainerFooter.selectedContainer())
   }
 
   def startContainerDetached() = {

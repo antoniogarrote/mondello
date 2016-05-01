@@ -111,6 +111,11 @@ object Containers extends KoComponent("docker-containers") with DockerBackendInt
     runContainerInternal(container,() => docker().stopContainer(container.id))
   }
 
+  def attachContainer(container:Container) = {
+    Log.trace(s"** Attaching Container ${container.id}:${container.names}")
+    MondelloApp.showModal(s"Attaching to container ${container.names}")
+    runContainerInternal(container, () => docker().attachContainer(container.id))
+  }
   def logContainer(container:Container, cb:(String) => Unit): js.Any = {
     docker().logsChild(container.id, cb)
   }
