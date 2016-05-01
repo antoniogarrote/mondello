@@ -1,6 +1,6 @@
 package mondello.platform.js
 
-import mondello.config.{Environment, Log}
+import mondello.config.{Environment, Log, Settings}
 
 import scala.concurrent.{Future, Promise}
 import scala.scalajs.js
@@ -15,7 +15,7 @@ object Implicits {
     def commandString(cmdPath: String, command: String, commandArgs: Seq[String] = Array[String]()) = {
       val pathExport = g.process.env.PATH
       val commandArgsStr = commandArgs.mkString(" ")
-      "export PATH=\"" + pathExport + "\"" + s"; $cmdPath $command $commandArgsStr"
+      "export PATH=\"" + pathExport +":"+ Settings.driversHome+ "\"" + s"; $cmdPath $command $commandArgsStr"
     }
 
     def execute(command: String, commandArgs: Array[String] = Array[String](), neverFail:Boolean = false)(implicit environment: Environment): Future[Array[String]] = {

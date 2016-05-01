@@ -50,7 +50,7 @@ object MachinesBrowser extends KoComponent("machines-browser") {
             span(attrs.data.bind:="visible: state == 'Stopped'",
               `class`:="icon icon-record",attrs.style:="color:#fc605b"),
             span(attrs.data.bind:="visible: state == 'Error'",
-              `class`:="icon icon-record",attrs.style:="color:color:#000000"),
+              `class`:="icon icon-attention",attrs.style:="color:color:#000000"),
             span(`class`:="icon icon-drive"),
             span(attrs.data.bind:="text: name")
           )
