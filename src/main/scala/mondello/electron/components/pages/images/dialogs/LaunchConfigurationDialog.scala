@@ -18,6 +18,7 @@ object LaunchConfigurationDialog extends KoComponent("launch-configuration-dialo
   val expose:KoObservable[String] = Ko.observable("")
   val publish:KoObservable[String] = Ko.observable("")
   val envVars:KoObservable[String] = Ko.observable("")
+  val rm:KoObservable[Boolean] = Ko.observable(true)
 
   override def viewModel(params: Dictionary[Any]): Unit = {}
 
@@ -30,31 +31,39 @@ object LaunchConfigurationDialog extends KoComponent("launch-configuration-dialo
         form(`class`:="padded-less",
           div(`class`:="form-group",
             label("Name"),
-            input(id:="new-machine-name", `class`:="form-control",attrs.data.bind:="value: name")
+            input(id:="image-config-name", `class`:="form-control",attrs.data.bind:="value: name")
           ),
+
           div(`class`:="form-group",
             label("Command"),
-            input(id:="new-machine-name", `class`:="form-control",attrs.data.bind:="value: command")
+            input(id:="image-config-command", `class`:="form-control",attrs.data.bind:="value: command")
           ),
           div(`class`:="form-group",
             label("Entry Point"),
-            input(id:="new-machine-name", `class`:="form-control",attrs.data.bind:="value: entryPoint")
+            input(id:="image-config-entrypoint", `class`:="form-control",attrs.data.bind:="value: entryPoint")
           ),
           div(`class`:="form-group",
             label("Links"),
-            input(id:="new-machine-name", `class`:="form-control",attrs.data.bind:="value: link")
+            input(id:="image-config-link", `class`:="form-control",attrs.data.bind:="value: link")
           ),
           div(`class`:="form-group",
             label("Expose Ports"),
-            input(id:="new-machine-name", `class`:="form-control",attrs.data.bind:="value: expose")
+            input(id:="image-config-expose", `class`:="form-control",attrs.data.bind:="value: expose")
           ),
           div(`class`:="form-group",
             label("Publish Ports"),
-            input(id:="new-machine-name", `class`:="form-control",attrs.data.bind:="value: publish")
+            input(id:="image-config-publish", `class`:="form-control",attrs.data.bind:="value: publish")
           ),
           div(`class`:="form-group",
             label("Environment Vars"),
             textarea(rows:="3",`class`:="form-control",attrs.data.bind:="value: envVars")
+          ),
+          div(`class`:="checkbox",
+            label(
+              input(id:="image-config-rm", `type`:="checkbox",attrs.data.bind:="checked: rm",
+                "Automatic clean up"
+              )
+            )
           ),
           div(`class`:="form-actions",
             button(`type`:="submit", `class`:="btn-ok btn btn-form btn-primary pull-right",

@@ -90,6 +90,7 @@ object ImageFooter extends KoComponent("image-footer") {
       Images.startImage(
         LaunchConfigurationDialog.entryPoint(),
         LaunchConfigurationDialog.name(),
+        LaunchConfigurationDialog.rm(),
         LaunchConfigurationDialog.link(),
         LaunchConfigurationDialog.expose(),
         LaunchConfigurationDialog.publish(),
@@ -105,6 +106,7 @@ object ImageFooter extends KoComponent("image-footer") {
       Images.startImageInteractive(
         LaunchConfigurationDialog.entryPoint(),
         LaunchConfigurationDialog.name(),
+        LaunchConfigurationDialog.rm(),
         LaunchConfigurationDialog.link(),
         LaunchConfigurationDialog.expose(),
         LaunchConfigurationDialog.publish(),

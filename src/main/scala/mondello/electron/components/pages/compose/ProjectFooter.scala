@@ -57,7 +57,7 @@ object ProjectFooter extends KoComponent("project-footer") {
         button(
           `class`:="btn btn-large btn-default pull-right",title:="Stops all services and removes images and containers",
           attrs.data.bind:="click: down, css: {'btn-disabled': !selectedProject()}",
-          span(`class`:="icon icon-cancel-squared"),
+          span(`class`:="icon icon-down"),
           raw("&nbsp;"),
           "Down"
         ),

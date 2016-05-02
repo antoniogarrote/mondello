@@ -11,7 +11,7 @@ class DockerCompose(machineName:String, env:Environment)(implicit ec:ExecutionCo
 
   def upServices(detached:Boolean, project:Project, services:Array[String]): Future[Boolean] = {
     if(detached){
-      consoleProcess.execute(s"-f ${project.file }up", services).map((_) => true)
+      consoleProcess.execute(s"-f ${project.file } up", services).map((_) => true)
     } else {
       consoleProcess.executeInteractive(s"-f ${project.file} up", services).map((_) => true)
     }

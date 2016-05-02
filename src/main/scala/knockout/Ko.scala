@@ -18,4 +18,5 @@ object Ko extends js.Object {
 
   def applyBindings(viewModelOrBindingContext: Object): Unit = js.native
   def applyBindings(viewModelOrBindingContext: Object, rootNode: dom.Element): Unit = js.native
+
 }

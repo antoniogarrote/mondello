@@ -84,14 +84,14 @@ object Images extends KoComponent("docker-images") with DockerBackendInteraction
     }
   }
 
-  def startImageInteractive(entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
+  def startImageInteractive(entrypoint:String, name:String, rm:Boolean, link:String, expose:String, publish:String, envs:String, command:String) = {
     Log.trace("** Start Image Interactive")
-    startImageInternal(interactive = true, neverFail=false, entrypoint, name,link, expose, publish, envs, command)
+    startImageInternal(interactive = true, neverFail=false, rm, entrypoint, name,link, expose, publish, envs, command)
   }
 
-  def startImage(entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
+  def startImage(entrypoint:String, name:String, rm:Boolean, link:String, expose:String, publish:String, envs:String, command:String) = {
     Log.trace("** Start Image")
-    startImageInternal(interactive = false, neverFail=true, entrypoint, name,link, expose, publish, envs, command)
+    startImageInternal(interactive = false, neverFail=true, rm, entrypoint, name,link, expose, publish, envs, command)
   }
 
   def pullImage(image:String, tag:String):Future[Boolean] = {
@@ -127,13 +127,14 @@ object Images extends KoComponent("docker-images") with DockerBackendInteraction
     f
   }
 
-  protected def startImageInternal(interactive:Boolean, neverFail:Boolean=false, entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
+  protected def startImageInternal(interactive:Boolean, neverFail:Boolean=false, rm:Boolean, entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {
     if(selectedImage() != null) {
       MondelloApp.showModal(s"Starting image ${this.selectedImage().repository}:${this.selectedImage().tag}")
       val id = selectedImage().id
       val opts = Map(
         "entrypoint" -> entrypoint,
         "name" -> name,
+        "rm" -> rm.toString,
         "link" -> link,
         "expose" -> expose,
         "publish" -> publish,
