@@ -7,7 +7,7 @@ import mondello.electron.components.MondelloApp
 import mondello.electron.components.common.DockerBackendInteraction
 import mondello.electron.components.pages.images.dialogs.{LaunchConfigurationDialog, PullImageDialog}
 import mondello.electron.components.pages.images.{ImageFooter, ImagesBrowser, SelectedImage}
-import mondello.models.Image
+import mondello.models.{Image, ImageSearchResult}
 import mondello.proxies.Docker
 
 import scala.concurrent.{Future, Promise}
@@ -125,6 +125,13 @@ object Images extends KoComponent("docker-images") with DockerBackendInteraction
         MondelloApp.closeModal()
     }
     f
+  }
+
+  def searchImage(searchText:String):Future[Array[ImageSearchResult]] = {
+    Log.trace(s"** Searching images: $searchText")
+    dockerTry(docker(),Array[ImageSearchResult]()) {
+      docker().searchImage(searchText)
+    }
   }
 
   protected def startImageInternal(interactive:Boolean, neverFail:Boolean=false, rm:Boolean, entrypoint:String, name:String, link:String, expose:String, publish:String, envs:String, command:String) = {

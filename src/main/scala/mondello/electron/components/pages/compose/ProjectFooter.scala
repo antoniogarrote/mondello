@@ -87,8 +87,8 @@ object ProjectFooter extends KoComponent("project-footer") {
   def upAttached() = upInternal(detached = false)
 
   def upInternal(detached:Boolean) = {
-    Log.trace("* up project attached")
-    MondelloApp.showModal("Starting selected services detached")
+    Log.trace("* up project")
+    MondelloApp.showModal("Starting selected services")
     val f = Compose.upSelectedServices(detached)
     f.onSuccess {
       case _:Boolean =>

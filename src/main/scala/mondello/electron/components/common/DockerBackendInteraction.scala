@@ -15,4 +15,15 @@ trait DockerBackendInteraction {
     }
   }
 
+
+  def dockerTry[T,U](docker:T, default:U)(f: => Future[U]): Future[U] = {
+    if(docker != null) {
+      f
+    } else {
+      val f = Future(default)
+      f.failed
+      f
+    }
+  }
+
 }

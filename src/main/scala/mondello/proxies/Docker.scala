@@ -1,11 +1,11 @@
 package mondello.proxies
 
 import mondello.config.{Environment, Log}
-import mondello.models.{Container, Image}
+import mondello.models.{Container, Image, ImageSearchResult}
 
 import scala.collection.mutable
 import scala.concurrent.{ExecutionContext, Future, Promise}
-import scala.util.{Failure, Success}
+import scala.util.{Failure, Success, Try}
 import scalajs.js
 
 class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, consoleProcess: mondello.platform.Process) {
@@ -127,6 +127,12 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
     consoleProcess.executeInteractive("build", Array(tagArg, buildArg, rmArg, dirname)).map((_) => true)
   }
 
+  def searchImage(searchText:String):Future[Array[ImageSearchResult]] = {
+    consoleProcess.execute("search",Array("--no-trunc", searchText)).map { lines:Array[String] =>
+      lines.drop(1).map(parseImageSearchResultLine(_)).filter(_.isDefined).map(_.get)
+    }
+  }
+
   protected def startImageInternal(interactive:Boolean, id: String, command: String, opts: Map[String, String], f:(List[String]) => Future[Array[String]]) = {
     val entrypointArg = makeCmdLineArg("entrypoint", opts("entrypoint"))
     val nameArg = makeCmdLineArg("name", opts("name"))
@@ -155,6 +161,21 @@ class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, 
         Image(repository, tag, id.replace("sha256:",""), null, 0L, null)
       case other =>
         throw new Exception(s"Impossible to parse array: $other")
+    }
+  }
+
+  def parseImageSearchResultLine(line: String): Option[ImageSearchResult] = {
+    val lineRegex = """(\w+\/\w+)\s+([\w\s]+)(\d)\s+(\[\w+\]){0,2}\s+(\[\w+\]){0,2}""".r
+    val results = lineRegex.findAllMatchIn(line).toArray
+    if(results.isEmpty) {
+      None
+    } else {
+      val name = results.head.group(1)
+      val description = results.head.group(2)
+      val stars = Integer.parseInt(results.head.group(3))
+      val official = if(results.head.group(4) == null) { false } else { true}
+      val automated = if(results.head.group(5) == null) { false } else { true}
+      Some(ImageSearchResult(name, description, stars, official, automated))
     }
   }
 

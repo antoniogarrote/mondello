@@ -265,10 +265,44 @@
   margin-left: -10px;
 }
 
+.inline-form-input {
+  width: 485px;
+  margin-right: 10px;
+}
+
+.inline-form-btn {
+  height: 31px;
+  float: right;
+  margin-left: -10px;
+}
+
 .list-group-with-elems {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #ddd;
+}
+
+#images-results-window {
+  display: block;
+}
+
+#images-selection-wrapper {
+  margin-bottom: 0px;
+  height: 250px;
+  max-height: 250px;
+  min-height: 250px;
+  overflow: auto;
+  overflow-y: auto;
+  display: block;
+}
+
+#images-selection-table {
+  table-layout: fixed
+}
+
+.image-selected-result {
+  color: #fff;
+  background-color: #116cd6 !important;
 }
 
 /*

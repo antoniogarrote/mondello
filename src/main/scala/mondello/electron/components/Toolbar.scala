@@ -4,7 +4,7 @@ import knockout.{KoComponent, KoObservable}
 import mondello.config.{Log, Settings}
 import mondello.electron.components.common.FileLoader
 import mondello.electron.components.pages.Compose
-import mondello.electron.components.pages.images.dialogs.{BuildImageDialog, PullImageDialog}
+import mondello.electron.components.pages.images.dialogs.{BuildImageDialog, PullImageDialog, SearchImageDialog}
 import mondello.electron.components.pages.machines.dialogs.NewMachineDialog
 import mondello.models.{Machine, Project}
 
@@ -31,7 +31,8 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   nestedComponents += (
     "newMachineDialog" -> newMachineDialog,
     "PullImageDialog" -> PullImageDialog,
-    "BuildImageDialog" -> BuildImageDialog
+    "BuildImageDialog" -> BuildImageDialog,
+    "SearchImageDialog" -> SearchImageDialog
     )
 
   override def viewModel(params: Dictionary[Any]): Unit = {
@@ -61,7 +62,8 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
       ),
       NewMachineDialog.tag(),
       PullImageDialog.tag(),
-      BuildImageDialog.tag()
+      BuildImageDialog.tag(),
+      SearchImageDialog.tag()
     ).toString()
   }
 
@@ -120,6 +122,11 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
         title:="Builds a new Docker image from a Dockerfile",
         span(`class`:="icon icon-doc-text"), attrs.data.bind:="click: buildImage",
         raw("&nbsp; Build New")
+      ),
+      button(`class`:="btn btn-default",
+        title:="Searches for images in Docker Hub",
+        span(`class`:="icon icon-search"), attrs.data.bind:="click: searchImage",
+        raw("&nbsp; Search New")
       )
     )
   }
@@ -199,6 +206,11 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
     Log.trace("* Display logs")
     val oldValue = displayContainerLogs()
     displayContainerLogs(!oldValue)
+  }
+
+  def searchImage() = {
+    Log.trace("* Search image")
+    SearchImageDialog.show()
   }
 
   def loadComposeFile() = {

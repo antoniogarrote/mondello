@@ -61,7 +61,7 @@ object LaunchConfigurationDialog extends KoComponent("launch-configuration-dialo
           div(`class`:="checkbox",
             label(
               input(id:="image-config-rm", `type`:="checkbox",attrs.data.bind:="checked: rm",
-                "Automatic clean up"
+                "Automatic Clean Up"
               )
             )
           ),

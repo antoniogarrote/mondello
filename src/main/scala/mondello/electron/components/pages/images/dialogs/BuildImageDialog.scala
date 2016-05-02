@@ -32,7 +32,7 @@ object BuildImageDialog extends KoComponent("build-image-dialog") {
         form(`class`:="padded-less",
           div(`class`:="form-group",
             label("Dockerfile"),
-            input(id:="build-image-path",`class`:="form-control", attrs.data.bind:="value: dirname"),
+            input(id:="build-image-path",`class`:="form-control inline-form-input", attrs.data.bind:="value: dirname"),
             button(id:="build-image-path-btn",`class`:="btn btn-form btn-default pull-right",
               attrs.data.bind:="click: openSelectDockerfile",
               span(`class`:="icon icon-drive")
