@@ -13,9 +13,9 @@ trait FileLoader {
   def loadFile(path:String):Future[String] = {
     val fs = g.require("fs")
     val p:Promise[String] = Promise()
-    fs.readFile(path, { (err:js.UndefOr[Throwable],data:js.Any) =>
-      if(err.isDefined && err.get != null) {
-        p.failure(err.get)
+    fs.readFile(path, { (err:js.Any,data:js.Any) =>
+      if(err != null) {
+        p.failure(new Exception(err.toString))
       } else {
         p.success(data.toString)
       }

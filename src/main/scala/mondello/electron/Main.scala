@@ -16,6 +16,7 @@ object Main extends js.JSApp with FileLoader {
   def bootstrap(app:App) = {
 
     val fs = g.require("fs")
+    println(s"*** LOADING $mondelloSettingsPath")
     val f = loadFile(mondelloSettingsPath)
 
     f.onSuccess {
