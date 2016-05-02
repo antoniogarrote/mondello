@@ -4,7 +4,7 @@
 
 Mondello is a free graphical client for Docker, Docker Machine, Docker Compose for OSX.
 
-[Installer for version 0.2.2](https://github.com/antoniogarrote/mondello/releases/download/v0.2.2/Mondello.dmg)
+[Installer for version 0.2.3](https://github.com/antoniogarrote/mondello/releases/download/v0.2.3/Mondello.dmg)
 
 ![Mondello screenshot](http://antoniogarrote.github.io/mondello/images/screenshot1.png)
 
