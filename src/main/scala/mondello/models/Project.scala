@@ -93,6 +93,7 @@ class Service(val id:String, val service:js.Dynamic) {
 class Project(val file:String, val services:Array[Service]) {
   val filename = g.require("path").basename(file).asInstanceOf[String]
   val dirname = g.require("path").dirname(file).asInstanceOf[String]
+  val localDir = s"/${dirname.split(g.require("path").sep.asInstanceOf[String]).last}"
   val servicesCount = services.length
 
   def servicesJS:js.Array[Service] = js.JSConverters.array2JSRichGenTrav(services).toJSArray

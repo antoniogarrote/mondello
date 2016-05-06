@@ -74,7 +74,7 @@ object MachineFooter extends KoComponent("machine-footer") {
 
   def startMachine():js.Function1[js.Any,Unit] = (event:js.Any) => {
     Log.trace("* Start machine clicked")
-    MondelloApp.showModal(s"Starting Docker machine '${this.selectedMachine().name}")
+    MondelloApp.showModal(s"Starting Docker machine '${this.selectedMachine().name}'")
     Log.trace(s"* Starting machine ${this.selectedMachine().name}")
     Machines.startMachine(this.selectedMachine(), (_) => MondelloApp.closeModal())
     ()

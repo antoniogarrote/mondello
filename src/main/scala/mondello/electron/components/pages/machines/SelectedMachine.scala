@@ -1,6 +1,7 @@
 package mondello.electron.components.pages.machines
 
 import knockout._
+import mondello.proxies.NativeDocker
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
@@ -63,7 +64,7 @@ object SelectedMachine extends KoComponent("docker-machine") {
   private def makeComputedHash(f: (mondello.models.Machine) => js.Any): KoComputed[js.Array[js.Dictionary[String]]] = {
     Ko.computed({ () =>
       val array = js.Array[js.Dictionary[String]]()
-      if (selectedMachine() != null) {
+      if (selectedMachine() != null && !selectedMachine().isNative()) {
         val machine: mondello.models.Machine = selectedMachine()
         val data = f(machine)
         if (data != null) data.asInstanceOf[js.Dictionary[js.Dynamic]].foreach({

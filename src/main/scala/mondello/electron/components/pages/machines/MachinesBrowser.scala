@@ -38,7 +38,7 @@ object MachinesBrowser extends KoComponent("machines-browser") {
           ))
       ),
       // Machines
-      span(attrs.data.bind:="ifnot: loadingMachines",
+      span(attrs.data.bind:="ifnot: loadingMachines()",
         span(attrs.data.bind:="foreach: machines",
           span(`class`:="nav-group-item",
             attrs.data.bind:="click: $parent.selectMachine(),"++

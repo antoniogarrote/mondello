@@ -69,7 +69,7 @@ object ProjectsBrowser extends KoComponent("comppose-projects") {
           span(`class`:="icon icon-pencil"),
           raw("&nbsp;"),
           strong(attrs.data.bind:="text: filename"),
-          p(attrs.data.bind:="text: file"),
+          p(attrs.data.bind:="text: localDir"),
           p(attrs.data.bind:="text: servicesCount +' services'")
         )
       ),

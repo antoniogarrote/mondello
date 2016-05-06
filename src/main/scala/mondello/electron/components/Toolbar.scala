@@ -27,6 +27,9 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   var displayContainerLogs:KoObservable[Boolean] = null
   var showLogin:KoObservable[Boolean] = null
   var showSettings:KoObservable[Boolean] = null
+  var nativeDockerAvailable:KoObservable[Boolean] = null
+  var nativeDockerRunning:KoObservable[Boolean] = null
+
 
   nestedComponents += (
     "newMachineDialog" -> newMachineDialog,
@@ -41,6 +44,8 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
     displayContainerLogs = params("displayContainerLogs").asInstanceOf[KoObservable[Boolean]]
     showLogin = params("showLogin").asInstanceOf[KoObservable[Boolean]]
     showSettings = params("showSettings").asInstanceOf[KoObservable[Boolean]]
+    nativeDockerAvailable = params("nativeDockerAvailable").asInstanceOf[KoObservable[Boolean]]
+    nativeDockerRunning = params("nativeDockerRunning").asInstanceOf[KoObservable[Boolean]]
   }
 
   override def template: String = {
@@ -102,11 +107,20 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
   }
 
   def machinesToolbar():Frag = {
-    span(`class`:="span-toolbar-actions",attrs.data.bind:="if: page()=='machines'",
-      button(`class`:="btn btn-default",
-        title:="Creates a new Docker machine",
-        span(`class`:="icon icon-plus"), attrs.data.bind:="click: showNewMachine()",
-        "New Machine"
+    span(attrs.data.bind:="if: page()=='machines'",
+      span(`class`:="span-toolbar-actions",
+        button(`class`:="btn btn-default",title:="Run native Docker",
+          span(`class`:="fa fa-docker"), attrs.data.bind:="click: startNativeDocker," +
+            " css:{pressed: nativeDockerRunning(), 'btn-disabled': !nativeDockerAvailable()}",
+          raw("&nbsp; Native")
+        )
+      ),
+      span(`class`:="span-toolbar-actions",
+        button(`class`:="btn btn-default",
+          title:="Creates a new Docker machine",
+          span(`class`:="icon icon-plus"), attrs.data.bind:="click: showNewMachine(), css:{'btn-disabled': nativeDockerRunning()}",
+          "New Machine"
+        )
       )
     )
   }
@@ -244,5 +258,22 @@ object Toolbar extends KoComponent("mondello-toolbar") with FileLoader {
 
   def navigateToCode() = {
     g.require("electron").shell.openExternal("https://github.com/antoniogarrote/mondello")
+  }
+
+  def startNativeDocker() = {
+    Log.trace("** Start native Docker")
+    MondelloApp.showModal("Starting native Docker daemon")
+    val f = MondelloApp.startNative
+    f.onSuccess{
+      case (res:Boolean) =>
+        MondelloApp.reloadNativeDocker()
+        MondelloApp.closeModal()
+    }
+
+    f.onFailure {
+      case e:Throwable =>
+        g.alert(s"Error startin native Docker daemon: ${e.getMessage}")
+        MondelloApp.closeModal()
+    }
   }
 }

@@ -61,8 +61,8 @@ object SelectedProject extends KoComponent("selected-project") with TableRendere
             th("Source"),
             th("Origin"),
             th("Ports Mapped"),
-            th("Number of Links"),
-            th("Number of Env Vars")
+            th("Linked Services"),
+            th("Volumes Mounted")
           )
         ),
         tbody(attrs.data.bind:="foreach: selectedProject().servicesJS",
@@ -95,7 +95,7 @@ object SelectedProject extends KoComponent("selected-project") with TableRendere
 
   private def portsSection(): Frag = makeArrayMapTable("Ports Mapping","portsJS",Seq(("From","from"),("To","to")))
 
-  private def servicesSection(): Frag = makeArrayTable("Linked Services","externalLinks", "Service")
+  private def servicesSection(): Frag = makeArrayTable("Linked Services","links", "Service")
 
   private def volumesSection(): Frag = makeArrayMapTable("Volumes Mounted","volumesJS",Seq(("Container Dir.","container"),("Host Dir.","host")))
 

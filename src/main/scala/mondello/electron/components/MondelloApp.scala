@@ -3,7 +3,7 @@ package mondello.electron.components
 import knockout.tags.KoText
 import knockout._
 import mondello.models.{Machine, Project}
-import mondello.proxies.{Docker, DockerCompose, DockerMachine}
+import mondello.proxies.{Docker, DockerCompose, DockerMachine, NativeDocker}
 import mondello.config.{Environment, Settings}
 import mondello.electron.components.pages._
 import mondello.electron.components.pages.dialogs.{LoginDialog, SettingsDialog}
@@ -14,7 +14,7 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js.Dynamic.{global => g}
 import mondello.platform.js.Implicits.ConsoleProcess
 
-import scala.concurrent.Future
+import scala.concurrent.{Future, Promise}
 import scalatags.Text.all._
 import scalatags.Text.attrs
 
@@ -28,6 +28,7 @@ object MondelloApp extends KoComponent("mondello-app") {
     dockerMachine = new DockerMachine(env)
     loadingMachines(true)
     Machines(dockerMachine).reloadMachines()
+    reloadNativeDocker()
     Compose.reloadProjects()
     this
   }
@@ -38,6 +39,7 @@ object MondelloApp extends KoComponent("mondello-app") {
   var env:Environment = null
 
   var dockerMachine:DockerMachine = null
+  var nativeDocker = new NativeDocker()
 
   val selectedMachine: KoObservable[Machine] = Ko.observable(null)
   val loadingMachines: KoObservable[Boolean] = Ko.observable(false)
@@ -47,6 +49,9 @@ object MondelloApp extends KoComponent("mondello-app") {
   val showSettings: KoObservable[Boolean] = Ko.observable(false)
   var docker:KoComputed[Docker] = null
   var dockerCompose:KoComputed[DockerCompose] = null
+  var nativeDockerAvailable:KoObservable[Boolean] = Ko.observable(false)
+  var nativeDockerRunning:KoObservable[Boolean] = Ko.observable(false)
+  var nativeDockerLog:KoObservableArray[String] = Ko.observableArray()
 
   nestedComponents += (
     "Machines" -> Machines(dockerMachine),
@@ -60,6 +65,7 @@ object MondelloApp extends KoComponent("mondello-app") {
 
   override def viewModel(params: Dictionary[Any]): Unit = {
     this.docker = Ko.computed({() =>
+      val _ = nativeDockerRunning()
       if (selectedMachine() != null && selectedMachine().state == "Running")
         new Docker(selectedMachine().name, env)
       else
@@ -67,19 +73,26 @@ object MondelloApp extends KoComponent("mondello-app") {
     })
 
     this.dockerCompose = Ko.computed({() =>
+      val _ = nativeDockerRunning()
       if (selectedMachine() != null && selectedMachine().state == "Running")
         new DockerCompose(selectedMachine().name, env)
       else
         null
     })
+    g.setTimeout({() =>
+      reloadAll()
+    }, 500)
+
   }
 
   override def template: String = {
     div(id:="main",`class`:="window",
       Toolbar.tag(KoText.all.params:="selectedMachine: selectedMachine, page: page, displayContainerLogs: displayContainerLogs," +
-        " showLogin:showLogin, showSettings: showSettings"),
+        " showLogin:showLogin, showSettings: showSettings," +
+        " nativeDockerAvailable: nativeDockerAvailable, nativeDockerRunning: nativeDockerRunning"),
       Machines.tag(
-        KoText.all.params:="machines: dockerMachines, loadingMachines: loadingMachines, selectedMachine: selectedMachine",
+        KoText.all.params:="machines: dockerMachines, loadingMachines: loadingMachines, selectedMachine: selectedMachine," +
+          " nativeDockerRunning: nativeDockerRunning, nativeDockerLog: nativeDockerLog",
         attrs.data.bind:="visible: page()=='machines'"
       ),
       Images.tag(
@@ -138,6 +151,9 @@ object MondelloApp extends KoComponent("mondello-app") {
 
   def reloadAll() = {
     Machines.reloadMachines()
+    reloadNativeDocker()
+    if(selectedMachine() != null)
+      reloadSelectedMachine()
   }
 
   def reloadSelectedMachine() = {
@@ -145,4 +161,42 @@ object MondelloApp extends KoComponent("mondello-app") {
     Containers.reloadContainers()
   }
 
+  def reloadNativeDocker() = {
+    nativeDockerAvailable(nativeDocker.isAvailable())
+    if(nativeDockerAvailable()) {
+      nativeDocker.isRunning.map { (isRunning) =>
+        if(isRunning) { selectedMachine(NativeDocker.machineModel) }
+        nativeDockerRunning(isRunning)
+      }
+    } else nativeDockerRunning(false)
+  }
+
+  def startNative():Future[Boolean] = {
+    val p = Promise[Boolean]()
+    nativeDocker.isRunning.map { (result:Boolean) =>
+      if(!result) {
+        nativeDockerLog.removeAll()
+        val f = nativeDocker.start({
+          (line:String) =>
+            if(line != null) {
+              nativeDockerLog.push(line)
+            } else {
+              selectedMachine(null)
+              reloadNativeDocker()
+            }
+        })
+        f.onSuccess {
+          case res =>
+            selectedMachine(NativeDocker.machineModel)
+            p.success(res)
+        }
+        f.onFailure {
+          case e:Throwable => p.failure(e)
+        }
+      } else {
+        p.success(true)
+      }
+    }
+    p.future
+  }
 }

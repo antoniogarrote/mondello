@@ -3,7 +3,7 @@ package mondello.electron.components.pages
 import knockout.tags.KoText.all._
 import knockout.{KoComponent, KoObservable, KoObservableArray}
 import mondello.config.Log
-import mondello.electron.components.pages.machines.{MachineFooter, MachinesBrowser}
+import mondello.electron.components.pages.machines.{MachineFooter, MachinesBrowser, NativeDockerLog}
 import mondello.models.Machine
 import mondello.proxies.DockerMachine
 
@@ -12,6 +12,7 @@ import scala.scalajs.js.{Any, Dictionary, Dynamic}
 import scala.util.Try
 import scala.concurrent.Future
 import scalatags.Text.all._
+import scalatags.Text.{TypedTag, attrs}
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 
@@ -29,12 +30,15 @@ object Machines extends KoComponent("docker-machines") {
   var loadingMachines:KoObservable[Boolean] = null
   var dockerMachines:KoObservableArray[Machine] = null
   var selectedMachine:KoObservable[Machine] = null
+  var nativeDockerRunning:KoObservable[Boolean] = null
+  var nativeDockerLog:KoObservableArray[String] = null
 
 
   nestedComponents += (
-    "selected" -> mondello.electron.components.pages.machines.SelectedMachine,
-    "browser" -> MachinesBrowser,
-    "footer" -> MachineFooter
+    "SelectedMachine" -> mondello.electron.components.pages.machines.SelectedMachine,
+    "MachineBrowser" -> MachinesBrowser,
+    "MachineFooter" -> MachineFooter,
+    "NativeDockerLog" -> NativeDockerLog
   )
 
 
@@ -42,17 +46,26 @@ object Machines extends KoComponent("docker-machines") {
     dockerMachines = params("machines").asInstanceOf[KoObservableArray[Machine]]
     loadingMachines = params("loadingMachines").asInstanceOf[KoObservable[Boolean]]
     selectedMachine = params("selectedMachine").asInstanceOf[KoObservable[Machine]]
+    nativeDockerRunning = params("nativeDockerRunning").asInstanceOf[KoObservable[Boolean]]
+    nativeDockerLog = params("nativeDockerLog").asInstanceOf[KoObservableArray[String]]
   }
 
   override def template: String = {
     div(`class`:="window-content",
-      div(`class`:="pane-group",
+      div(`class`:="pane-group",attrs.data.bind:="visible: !nativeDockerRunning()",
         MachinesBrowser.tag(
           `class`:="pane pane-sm sidebar",
           params:="machines: dockerMachines, loadingMachines: loadingMachines, selectedMachine: selectedMachine"),
         mondello.electron.components.pages.machines.SelectedMachine.tag(
           `class`:="pane padded-more",
           params:="selectedMachine: selectedMachine"
+        )
+      ),
+      div(`class`:="pane-group",attrs.data.bind:="visible: nativeDockerRunning()",
+        NativeDockerLog.tag(
+          `class`:="pane padded-more",
+          params:="nativeDockerLog: nativeDockerLog",
+          attrs.data.bind:="visible: nativeDockerRunning"
         )
       ),
       MachineFooter.tag(`class`:="toolbar-footer",
@@ -67,6 +80,7 @@ object Machines extends KoComponent("docker-machines") {
     f.onSuccess {
       case machines =>
         var foundSelectedMachine = false
+        foundSelectedMachine = (selectedMachine() != null  && selectedMachine().isNative())
         dockerMachines.removeAll()
         machines.foreach({ (machine:Machine) =>
           if(selectedMachine() != null && machine.name == selectedMachine().name) {

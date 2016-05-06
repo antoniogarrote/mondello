@@ -7,7 +7,7 @@ trait TableRenderer {
   def makeTable(tableName:String, base:String, attributesMapping:Seq[Tuple2[String,String]]): Frag = {
     div(
       h4(tableName),
-      table(`class`:="table-striped",
+      table(`class`:="table-striped",style:="table-layout: fixed",
         thead(
           tr(
             th("Variable"),
@@ -27,15 +27,15 @@ trait TableRenderer {
   def makeArrayMapTable(tableName:String, base:String, attributesMapping:Seq[Tuple2[String,String]]): Frag = {
     div(
       h4(tableName),
-      table(`class`:="table-striped",
+      table(`class`:="table-striped",style:="table-layout: fixed",
         thead(
           tr(
-            for((property, _)<- attributesMapping) yield th(property)
+            for((property, _)<- attributesMapping) yield th(property, `class`:="fixed-cell")
           )
         ),
         tbody(attrs.data.bind:=s"foreach: $base",
           tr(
-            for((_, function) <- attributesMapping) yield td(attrs.data.bind:=s"text: $function")
+            for((_, function) <- attributesMapping) yield td(attrs.data.bind:=s"text: $function", `class`:="fixed-cell")
           )
         )
       )
@@ -45,7 +45,7 @@ trait TableRenderer {
   def makeArrayTable(tableName:String, base:String, header:String): Frag = {
     div(
       h4(tableName),
-      table(`class`:="table-striped",
+      table(`class`:="table-striped",style:="table-layout: fixed",
         thead(
           tr(
             th(header)
@@ -63,7 +63,7 @@ trait TableRenderer {
   def makeKeysTable(tableName:String, headerName:String, base:String): Frag = {
     div(
       h4(tableName),
-      table(`class`:="table-striped",
+      table(`class`:="table-striped",style:="table-layout: fixed",
         thead(
           tr(
             th(headerName)
@@ -81,7 +81,7 @@ trait TableRenderer {
   def makeKeyValueTable(tableName:String, headerName:(String,String), base:String): Frag = {
     div(
       h4(tableName),
-      table(`class`:="table-striped",
+      table(`class`:="table-striped",style:="table-layout: fixed",
         thead(
           tr(
             th(headerName._1),
