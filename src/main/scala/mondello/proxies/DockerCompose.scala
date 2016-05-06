@@ -7,7 +7,14 @@ import scala.concurrent.{ExecutionContext, Future}
 
 class DockerCompose(machineName:String, env:Environment)(implicit ec:ExecutionContext, consoleProcess: mondello.platform.Process) {
 
-  implicit val currentEnv = env.copy(cmdPath = "eval $" + s"(${env.dockerMachinePath} env '$machineName'); ${env.dockerComposePath}")
+  implicit val currentEnv = {
+    if(machineName != NativeDocker.machineModel.name) {
+      env.copy(cmdPath = "eval $" + s"(${env.dockerMachinePath} env '$machineName'); ${env.dockerComposePath}")
+    } else {
+      env.copy(cmdPath = env.dockerComposePath)
+    }
+  }
+
 
   def upServices(detached:Boolean, project:Project, services:Array[String]): Future[Boolean] = {
     if(detached){

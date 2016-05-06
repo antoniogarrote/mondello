@@ -27,6 +27,7 @@ object Implicits {
       var output = ""
       var err: String = null
 
+      Log.trace(commandLine)
       val child = g.require("child_process").exec(commandLine, { (stderr: js.Object, stdout: js.Object, stdin: js.Object) =>
         output += stdout
         if (stderr != null) {
@@ -43,8 +44,9 @@ object Implicits {
         } else {
           if (err == null)
             result.success(output.split("\n"))
-          else
+          else {
             result.failure(new Exception(err))
+          }
         }
       })
 

@@ -9,7 +9,13 @@ import scala.util.{Failure, Success, Try}
 import scalajs.js
 
 class Docker(machineName:String, env:Environment)(implicit ec:ExecutionContext, consoleProcess: mondello.platform.Process) {
-  implicit val currentEnv = env.copy(cmdPath = "eval $" + s"(${env.dockerMachinePath} env '$machineName'); ${env.dockerPath}")
+  implicit val currentEnv = {
+    if(machineName != NativeDocker.machineModel.name) {
+      env.copy(cmdPath = "eval $" + s"(${env.dockerMachinePath} env '$machineName'); ${env.dockerPath}")
+    } else {
+      env.copy(cmdPath = env.dockerPath)
+    }
+  }
 
   def containers:Future[List[Container]] = {
     val formatArg = "--format=\"{{.ID}}\\t{{.Image}}\\t{{.Command}}\\t{{.CreatedAt}}\\t{{.RunningFor}}\\t{{.Ports}}\\t{{.Status}}\\t{{.Size}}\\t{{.Names}}\\t{{.Labels}}\""
