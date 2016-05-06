@@ -8,5 +8,5 @@ object Log {
     g.process.env.asInstanceOf[js.Dictionary[String]].get("ENV").get == "development"
 
 
-  def trace(m:Any) = if(isDev){ println(m.toString) }
+  def trace(m:Any) = if(isDev){ g.console.log(m.toString) }
 }

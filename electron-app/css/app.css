@@ -305,6 +305,13 @@
   background-color: #116cd6 !important;
 }
 
+.fixed-cell {
+  max-width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /*
  Adjustments
 */
@@ -380,4 +387,15 @@ project-footer {
   position: fixed;
   width: 100%;
   bottom: 0px;
+}
+
+native-docker-logs {
+  padding: 0px !important;
+  width: 100%;
+  height: 100%;
+  position: relative !important;
+}
+
+native-docker-logs #console {
+  height: 100%
 }

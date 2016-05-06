@@ -3,6 +3,7 @@ package mondello.models
 import java.util.Dictionary
 
 import jdk.nashorn.api.scripting.JSObject
+import mondello.proxies.NativeDocker
 
 import scala.scalajs.js.annotation.{JSExportAll, ScalaJSDefined}
 import scalajs.js
@@ -18,4 +19,5 @@ case class Machine(name:String,
                    inspect: js.Object) {
 
   def to_string() = s"docker-machine: $name $active $driver $state $url $swarm"
+  def isNative() = name == NativeDocker.machineModel.name
 }

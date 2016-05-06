@@ -20,6 +20,8 @@ object Settings extends FileLoader {
   var compose = ListBuffer.empty[String]
   var error:String = null
 
+  def nativeDockerPath:String = "/Applications/Docker.app"
+
   def loadSettings():Future[Settings.type] = {
     trace(s"* Reading settings from $mondelloSettingsPath")
     val p:Promise[Settings.type] = Promise()
